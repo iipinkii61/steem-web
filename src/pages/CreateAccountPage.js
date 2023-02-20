@@ -1,13 +1,13 @@
 import React from 'react';
 
 import backgroundRegister from '../Asset/image/register.jpg';
-import RegisterLayout from '../layouts/RegisterLayout';
+import CreateAccountLayout from '../layouts/CreateAccountLayout';
 
-export default function Registerpage() {
+export default function CreateAccountPage() {
   return (
     <>
       <div style={{ backgroundImage: `url(${backgroundRegister})` }}>
-        <RegisterLayout />
+        <CreateAccountLayout />
       </div>
     </>
   );

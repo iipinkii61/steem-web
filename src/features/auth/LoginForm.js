@@ -23,12 +23,16 @@ export default function LoginForm() {
                   checked="checked"
                   className="checkbox rounded "
                 />
-                <span class="label-text text-neutral-400">Remember me</span>
+                <span class="label-text text-neutral-400 mx-2">
+                  Remember me
+                </span>
               </label>
             </div>
-            <button class="btn bg-sky-400 rounded-none w-60 place-self-center normal-case ">
-              Sign In
-            </button>
+            <div className="place-self-center my-4">
+              <button class="btn  bg-sky-500 border-slate-900 rounded-none w-60  normal-case  ">
+                Sign In
+              </button>
+            </div>
           </div>
         </form>
       </div>

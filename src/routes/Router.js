@@ -1,44 +1,44 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
-import CartPage from "../pages/CartPage";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from '../pages/HomePage';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import CartPage from '../pages/CartPage';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <HomePage />,
   },
   {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
-  {
-    path: "/friends",
+    path: '/login',
     element: <HomePage />,
   },
   {
-    path: "/chat",
+    path: '/register',
     element: <HomePage />,
   },
   {
-    path: "/profiles",
+    path: '/friends',
     element: <HomePage />,
   },
   {
-    path: "/wishlist",
+    path: '/chat',
     element: <HomePage />,
   },
   {
-    path: "/cart",
-    element: <CartPage />,
+    path: '/profiles',
+    element: <HomePage />,
   },
   {
-    path: "/checkout",
+    path: '/wishlist',
+    element: <HomePage />,
+  },
+  {
+    path: '/cart',
+    element: <HomePage />,
+  },
+  {
+    path: '/checkout',
     element: <HomePage />,
   },
 ]);
