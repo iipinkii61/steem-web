@@ -9,6 +9,7 @@ module.exports = {
         greenButton: "#4C6B22",
         darkGreen: "#42533B",
         grayComment: "#3E4956",
+        blueText: "#66C0F4",
       },
     },
   },
@@ -33,4 +34,4 @@ module.exports = {
     ],
   },
   plugins: [require("daisyui")],
-}
+};
