@@ -6,6 +6,14 @@ import CartPage from '../pages/CartPage';
 
 const router = createBrowserRouter([
   {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
     path: '/',
     element: <HomePage />,
   },

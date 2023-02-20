@@ -1,6 +1,6 @@
 import React from 'react';
 
-import backgroundRegister from '../Asset/image/register.jpg';
+import backgroundRegister from '../assets/register.jpg';
 import RegisterLayout from '../layouts/RegisterLayout';
 
 export default function Registerpage() {
