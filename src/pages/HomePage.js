@@ -9,7 +9,7 @@ export default function HomePage() {
       <PageMainLayout title01="FEATURED & RECOMMENDED">
         <RecommendedCarousel />
       </PageMainLayout>
-      {/* <Footer/> */}
+      <Footer />
     </>
   );
 }
