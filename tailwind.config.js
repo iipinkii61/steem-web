@@ -13,6 +13,7 @@ module.exports = {
       },
     },
   },
+
   daisyui: {
     themes: [
       {
@@ -23,15 +24,8 @@ module.exports = {
       },
     ],
   },
-  daisyui: {
-    themes: [
-      {
-        light: {
-          "background-color": "#1B2838",
-          color: "white",
-        },
-      },
-    ],
+  corePlugins: {
+    aspectRatio: false,
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/aspect-ratio")],
 };
