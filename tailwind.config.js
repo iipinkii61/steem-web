@@ -22,5 +22,15 @@ module.exports = {
       },
     ],
   },
+  daisyui: {
+    themes: [
+      {
+        light: {
+          "background-color": "#1B2838",
+          color: "white",
+        },
+      },
+    ],
+  },
   plugins: [require("daisyui")],
-};
+}
