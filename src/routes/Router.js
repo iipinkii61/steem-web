@@ -1,63 +1,55 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import HomePage from "../pages/HomePage"
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from '../pages/HomePage';
+import Loginpage from '../pages/Loginpage';
+import Registerpage from '../pages/Registerpage';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: (
-        <HomePage />
-    ),
+    path: '/register',
+    element: <Registerpage />,
   },
   {
-    path: "/login",
-    element: (
-        <HomePage />
-    ),
+    path: '/login',
+    element: <Loginpage />,
   },
   {
-    path: "/register",
-    element: (
-        <HomePage />
-    ),
+    path: '/',
+    element: <HomePage />,
   },
   {
-    path: "/friends",
-    element: (
-        <HomePage />
-    ),
+    path: '/login',
+    element: <HomePage />,
   },
   {
-    path: "/chat",
-    element: (
-        <HomePage />
-    ),
+    path: '/register',
+    element: <HomePage />,
   },
   {
-    path: "/profiles",
-    element: (
-        <HomePage />
-    ),
+    path: '/friends',
+    element: <HomePage />,
   },
   {
-    path: "/wishlist",
-    element: (
-        <HomePage />
-    ),
+    path: '/chat',
+    element: <HomePage />,
   },
   {
-    path: "/cart",
-    element: (
-        <HomePage />
-    ),
+    path: '/profiles',
+    element: <HomePage />,
   },
   {
-    path: "/checkout",
-    element: (
-        <HomePage />
-    ),
+    path: '/wishlist',
+    element: <HomePage />,
   },
-])
+  {
+    path: '/cart',
+    element: <HomePage />,
+  },
+  {
+    path: '/checkout',
+    element: <HomePage />,
+  },
+]);
 
 export default function Router() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
