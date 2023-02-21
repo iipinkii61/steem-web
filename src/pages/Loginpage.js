@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../components/Modal";
+// import Modal from "../components/Modal";
 import LoginLayout from "../layouts/LoginLayout";
 import backgroundImage from "../assets/login.jpg";
 
