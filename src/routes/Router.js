@@ -1,55 +1,56 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-import CartPage from '../pages/CartPage';
-import CreateAccountPage from '../pages/CreateAccountPage';
-import PaymentPage from '../pages/PaymentPage';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import CartPage from "../pages/CartPage";
+import ChatPage from "../pages/ChatPage";
+import PaymentPage from "../pages/PaymentPage";
+import CreateAccountPage from "../pages/CreateAccountPage";
 
 const router = createBrowserRouter([
   {
-    path: '/login',
+    path: "/login",
     element: <LoginPage />,
   },
   {
-    path: '/register',
+    path: "/register",
     element: <RegisterPage />,
   },
   {
-    path: '/createaccount',
+    path: "/createaccount",
     element: <CreateAccountPage />,
   },
   {
-    path: '/payment',
+    path: "/payment",
     element: <PaymentPage />,
   },
   {
-    path: '/',
+    path: "/",
     element: <HomePage />,
   },
 
   {
-    path: '/friends',
+    path: "/friends",
     element: <HomePage />,
   },
   {
-    path: '/chat',
+    path: "/chat",
+    element: <ChatPage />,
+  },
+  {
+    path: "/profiles",
     element: <HomePage />,
   },
   {
-    path: '/profiles',
+    path: "/wishlist",
     element: <HomePage />,
   },
   {
-    path: '/wishlist',
-    element: <HomePage />,
+    path: "/cart",
+    element: <CartPage />,
   },
   {
-    path: '/cart',
-    element: <HomePage />,
-  },
-  {
-    path: '/checkout',
+    path: "/checkout",
     element: <HomePage />,
   },
 ]);
