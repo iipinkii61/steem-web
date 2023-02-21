@@ -3,7 +3,7 @@ import React from "react";
 import LoginLayout from "../layouts/LoginLayout";
 import backgroundImage from "../assets/login.jpg";
 
-export default function Loginpage() {
+export default function LoginPage() {
   return (
     <>
       <div style={{ backgroundImage: `url(${backgroundImage})` }}>
