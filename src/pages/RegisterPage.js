@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import backgroundRegister from '../assets/register.jpg';
-import RegisterLayout from '../layouts/RegisterLayout';
+import backgroundRegister from "../assets/register.jpg";
+import RegisterLayout from "../layouts/RegisterLayout";
 
 export default function Registerpage() {
   return (
