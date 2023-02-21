@@ -7,7 +7,7 @@ export default function HomePage() {
     <>
       <Header />
       <PageMainLayout>
-        <p className="pb-8 text-3xl">YOUR SHOPPING CART</p>
+        <p className="py-8 text-3xl">YOUR SHOPPING CART</p>
         <div className="w-full">
           {/* game list */}
           <div className="flex justify-between items-center bg-[#18202C] mb-2 pr-4">

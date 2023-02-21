@@ -6,6 +6,7 @@ import CartPage from "../pages/CartPage";
 import ChatPage from "../pages/ChatPage";
 import PaymentPage from "../pages/PaymentPage";
 import CreateAccountPage from "../pages/CreateAccountPage";
+import ProfilePage from "../pages/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/profiles",
-    element: <HomePage />,
+    element: <ProfilePage />,
   },
   {
     path: "/wishlist",
