@@ -8,7 +8,7 @@ export default function PageMainLayout(props) {
         <div className='flex-1'>{/* side left */}</div>
         <div className='w-full flex-[3_1_0%]'>
           {children}
-        </div>
+          </div>
         <div className='flex-1'>{/* side right */}</div>
       </div>
       {/* </div> */}

@@ -9,7 +9,7 @@ export default function SpecialOffersCarousel(props) {
   return (
     <>
       <div className='pt-5 pb-5'>{title}</div>
-      <Carousel showThumbs={false} autoPlay={false} dynamicHeight={true} infiniteLoop={true} showStatus={false} stopOnHover={true}>
+      <Carousel showThumbs={false} autoPlay={false} dynamicHeight={true} infiniteLoop={true} showStatus={false} stopOnHover={true} showIndicators={false}>
       <div className=' h-full w-full flex gap-1 bg-[#0a141d]'>
         <div className='w-1/2 h-80 flex flex-col justify-between'>
           <div className=' bg-contain bg-center'>
