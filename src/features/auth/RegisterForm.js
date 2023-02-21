@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function RegisterForm() {
   return (
@@ -30,8 +31,10 @@ export default function RegisterForm() {
               </span>
             </label>
           </div>
-          <button class="btn bg-sky-400 rounded-none w-60  my-8 normal-case">
-            Continue
+          <button class="btn bg-sky-500  border-slate-900 rounded-none w-60  my-8 normal-case">
+            <Link className="navbar-brand" to="/createaccount">
+              Continue
+            </Link>
           </button>
         </div>
       </form>

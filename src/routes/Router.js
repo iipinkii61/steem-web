@@ -3,12 +3,12 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CartPage from "../pages/CartPage";
+import ChatPage from "../pages/ChatPage";
+import PaymentPage from "../pages/PaymentPage";
+import CreateAccountPage from "../pages/CreateAccountPage";
+import ProfilePage from "../pages/ProfilePage";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-  },
   {
     path: "/login",
     element: <LoginPage />,
@@ -18,16 +18,29 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
+    path: "/createaccount",
+    element: <CreateAccountPage />,
+  },
+  {
+    path: "/payment",
+    element: <PaymentPage />,
+  },
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+
+  {
     path: "/friends",
     element: <HomePage />,
   },
   {
     path: "/chat",
-    element: <HomePage />,
+    element: <ChatPage />,
   },
   {
     path: "/profiles",
-    element: <HomePage />,
+    element: <ProfilePage />,
   },
   {
     path: "/wishlist",

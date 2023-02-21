@@ -1,5 +1,5 @@
-import React from 'react';
-import CreateAccountForm from '../features/auth/CreateAccountForm';
+import React from "react";
+import CreateAccountForm from "../features/auth/CreateAccountForm";
 
 export default function CreateAccountLayout() {
   return (

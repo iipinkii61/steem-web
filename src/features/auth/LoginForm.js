@@ -47,15 +47,19 @@ export default function LoginForm() {
                   // checked="checked"
                   className="checkbox rounded "
                 />
-                <span className="label-text text-neutral-400">Remember me</span>
+                <span className="label-text text-neutral-400 mx-2">
+                  Remember me
+                </span>
               </label>
             </div>
-            <button
-              className="btn bg-sky-400 rounded-none w-60 place-self-center normal-case "
-              onClick={handleClick}
-            >
-              Sign In
-            </button>
+            <div className="place-self-center my-4">
+              <button
+                className="btn  bg-sky-500 border-slate-900 rounded-none w-60 normal-case"
+                onClick={handleClick}
+              >
+                Sign In
+              </button>
+            </div>
           </div>
         </form>
       </div>
