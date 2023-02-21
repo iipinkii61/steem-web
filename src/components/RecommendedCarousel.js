@@ -12,33 +12,87 @@ export default function RecommendedCarousel() {
   return (
     <>
       <Carousel showThumbs={false} autoPlay={false} dynamicHeight={true} infiniteLoop={true} showStatus={false} stopOnHover={true}>
-        <div className='w-full h-72 flex justify-between'>
-          <div className='w-96'>
+      <div className=' h-full w-full flex justify-between'>
+          <div className='w-1/2'>
             <img className="" src={image1}/>
           </div>
-          <div className='w-1/2 flex flex-col'>
-              <div className='h-52'>1</div>
-              <div className='h-52'>2</div>
-              <div className='h-52'>3</div>
-              <div className='h-52'>4</div>
+          <div className='h-full w-1/2 flex flex-col  justify-between bg-[#0a141d]'>
+              <div className='h-1/4 text-left pl-5 pt-7 text-3xl'>Name game</div>
+              <div className=' flex '>
+                <div className='flex justify-center flex-wrap gap-1 row-auto w-full'>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                </div>
+              </div>
+              <div className='h-1/4 text-left pl-5 pt-7 text-base'>price</div>
           </div>
-        </div>
+      </div>
+
+      <div className=' h-full w-full flex justify-between'>
+          <div className='w-1/2'>
+            <img className="" src={image2}/>
+          </div>
+          <div className='h-full w-1/2 flex flex-col  justify-between bg-[#0a141d]'>
+              <div className='h-1/4 text-left pl-5 pt-7 text-3xl'>Name game</div>
+              <div className=' flex '>
+                <div className='flex justify-center flex-wrap gap-1 row-auto w-full'>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                </div>
+              </div>
+              <div className='h-1/4 text-left pl-5 pt-7 text-base'>price</div>
+          </div>
+      </div>
+
+      <div className=' h-full w-full flex justify-between'>
+          <div className='w-1/2'>
+            <img className="" src={image3}/>
+          </div>
+          <div className='h-full w-1/2 flex flex-col  justify-between bg-[#0a141d]'>
+              <div className='h-1/4 text-left pl-5 pt-7 text-3xl'>Name game</div>
+              <div className=' flex '>
+                <div className='flex justify-center flex-wrap gap-1 row-auto w-full'>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                </div>
+              </div>
+              <div className='h-1/4 text-left pl-5 pt-7 text-base'>price</div>
+          </div>
+      </div>
+
+      <div className=' h-full w-full flex justify-between'>
+          <div className='w-1/2'>
+            <img className="" src={image4}/>
+          </div>
+          <div className='h-full w-1/2 flex flex-col  justify-between bg-[#0a141d]'>
+              <div className='h-1/4 text-left pl-5 pt-7 text-3xl'>Name game</div>
+              <div className=' flex '>
+                <div className='flex justify-center flex-wrap gap-1 row-auto w-full'>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                  <div className='w-[162px] h-[69px] bg-slate-500'>image</div>
+                </div>
+              </div>
+              <div className='h-1/4 text-left pl-5 pt-7 text-base'>price</div>
+          </div>
+      </div>
+
         
-        
-        
-        {/* <div className='w-full h-80'>
-          <img src={image1}/>
-          <div>test</div>
-        </div> */}
-        {/* <div className='aspect-w-16 aspect-h-9'>
-          <img src={image2} />
-        </div>
-        <div className='aspect-w-16 aspect-h-9'>
-          <img src={image3} />
-        </div>
-        <div className='aspect-w-16 aspect-h-9'>
-          <img src={image4} />
-        </div> */}
       </Carousel>
 
     </>
