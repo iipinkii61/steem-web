@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth-slice";
 
 export default function LoginForm() {
+  const [emailOrUserName, setEmailOrUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(login({ emailOrUserName, password }));
+  };
+
+  const handleEmailOrUserName = (e) => setEmailOrUserName(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
+
   return (
     <div className=" flex  ">
       <div className="   w-96 flex justify-center ">
@@ -10,30 +24,43 @@ export default function LoginForm() {
               <label className="text-sky-400 text-sm">
                 SIGN IN WITH ACCOUNT NAME
               </label>
-              <input className="bg-white w-80" type=" email" />
+              <input
+                className="bg-white w-80 text-black"
+                type=" text"
+                value={emailOrUserName}
+                onChange={handleEmailOrUserName}
+              />
             </div>
             <div className="mb-6 grid gap-2">
               <label className="text-neutral-400 text-sm"> PASSWORD</label>
-              <input className="bg-white w-80" type="password" />
+              <input
+                className="bg-white w-80 text-black"
+                type="password"
+                value={password}
+                onChange={handlePassword}
+              />
             </div>
-            <div class="form-control">
-              <label class="">
+            <div className="form-control">
+              <label className="">
                 <input
                   type="checkbox"
-                  checked="checked"
+                  // checked="checked"
                   className="checkbox rounded "
                 />
-                <span class="label-text text-neutral-400">Remember me</span>
+                <span className="label-text text-neutral-400">Remember me</span>
               </label>
             </div>
-            <button class="btn bg-sky-400 rounded-none w-60 place-self-center normal-case ">
+            <button
+              className="btn bg-sky-400 rounded-none w-60 place-self-center normal-case "
+              onClick={handleClick}
+            >
               Sign In
             </button>
           </div>
         </form>
       </div>
       <div className=" flex justify-center border-r-blue-600 w-96 content-center py-28 ">
-        <button class="btn btn-outline text-white ">Join Steam</button>
+        <button className="btn btn-outline text-white ">Join Steam</button>
       </div>
     </div>
   );
