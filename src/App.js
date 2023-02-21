@@ -5,8 +5,8 @@ import CartPage from './pages/CartPage';
 export default function App() {
   return (
     <>
-      {/* <Router /> */}
-      <CartPage />
+      <Router />
+      {/* <CartPage /> */}
     </>
   );
 }

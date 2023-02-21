@@ -3,6 +3,8 @@ import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import CartPage from '../pages/CartPage';
+import CreateAccountPage from '../pages/CreateAccountPage';
+import PaymentPage from '../pages/PaymentPage';
 
 const router = createBrowserRouter([
   {
@@ -14,17 +16,18 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
+    path: '/createaccount',
+    element: <CreateAccountPage />,
+  },
+  {
+    path: '/payment',
+    element: <PaymentPage />,
+  },
+  {
     path: '/',
     element: <HomePage />,
   },
-  {
-    path: '/login',
-    element: <HomePage />,
-  },
-  {
-    path: '/register',
-    element: <HomePage />,
-  },
+
   {
     path: '/friends',
     element: <HomePage />,
