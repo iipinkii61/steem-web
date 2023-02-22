@@ -3,9 +3,10 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CartPage from "../pages/CartPage";
+import ChatPage from "../pages/ChatPage";
+import PaymentPage from "../pages/PaymentPage";
 import CreateAccountPage from "../pages/CreateAccountPage";
-import PaymentInfoPage from "../pages/PaymentInfoPage";
-import VisaPage from "../pages/VisaPage";
+import ProfilePage from "../pages/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -21,12 +22,8 @@ const router = createBrowserRouter([
     element: <CreateAccountPage />,
   },
   {
-    path: "/paymentInfo",
-    element: <PaymentInfoPage />,
-  },
-  {
-    path: "/visapayment",
-    element: <VisaPage />,
+    path: "/payment",
+    element: <PaymentPage />,
   },
   {
     path: "/",
@@ -39,11 +36,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/chat",
-    element: <HomePage />,
+    element: <ChatPage />,
   },
   {
     path: "/profiles",
-    element: <HomePage />,
+    element: <ProfilePage />,
   },
   {
     path: "/wishlist",
@@ -51,7 +48,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <HomePage />,
+    element: <CartPage />,
   },
   {
     path: "/checkout",

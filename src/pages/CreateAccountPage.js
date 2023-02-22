@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import React from "react";
 
+=======
+>>>>>>> dev
 import backgroundRegister from "../assets/register.jpg";
 import CreateAccountLayout from "../layouts/CreateAccountLayout";
 
