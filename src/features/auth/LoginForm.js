@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function LoginForm() {
   return (
@@ -10,11 +10,11 @@ export default function LoginForm() {
               <label className="text-sky-400 text-sm">
                 SIGN IN WITH ACCOUNT NAME
               </label>
-              <input className="bg-white w-80" type=" email" />
+              <input className="bg-white w-80 text-black" type=" text" />
             </div>
             <div className="mb-6 grid gap-2">
-              <label className="text-neutral-400 text-sm"> PASSWORD</label>
-              <input className="bg-white w-80" type="password" />
+              <label className="text-neutral-400 text-sm "> PASSWORD</label>
+              <input className="bg-white w-80 text-black" type="password" />
             </div>
             <div class="form-control">
               <label class="">
