@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 const registerSchema = Joi.object({
-  username: Joi.string().alphanum().min(5).max(30).message({
+  userName: Joi.string().min(5).max(30).message({
     "string.empty": "Username is require",
     "string.min": "Username must have at least 5",
   }),
@@ -10,12 +10,12 @@ const registerSchema = Joi.object({
     "string.email": "Must be a valid email",
     "string.empty": "Email is require",
   }),
-  password: Joi.object().alphanum().min(6).required().trim().message({
+  password: Joi.string().alphanum().min(6).required().trim().message({
     "string.empty": "Password is require",
     "string.alphanum": "Password must contain number or alphanum",
     "string.min": "Password must have at least 6",
   }),
-  confirmPassword: Joi.object()
+  confirmPassword: Joi.string()
     .valid(Joi.ref("password"))
     .required()
     .trim()
