@@ -6,7 +6,7 @@ export default function AddFriend() {
   return (
     <>
       <div style={{ backgroundImage: `url(${backgroundFriend})` }}>
-        <AddFriendLayout />;
+        <AddFriendLayout />
       </div>
     </>
   );
