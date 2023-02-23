@@ -43,7 +43,7 @@ export default function PaymentInForm() {
           You'll have a chance to review your order before it's placed.
         </h5>
       </div>
-      <div className="flex justify-end my-24">
+      <div className="flex justify-end mt-20">
         <Link>
           <button class="btn rounded bg-greenButton border-black normal-case box-border h-3 w-24">
             Continue

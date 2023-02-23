@@ -4,11 +4,11 @@ import VisapayForm from "../features/auth/VisapayForm";
 
 export default function VisapayLayout() {
   return (
-    <div className=" bg-black bg-opacity-20 backdrop-blur-sm flex justify-center items-center h-screen w-screen pt-40">
-      <div className="flex col space-x-6 pt-20 ">
+    <div className=" bg-black bg-opacity-20 backdrop-blur-sm flex justify-center items-center h-full w-full pt-40">
+      <div className="flex col space-x-6 pt-14 ">
         <div>
           <h1 className="text-2xl text-white my-2"> PAYMENT METHOD</h1>
-          <div className="bg-slate-800 flex h-[700px] w-[700px]">
+          <div className="bg-slate-800 flex h-[800px] w-[700px]">
             <VisapayForm />
           </div>
         </div>
