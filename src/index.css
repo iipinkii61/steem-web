@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .carousel {
+    display: flex;
+    justify-content: center;
+} */
+/* .carousel .slide {
+    height: 80vh;
+} */
+/* .carousel .slide img div {
+    max-height: 100%;
+    width: auto;
+} */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #4a87ad;
+    margin: 1em 0;
+    padding: 0;
+  }
+
+@media only screen and (max-width: 1200px) {
+    .carousel {
+        height: 90vh;
+    }
+    .carousel .slide img div {
+        margin: 10vh auto;
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .carousel {
+        height: 90vh;
+    }
+    .carousel .slide img div {
+        margin: 10vh auto;
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .carousel {
+        height: 70vh;
+    }
+    .carousel .slide img div {
+        margin: 10vh auto;
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .carousel {
+        height: 60vh;
+    }
+    .carousel .slide img div {
+        margin: 10vh auto;
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .carousel {
+        height: 50vh;
+    }
+    .carousel .slide img div {
+        margin: 10vh auto;
+        width: 100vw;
+    }
+}
