@@ -5,6 +5,7 @@ import Router from "./routes/Router";
 import { getAccessToken } from "./utils/local-storage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { fetchGameInfo } from "./redux/game-slice";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -14,7 +15,10 @@ export default function App() {
     }
   }, []);
 
-  // console.log(getAccessToken());
+  useEffect(() => {
+    dispatch(fetchGameInfo());
+  }, []);
+
   return (
     <>
       <Router />
