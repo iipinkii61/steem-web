@@ -28,7 +28,7 @@ export default function AddFriendLayout() {
           <div className="flex col w-full">
             <div className="bg-cyan-800 py-2 pl-5 mr-16 w-full h-12 flex ">
               <p> Find your friend</p>
-              <div className="ml-96 ">
+              <div className="ml-40 ">
                 <form class="flex items-center">
                   <label for="simple-search" class="sr-only">
                     Search

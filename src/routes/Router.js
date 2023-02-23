@@ -11,6 +11,7 @@ import WishlistPage from "../pages/WishlistPage";
 import VisaPage from "../pages/VisaPage";
 import Friendpage from "../pages/Friendpage";
 import AddFriend from "../pages/AddFriend";
+import GeneralProfilePage from "../pages/GeneralProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/profiles",
     element: <ProfilePage />,
+  },
+  {
+    path: "/generalprofile",
+    element: <GeneralProfilePage />,
   },
   {
     path: "/wishlist",
