@@ -11,6 +11,7 @@ import WishlistPage from "../pages/WishlistPage";
 import VisaPage from "../pages/VisaPage";
 import Friendpage from "../pages/Friendpage";
 import AddFriend from "../pages/AddFriend";
+import GamesPage from "../pages/GamesPage";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "/wishlist",
     element: <WishlistPage />,
+  },
+  {
+    path: "/app",
+    element: <GamesPage />,
   },
   {
     path: "/cart",
