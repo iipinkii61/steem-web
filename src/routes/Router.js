@@ -12,6 +12,7 @@ import VisaPage from "../pages/VisaPage";
 import Friendpage from "../pages/Friendpage";
 import AddFriend from "../pages/AddFriend";
 import GamesPage from "../pages/GamesPage";
+import GeneralProfilePage from "../pages/GeneralProfilePage";
 
 const router = createBrowserRouter([
   {
