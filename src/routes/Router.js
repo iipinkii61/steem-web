@@ -9,8 +9,9 @@ import CreateAccountPage from "../pages/CreateAccountPage";
 import ProfilePage from "../pages/ProfilePage";
 import WishlistPage from "../pages/WishlistPage";
 import VisaPage from "../pages/VisaPage";
-import Friendpage from "../pages/Friendpage";
+import FriendPage from "../pages/FriendPage";
 import AddFriend from "../pages/AddFriend";
+import FriendLayout from "../layouts/FriendLayout";
 
 const router = createBrowserRouter([
   {
@@ -40,12 +41,22 @@ const router = createBrowserRouter([
 
   {
     path: "/friends",
-    element: <Friendpage />,
+    element: <FriendLayout />,
+    children: [
+      {
+        path: "",
+        element: <FriendPage />,
+      },
+      {
+        path: "add",
+        element: <AddFriend />,
+      },
+    ],
   },
-  {
-    path: "/addfriends",
-    element: <AddFriend />,
-  },
+  // {
+  //   path: "/addfriends",
+  //   element: <AddFriend />,
+  // },
   {
     path: "/chat",
     element: <ChatPage />,

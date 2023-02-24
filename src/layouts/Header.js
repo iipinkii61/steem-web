@@ -1,8 +1,13 @@
 import React from "react";
 import logo from "../assets/header_logo.png";
 import avatar from "../assets/blank.png";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const user = useSelector((state) => state.auth.authUser);
+
+  console.log(user);
+
   return (
     <div className="h-28 bg-[#171A21] flex justify-between">
       <div className="flex items-center  min-w-fit">
@@ -33,21 +38,27 @@ export default function Header() {
       </div>
       {/* right part */}
       <div className="p-4">
-        <button>Login</button>&nbsp; | &nbsp;<button>Register</button>
-        {/* auth part */}
-        {/* <div className="flex gap-4 justify-end ">
-          <p className="text-xs">USERNAME</p>
-          <img src={avatar} className="w-9" />
-        </div>
-        <div className="flex justify-end gap-1 round-sm mt-1 text-xs uppercase">
-          <button className="px-4 py-0.5 w-1/3 bg-blue-300 text-white">
-            cart
-          </button>
-          <button className="px-4 py-0.5 w-1/3 bg-[#749D38] text-[#d2efa9]">
-            wishlist
-          </button>
-        </div> */}
-        {/* end auth part */}
+        {user ? (
+          <>
+            <div className="flex gap-4 justify-end ">
+              <p className="text-xs">{user.userName}</p>
+              <img src={avatar} className="w-9" />
+            </div>
+            <div className="flex justify-end gap-1 round-sm mt-1 text-xs uppercase">
+              <button className="px-4 py-0.5 w-1/3 bg-blue-300 text-white">
+                cart
+              </button>
+              <button className="px-4 py-0.5 w-1/3 bg-[#749D38] text-[#d2efa9]">
+                wishlist
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <button>Login</button>&nbsp; | &nbsp;<button>Register</button>
+          </>
+        )}
+
         {/* search bar */}
         <form className="mt-1 flex items-center justify-end">
           <input
