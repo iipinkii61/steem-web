@@ -8,14 +8,18 @@ import Header from "../layouts/Header";
 import PageMainLayout from "../layouts/PageMainLayout";
 export default function HomePage() {
   const gameInfo = useSelector((state) => state.game.gameInfo);
-  console.log(gameInfo);
+  // console.log(gameInfo);
+  // console.log(gameInfo[0]?.about_the_game);
   return (
     <>
       <Header />
 
       <PageMainLayout>
         <div className="max-w-5xl">
-          <RecommendedCarousel title="FEATURED & RECOMMENDED" />
+          <RecommendedCarousel
+            title="FEATURED & RECOMMENDED"
+            gameInfo={gameInfo}
+          />
         </div>
         <div className="max-w-5xl">
           <SpecialOffersCarousel title="SPECIAL OFFERS" />
