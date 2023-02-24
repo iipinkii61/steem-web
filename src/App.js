@@ -8,16 +8,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { fetchGameInfo } from "./redux/game-slice";
 
 export default function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (getAccessToken()) {
-      dispatch(fetchAuthUser());
-    }
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (getAccessToken()) {
+  //     dispatch(fetchAuthUser());
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    dispatch(fetchGameInfo());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchGameInfo());
+  // }, []);
 
   return (
     <>

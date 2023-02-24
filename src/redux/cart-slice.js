@@ -1,22 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-initialState = {
+const initialState = {
   cart: [],
-  transaction: {},
 };
-
-// const
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setItem: (state, action) => {
+      state.cart.push(action.payload);
+    },
     addItem: (state, action) => {
-      const item = state.cart.find((el) => el.appId === action.payload.appId);
+      const item = state.cart.find(
+        (el) => el.steam_appid === action.payload.steam_appid,
+      );
       if (item) {
         return state;
       }
       state.cart.push(action.payload);
+    },
+    clearItem: (state, action) => {
+      state.cart = initialState.cart;
     },
   },
   extraReducers(builder) {
@@ -24,5 +29,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addItem } = cartSlice.actions;
+export const { setItem, addItem, clearItem } = cartSlice.actions;
 export default cartSlice.reducer;

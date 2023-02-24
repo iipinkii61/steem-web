@@ -1,11 +1,20 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../redux/cart-slice";
+import { useNavigate } from "react-router-dom";
 
-export default function RecommendedCarousel({ title, gameInfo }) {
-  // const {title} = props
-  // console.log(gameInfo[0]?.about_the_game);
-  console.log(gameInfo);
-  console.log(gameInfo[0]?.screenshots[0].path_full);
+export default function RecommendedCarousel({ title }) {
+  const gameInfo = useSelector((state) => state.game.gameInfo);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = (el) => {
+    dispatch(addItem(el));
+    navigate("/app");
+  };
+  // const cart = useSelector((state) => state.cart.cart);
+  // console.log(cart);
 
   return (
     <>
@@ -22,11 +31,19 @@ export default function RecommendedCarousel({ title, gameInfo }) {
       >
         {/* component start*/}
         {gameInfo.map((el) => (
-          <div className=" h-full w-full flex justify-between">
+          <div
+            className=" h-full w-full flex justify-between"
+            key={el?.steam_appid}
+            value={el?.steam_appid}
+            name={el?.steam_appid}
+            onClick={() => handleClick(el)}
+          >
             {/* start fullimage */}
             <div>
               <img
                 className="w-[600px] h-[337px] object-fill"
+                value={el?.screenshots[0]}
+                key={el?.screenshots[0]}
                 src={el?.screenshots[0].path_full}
               />
             </div>
@@ -38,16 +55,32 @@ export default function RecommendedCarousel({ title, gameInfo }) {
               </div>
               <div className=" flex ">
                 <div className="flex justify-center flex-wrap gap-1">
-                  <div className="w-[162px] h-[69px]">
+                  <div
+                    className="w-[162px] h-[69px]"
+                    value={el?.screenshots[1].id}
+                    key={el?.screenshots[1].id}
+                  >
                     <img src={el?.screenshots[1].path_thumbnail} />
                   </div>
-                  <div className="w-[162px] h-[69px]">
+                  <div
+                    className="w-[162px] h-[69px]"
+                    value={el?.screenshots[2].id}
+                    key={el?.screenshots[2].id}
+                  >
                     <img src={el?.screenshots[2].path_thumbnail} />
                   </div>
-                  <div className="w-[162px] h-[69px]">
+                  <div
+                    className="w-[162px] h-[69px]"
+                    value={el?.screenshots[3].id}
+                    key={el?.screenshots[3].id}
+                  >
                     <img src={el?.screenshots[3].path_thumbnail} />
                   </div>
-                  <div className="w-[162px] h-[69px]">
+                  <div
+                    className="w-[162px] h-[69px]"
+                    value={el?.screenshots[4].id}
+                    key={el?.screenshots[4].id}
+                  >
                     <img src={el?.screenshots[4].path_thumbnail} />
                   </div>
                 </div>

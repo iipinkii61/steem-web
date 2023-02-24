@@ -7,7 +7,7 @@ import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
 import PageMainLayout from "../layouts/PageMainLayout";
 export default function HomePage() {
-  const gameInfo = useSelector((state) => state.game.gameInfo);
+  // const gameInfo = useSelector((state) => state.game.gameInfo);
   // console.log(gameInfo);
   // console.log(gameInfo[0]?.about_the_game);
   return (
@@ -18,7 +18,7 @@ export default function HomePage() {
         <div className="max-w-5xl">
           <RecommendedCarousel
             title="FEATURED & RECOMMENDED"
-            gameInfo={gameInfo}
+            // gameInfo={gameInfo}
           />
         </div>
         <div className="max-w-5xl">
