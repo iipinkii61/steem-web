@@ -12,6 +12,7 @@ import VisaPage from "../pages/VisaPage";
 import FriendPage from "../pages/FriendPage";
 import AddFriend from "../pages/AddFriend";
 import FriendLayout from "../layouts/FriendLayout";
+import GamesPage from "../pages/GamesPage";
 
 const router = createBrowserRouter([
   {
@@ -53,10 +54,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/addfriends",
-  //   element: <AddFriend />,
-  // },
   {
     path: "/chat",
     element: <ChatPage />,
@@ -68,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: "/wishlist",
     element: <WishlistPage />,
+  },
+  {
+    path: "/app",
+    element: <GamesPage />,
   },
   {
     path: "/cart",
