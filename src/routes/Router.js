@@ -9,7 +9,7 @@ import CreateAccountPage from "../pages/CreateAccountPage";
 import ProfilePage from "../pages/ProfilePage";
 import WishlistPage from "../pages/WishlistPage";
 import VisaPage from "../pages/VisaPage";
-import FriendPage from "../pages/FriendPage";
+import FriendPage from "../pages/Friendpage";
 import AddFriend from "../pages/AddFriend";
 import FriendLayout from "../layouts/FriendLayout";
 import GamesPage from "../pages/GamesPage";
