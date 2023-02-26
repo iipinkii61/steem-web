@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import CategoryCarousel from "../components/CategoryCarousel";
 import RecommendedCarousel from "../components/RecommendedCarousel";
 import SpecialOffersCarousel from "../components/SpecialOffersCarousel";
@@ -6,13 +7,19 @@ import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
 import PageMainLayout from "../layouts/PageMainLayout";
 export default function HomePage() {
+  // const gameInfo = useSelector((state) => state.game.gameInfo);
+  // console.log(gameInfo);
+  // console.log(gameInfo[0]?.about_the_game);
   return (
     <>
       <Header />
 
       <PageMainLayout>
         <div className="max-w-5xl">
-          <RecommendedCarousel title="FEATURED & RECOMMENDED" />
+          <RecommendedCarousel
+            title="FEATURED & RECOMMENDED"
+            // gameInfo={gameInfo}
+          />
         </div>
         <div className="max-w-5xl">
           <SpecialOffersCarousel title="SPECIAL OFFERS" />
@@ -28,7 +35,7 @@ export default function HomePage() {
         <div className='absolute inset-y-0 left-0 z-10 w-screen'>
       </div>
       </div> */}
-      
+
       <Footer />
     </>
   );

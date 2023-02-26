@@ -2,6 +2,7 @@ import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
 import PageMainLayout from "../layouts/PageMainLayout";
 import logo from "../assets/header_logo.png";
+
 export default function HomePage() {
   return (
     <>
