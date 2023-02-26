@@ -1,53 +1,63 @@
-import React from "react";
-import useCart from "../hooks/useCart";
-import { useEffect } from "react";
-import useGameInfo from "../hooks/useGameInfo";
+import useShowGame from "../hooks/useShowGame";
+import { useRef, useEffect } from "react";
 
 export default function GamesLayout() {
-  const cart = useCart();
-  const game = useGameInfo();
+  const showGame = useShowGame();
 
+  const videoRef = useRef(null);
   useEffect(() => {
-    console.log(cart[0]?.steam_appid);
-  }, []);
-
-  const appId = cart[0]?.steam_appid;
-  const gameData = game.find((el) => el.steam_appid === appId);
-
-  useEffect(() => {
-    console.log(gameData);
-  }, []);
+    videoRef.current.load();
+  }, [showGame]);
 
   return (
     <>
-      <div className="pt-5 pb-5 text-3xl">{gameData?.name}</div>
+      <div className="pt-5 pb-5 text-3xl">
+        {Object.keys(showGame).length && showGame?.name}
+      </div>
       <div className="h-[445px] flex justify-between flex-wrap bg-[#151f29]">
         <div className="w-[600px] h-[337px] flex flex-col">
-          <video
+          {/* <video
             className="w-full shadow-lg"
-            loop="true"
-            autoplay="autoplay"
+            src={
+              Object.keys(showGame).length ? showGame.movies[0].mp4["480"] : ""
+            }
             controls
+            autoPlay
+            loop
+            muted
+          /> */}
+
+          <video
+            ref={videoRef}
+            className="w-full shadow-lg"
+            autoPlay
+            controls
+            loop
             muted
           >
             <source
-              // src="https://cdn.akamai.steamstatic.com/steam/apps/256930504/movie480_vp9.webm?t=1676412591"
-              src={gameData?.movies[0].mp4[480]}
+              src={
+                Object.keys(showGame).length
+                  ? showGame.movies[0].mp4["480"]
+                  : ""
+              }
               type="video/mp4"
             />
           </video>
+
           <div className="flex gap-1 mt-3">
             {/*--------test--------*/}
 
-            {gameData.screenshots.map((el) => (
-              <div className=" w-1/4">
-                <img
-                  className="w-full h-full object-cover"
-                  src={el.path_thumbnail}
-                  key={el.id}
-                />
-              </div>
-            ))}
+            {Object.keys(showGame).length &&
+              showGame.screenshots.map((el) => (
+                <div className=" w-1/4" key={el.id}>
+                  <img
+                    className="w-full h-full object-cover"
+                    src={el.path_thumbnail}
+                    // key={el.id}
+                  />
+                </div>
+              ))}
 
             {/*--------test--------*/}
 
@@ -143,13 +153,17 @@ export default function GamesLayout() {
         </div>
         <div className="absolute -bottom-5 right-5 w-[206px] h-[40px] bg-black">
           <div className="text-gray-300 font-thin pl-2 pt-2">
-            {gameData?.price_overview.final_formatted}
+            {Object.keys(showGame).length &&
+              (!showGame.is_free
+                ? showGame?.price_overview?.final_formatted
+                : null)}
           </div>
           <button
-            className="absolute p-2 px-5 text-[#ceeca5] right-1 bottom-1 text-xs rounded-sm bg-[radial-gradient(at_left_top,_#78b32b,_#60941b,_#588a1b)] 
+            className="absolute p-2 px-5 text-[#ceeca5] right-1 bottom-1 text-xs rounded-sm bg-[radial-gradient(at_left_top,_#78b32b,_#60941b,_#588a1b)]
           hover:bg-[radial-gradient(at_left_top,_#78b32b,_#8bd32a,_#588a1b)] hover:text-white"
           >
-            Add to cart
+            {Object.keys(showGame).length &&
+              (!showGame.is_free ? "Add to cart" : "Play game")}
           </button>
         </div>
       </div>

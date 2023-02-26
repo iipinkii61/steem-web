@@ -67,7 +67,11 @@ const router = createBrowserRouter([
     element: <WishlistPage />,
   },
   {
-    path: "/app",
+    path: "/app/:steamAppId",
+    element: <GamesPage />,
+  },
+  {
+    path: "/app/:steamAppId/:gameName",
     element: <GamesPage />,
   },
   {
