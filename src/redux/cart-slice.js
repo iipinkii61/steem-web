@@ -1,8 +1,49 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import * as cartApi from "../apis/cart-api";
 
 const initialState = {
   cart: [],
 };
+
+export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
+  try {
+    const res = await cartApi.getCartApi();
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+export const setCart = createAsyncThunk(
+  "cart/setCart",
+  async (steamAppId, thunkApi) => {
+    try {
+      const gameExist = thunkApi
+        .getState()
+        .find((el) => el.steam_appid === steamAppId);
+      if (gameExist) {
+        return {};
+      }
+      const res = await cartApi.setCartApi(steamAppId);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  },
+);
+
+export const deleteCart = createAsyncThunk(
+  "cart/deleteCart",
+  async (steamAppId) => {
+    try {
+      const res = await cartApi.deleteCartApi(steamAppId);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
+);
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -25,7 +66,12 @@ export const cartSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    // builder.addCase()
+    builder.addCase(fetchCart.fulfilled, (state, action) => {
+      state.cart = action.payload;
+    });
+    builder.addCase(setCart.fulfilled, (state, action) => {
+      state.cart.push(action.payload);
+    });
   },
 });
 
