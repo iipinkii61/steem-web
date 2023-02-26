@@ -50,6 +50,9 @@ export const authSlice = createSlice({
   },
 });
 
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;
+
 // export const loginApi = createAsyncThunk(
 //     "login",
 //     async (emailOrUserName, password) => {
@@ -67,6 +70,3 @@ export const authSlice = createSlice({
 //   setAccessToken(res.data.accessToken);
 //   dispatch(login(jwtDecode(res.data.accessToken)));
 // };
-
-export const { logout } = authSlice.actions;
-export default authSlice.reducer;

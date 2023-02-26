@@ -1,18 +1,22 @@
-import React from "react";
+// import React from "react";
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
 import PageMainLayout from "../layouts/PageMainLayout";
 import GamesLayout from "../layouts/GamesLayout";
-import useCart from "../hooks/useCart";
+
+import { clearShowGame, fetchGame } from "../redux/game-slice";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 export default function GamesPage() {
-  const cart = useCart();
+  const { steamAppId } = useParams();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   console.log(cart);
-  // }, []);
-  // console.log(cart);
+  dispatch(clearShowGame());
+  useEffect(() => {
+    dispatch(fetchGame(steamAppId));
+  }, []);
   return (
     <>
       <Header />

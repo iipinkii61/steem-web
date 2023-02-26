@@ -11,6 +11,7 @@ import { getAccessToken } from "./utils/local-storage";
 if (getAccessToken()) {
   store.dispatch(fetchAuthUser());
 }
+
 store.dispatch(fetchGameInfo());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

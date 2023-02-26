@@ -1,20 +1,19 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../redux/cart-slice";
 import { useNavigate } from "react-router-dom";
+import useGameInfo from "../hooks/useGameInfo";
 
 export default function RecommendedCarousel({ title }) {
-  const gameInfo = useSelector((state) => state.game.gameInfo);
-
-  const dispatch = useDispatch();
+  const gameInfo = useGameInfo();
   const navigate = useNavigate();
-  const handleClick = (el) => {
-    dispatch(addItem(el));
-    navigate("/app");
+
+  const handleClick = (e) => {
+    const steamAppId = e.currentTarget.getAttribute("value");
+    const gameName = e.currentTarget
+      .getAttribute("name")
+      .replace(/[\W_]+/g, "_");
+    navigate("/app/" + steamAppId + "/" + gameName);
   };
-  // const cart = useSelector((state) => state.cart.cart);
-  // console.log(cart);
 
   return (
     <>
@@ -35,8 +34,9 @@ export default function RecommendedCarousel({ title }) {
             className=" h-full w-full flex justify-between"
             key={el?.steam_appid}
             value={el?.steam_appid}
-            name={el?.steam_appid}
-            onClick={() => handleClick(el)}
+            name={el?.name}
+            // onClick={() => handleClick(el)}
+            onClick={handleClick}
           >
             {/* start fullimage */}
             <div>
