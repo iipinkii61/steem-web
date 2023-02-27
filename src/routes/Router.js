@@ -13,6 +13,8 @@ import Friendpage from "../pages/Friendpage";
 import AddFriend from "../pages/AddFriend";
 import GamesPage from "../pages/GamesPage";
 import GeneralProfilePage from "../pages/GeneralProfilePage";
+import AvatarProfilePage from "../pages/AvatarProfilePage";
+import ProfileBgPage from "../pages/ProfileBgPage";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
   {
     path: "/generalprofile",
     element: <GeneralProfilePage />,
+  },
+  {
+    path: "/Avataprofile",
+    element: <AvatarProfilePage />,
+  },
+  {
+    path: "/Backgroundprofile",
+    element: <ProfileBgPage />,
   },
   {
     path: "/wishlist",
