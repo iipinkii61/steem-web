@@ -13,6 +13,7 @@ import FriendPage from "../pages/Friendpage";
 import AddFriend from "../pages/AddFriend";
 import FriendLayout from "../layouts/FriendLayout";
 import GamesPage from "../pages/GamesPage";
+import PendingFriends from "../pages/PendingFriends";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "add",
         element: <AddFriend />,
+      },
+      {
+        path: "pending",
+        element: <PendingFriends />,
       },
     ],
   },

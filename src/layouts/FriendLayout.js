@@ -18,14 +18,18 @@ export default function FriendLayout() {
       >
         <div>
           <div className="flex items-center gap-6 pt-12 pl-40 space-x-2">
-            <img src={profileImage} alt="profileImage" className="h-20" />
+            <img
+              src={profileImage}
+              alt="profileImage"
+              className="h-20 rounded-sm"
+            />
             <p className="text-2xl">{user.userName}</p>
           </div>
 
           <div className="mt-4 mx-40 flex ">
             <ul class="menu bg-base-0 w-56">
               <li>
-                <a className="active">
+                <Link to="/friends">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -41,10 +45,10 @@ export default function FriendLayout() {
                     />
                   </svg>
                   Your Friend
-                </a>
+                </Link>
               </li>
               <li>
-                <a>
+                <Link to="/friends/add">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -60,10 +64,10 @@ export default function FriendLayout() {
                     />
                   </svg>
                   Add a Friend
-                </a>
+                </Link>
               </li>
               <li>
-                <a>
+                <Link to="/friends/pending">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -79,7 +83,7 @@ export default function FriendLayout() {
                     />
                   </svg>
                   Pending Invites
-                </a>
+                </Link>
               </li>
             </ul>
             <Outlet />
