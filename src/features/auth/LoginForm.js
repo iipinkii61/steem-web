@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth-slice";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   const [emailOrUserName, setEmailOrUserName] = useState("");
@@ -64,7 +65,9 @@ export default function LoginForm() {
         </form>
       </div>
       <div className=" flex justify-center border-r-blue-600 w-96 content-center py-28 ">
-        <button className="btn btn-outline text-white ">Join Steam</button>
+        <Link to="/register">
+          <button className="btn btn-outline text-white ">Join Steam</button>
+        </Link>
       </div>
     </div>
   );

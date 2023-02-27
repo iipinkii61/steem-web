@@ -14,14 +14,17 @@ export default function GamesLayout() {
       <div className="pt-5 pb-5 text-3xl">
         {Object.keys(showGame).length && showGame?.name}
       </div>
-      <div className="h-[445px] flex justify-between flex-wrap bg-[#151f29]">
+      <div className="h-[445px] flex justify-between bg-[#151f29]">
         <div className="w-[600px] h-[337px] flex flex-col">
           {/* <video
+           
             className="w-full shadow-lg"
+           
             src={
               Object.keys(showGame).length ? showGame.movies[0].mp4["480"] : ""
             }
             controls
+           
             autoPlay
             loop
             muted
@@ -31,9 +34,12 @@ export default function GamesLayout() {
             ref={videoRef}
             className="w-full shadow-lg"
             autoPlay
+           
             controls
             loop
+           
             muted
+          
           >
             <source
               src={
@@ -42,6 +48,7 @@ export default function GamesLayout() {
                   : ""
               }
               type="video/mp4"
+           
             />
           </video>
 
@@ -87,7 +94,7 @@ export default function GamesLayout() {
             </div> */}
           </div>
         </div>
-        <div className="w-[340px] h-[337px]">
+        <div className="w-[340px] h-[337px] ml-3">
           <div className="mb-2">
             <img src="https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg?t=1676412613" />
           </div>
@@ -125,10 +132,12 @@ export default function GamesLayout() {
       {/* container Add to your wishlist */}
       <div className="h-[80px] flex flex-col text-gray-400 bg-[radial-gradient(at_left_top,_#1f2d3b,_#1a2531,_#16202d)]">
         <span className="w-fit h-fit p-2">
+          
           This product is in your discovery queue because it is popular.
+        
         </span>
         <button className="w-[160px] h-[30px] ml-5 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200">
-          Add to your wishlist
+            Add to your wishlist
         </button>
       </div>
       {/*end container Add to your wishlist */}
@@ -136,6 +145,20 @@ export default function GamesLayout() {
       {/* container Add to cart */}
       <div className="h-[80px] relative rounded-md text-gray-400 bg-[radial-gradient(at_right_top,_#566573,_#475664,_#2d3d4a)]">
         <div className="text-white text-2xl font-medium pl-5 pt-2">
+          Buy Hogwarts Legacy
+          <div className="absolute bottom-10 right-10 text-gray-100 w-fit h-fit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="m3 5.479l7.377-1.016v7.127H3V5.48zm0 13.042l7.377 1.017v-7.04H3v6.023zm8.188 1.125L21 21v-8.502h-9.812v7.148zm0-15.292v7.236H21V3l-9.812 1.354z"
+              />
+            </svg>
+          </div>
           Buy Hogwarts Legacy
           <div className="absolute bottom-10 right-10 text-gray-100 w-fit h-fit">
             <svg
@@ -168,8 +191,10 @@ export default function GamesLayout() {
         </div>
       </div>
       {/* end container Add to cart */}
-      <br />
+      <br  />
       {/* ABOUT THIS GAME */}
+      <div className="w-full text-gray-100">ABOUT THIS GAME</div>
+      <hr className="text-blue-600" />
       <div className="w-full text-gray-100">ABOUT THIS GAME</div>
       <hr className="text-blue-600" />
       <div className="text-gray-300 ">
@@ -191,6 +216,80 @@ export default function GamesLayout() {
         Unwritten.
       </div>
       {/* end ABOUT THIS GAME */}
+      
+      {/* SYSTEM REQUIREMENTS */}
+      <div className="w-full text-gray-100">SYSTEM REQUIREMENTS</div>
+      <hr className="text-blue-600" />
+      <div className="text-gray-300 flex justify-between w-full h-[250px]">
+        <div className="w-1/2 bg-[#16202d4a] pl-2">
+          <span className="text-xs">MINIMUM:</span><br/>
+          <span className="text-sm font-thin">Requires a 64-bit processor and operating system</span><br/>
+          <span className="text-xs text-gray-500 mr-2">OS:</span>
+          <span className="text-sm text-gray-300 font-thin">64-bit Windows 10</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Processor:</span>
+          <span className="text-sm text-gray-300 font-thin">Intel Core i5-6600 (3.3Ghz) or AMD Ryzen 5 1400 (3.2Ghz)</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Memory:</span>
+          <span className="text-sm text-gray-300 font-thin">16 GB RAM</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Graphics:</span>
+          <span className="text-sm text-gray-300 font-thin">NVIDIA GeForce GTX 960 4GB or AMD Radeon RX 470 4GB</span><br/>
+          <span className="text-xs text-gray-500 mr-2">DirectX:</span>
+          <span className="text-sm text-gray-300 font-thin">Version 12</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Storage:</span>
+          <span className="text-sm text-gray-300 font-thin">85 GB available space</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Additional Notes:</span>
+          <span className="text-sm text-gray-300 font-thin">SSD (Preferred), HDD (Supported), 720p/30 fps, Low Quality Settings</span><br/>
+        </div>
+
+        <div className="w-1/2 bg-[#16202d4a] pl-2">
+        <span className="text-xs">RECOMMENDED:</span><br/>
+          <span className="text-sm font-thin">Requires a 64-bit processor and operating system</span><br/>
+          <span className="text-xs text-gray-500 mr-2">OS:</span>
+          <span className="text-sm text-gray-300 font-thin">64-bit Windows 10</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Processor:</span>
+          <span className="text-sm text-gray-300 font-thin">Intel Core i7-8700 (3.2Ghz) or AMD Ryzen 5 3600 (3.6 Ghz)</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Memory:</span>
+          <span className="text-sm text-gray-300 font-thin">16 GB RAM</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Graphics:</span>
+          <span className="text-sm text-gray-300 font-thin">NVIDIA GeForce 1080 Ti or AMD Radeon RX 5700 XT</span><br/>
+          <span className="text-xs text-gray-500 mr-2">DirectX:</span>
+          <span className="text-sm text-gray-300 font-thin">Version 12</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Storage:</span>
+          <span className="text-sm text-gray-300 font-thin">85 GB available space</span><br/>
+          <span className="text-xs text-gray-500 mr-2">Additional Notes:</span>
+          <span className="text-sm text-gray-300 font-thin">SSD, 1080p/60 fps, High Quality Settings</span><br/>
+        </div>
+      </div>
+      {/* end SYSTEM REQUIREMENTS */}
+      <br/>
+      {/* REVIEWS */}
+      <div className="w-full text-gray-100">MOST HELPFUL REVIEWS</div>
+      <hr className="text-blue-600" />
+      {/* row reviews */}
+      <div className="flex h-auto w-auto bg-[#16202d]">
+        <div className="flex w-1/2 p-3">
+          <div className="flex w-fit">
+          <div className="h-[34px] w-[34px]">
+            <img className="h-full w-full" src="https://avatars.akamai.steamstatic.com/88e5480683bfc1be2eba70b25b2a5690f498d803.jpg"/>
+          </div>
+          <div className="flex flex-col">
+          <span className="pl-2 text-gray-500 font-bold text-sm">ZzzoO</span> {/*persona_name*/}
+          <span className="pl-2 text-gray-500 font-semibold text-xs">158 products in account</span> {/*num_owned_games*/}
+          </div>
+          </div>
+        </div>
+        <div className="flex flex-col w-full bg-[#16202d]">
+          <div className="flex bg-[#121a24]">
+          <div className="h-[40px] w-[40px]">
+            <img className="w-full h-full bg-cover" src="https://store.akamai.steamstatic.com/public/shared/images/userreviews/icon_thumbsUp_v6.png"/>
+          </div>
+          </div>
+          <div>2</div>
+          <div>3</div>
+        </div>
+      </div>
+      {/* end row reviews */}
+      {/* end REVIEWS */}
     </>
   );
 }
+

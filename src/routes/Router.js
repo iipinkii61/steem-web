@@ -14,6 +14,9 @@ import AddFriend from "../pages/AddFriend";
 import FriendLayout from "../layouts/FriendLayout";
 import GamesPage from "../pages/GamesPage";
 import PendingFriends from "../pages/PendingFriends";
+import GeneralProfilePage from "../pages/GeneralProfilePage";
+import AvatarProfilePage from "../pages/AvatarProfilePage";
+import ProfileBgPage from "../pages/ProfileBgPage";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +69,18 @@ const router = createBrowserRouter([
   {
     path: "/profiles",
     element: <ProfilePage />,
+  },
+  {
+    path: "/generalprofile",
+    element: <GeneralProfilePage />,
+  },
+  {
+    path: "/Avataprofile",
+    element: <AvatarProfilePage />,
+  },
+  {
+    path: "/Backgroundprofile",
+    element: <ProfileBgPage />,
   },
   {
     path: "/wishlist",

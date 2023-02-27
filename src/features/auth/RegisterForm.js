@@ -84,9 +84,11 @@ export default function RegisterForm() {
               </span>
             </label>
           </div>
-          <button className="btn bg-sky-500 border-slate-900 rounded-none w-60 my-8 normal-case">
-            Continue
-          </button>
+          <Link to="/createaccount">
+            <button className="btn bg-sky-500 border-slate-900 rounded-none w-60 my-8 normal-case">
+              Continue
+            </button>
+          </Link>
         </div>
       </form>
     </div>
