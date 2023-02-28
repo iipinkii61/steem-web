@@ -1,17 +1,15 @@
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
 import Footer from "./Footer";
 import profileImage from "../assets/blank.png";
 import { Link } from "react-router-dom";
 import backgroundFriend from "../assets/bgfriendpage.png";
-import { useSelector } from "react-redux";
+import useAuth from "../hooks/useAuth";
 
 export default function FriendLayout() {
-  const user = useSelector((state) => state.auth.authUser);
+  const user = useAuth();
 
   return (
     <>
-      <Header />
       <div
         style={{ backgroundImage: `url(${backgroundFriend})` }}
         className="h-screen"
@@ -90,7 +88,6 @@ export default function FriendLayout() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

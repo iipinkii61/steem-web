@@ -1,9 +1,10 @@
 import logo from "../assets/header_logo.png";
-import { useSelector } from "react-redux";
 import HeaderUserPart from "../components/HeaderUserPart";
+import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export default function Header() {
-  const user = useSelector((state) => state.auth.authUser);
+  const user = useAuth();
 
   return (
     <div className="h-28 bg-[#171A21] flex justify-between">
@@ -14,7 +15,7 @@ export default function Header() {
         <div className=" text-[#b8b6b4] uppercase">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>store</a>
+              <Link to="/">store</Link>
             </li>
             {user ? (
               <>
@@ -22,15 +23,15 @@ export default function Header() {
                   <a>Username</a>
                   <ul className="p-2 bg-[#171A21] z-10 text-sm">
                     <li>
-                      <a>profile</a>
+                      <Link to="/profiles">profile</Link>
                     </li>
                     <li>
-                      <a>friends</a>
+                      <Link to="/friends">friends</Link>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a>chat</a>
+                  <Link to="/chat">chat</Link>
                 </li>
               </>
             ) : (

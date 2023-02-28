@@ -17,90 +17,89 @@ import PendingFriends from "../pages/PendingFriends";
 import GeneralProfilePage from "../pages/GeneralProfilePage";
 import AvatarProfilePage from "../pages/AvatarProfilePage";
 import ProfileBgPage from "../pages/ProfileBgPage";
+import PageLayout from "../layouts/PageLayout.js";
+import ProtectedRoute from "../features/auth/ProtectedRoute";
 
 const router = createBrowserRouter([
+  { path: "/login", element: <LoginPage /> },
+  { path: "/register", element: <RegisterPage /> },
+  { path: "/createAccount", element: <CreateAccountPage /> },
   {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
-  {
-    path: "/createaccount",
-    element: <CreateAccountPage />,
-  },
-  {
-    path: "/paymentinfo",
-    element: <PaymentInfoPage />,
-  },
-  {
-    path: "/visapayment",
-    element: <VisaPage />,
-  },
-  {
-    path: "/",
-    element: <HomePage />,
-  },
-
-  {
-    path: "/friends",
-    element: <FriendLayout />,
+    element: <PageLayout />,
     children: [
       {
-        path: "",
-        element: <FriendPage />,
+        path: "/",
+        element: <HomePage />,
       },
       {
-        path: "add",
-        element: <AddFriend />,
+        path: "/app/:steamAppId",
+        element: <GamesPage />,
       },
       {
-        path: "pending",
-        element: <PendingFriends />,
+        path: "/app/:steamAppId/:gameName",
+        element: <GamesPage />,
       },
     ],
   },
   {
-    path: "/chat",
-    element: <ChatPage />,
-  },
-  {
-    path: "/profiles",
-    element: <ProfilePage />,
-  },
-  {
-    path: "/generalprofile",
-    element: <GeneralProfilePage />,
-  },
-  {
-    path: "/Avataprofile",
-    element: <AvatarProfilePage />,
-  },
-  {
-    path: "/Backgroundprofile",
-    element: <ProfileBgPage />,
-  },
-  {
-    path: "/wishlist",
-    element: <WishlistPage />,
-  },
-  {
-    path: "/app/:steamAppId",
-    element: <GamesPage />,
-  },
-  {
-    path: "/app/:steamAppId/:gameName",
-    element: <GamesPage />,
-  },
-  {
-    path: "/cart",
-    element: <CartPage />,
-  },
-  {
-    path: "/checkout",
-    element: <HomePage />,
+    element: (
+      <ProtectedRoute>
+        <PageLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      { path: "/chat", element: <ChatPage /> },
+      {
+        path: "/friends",
+        element: <FriendLayout />,
+        children: [
+          {
+            path: "",
+            element: <FriendPage />,
+          },
+          {
+            path: "add",
+            element: <AddFriend />,
+          },
+          {
+            path: "pending",
+            element: <PendingFriends />,
+          },
+        ],
+      },
+      {
+        path: "/paymentinfo",
+        element: <PaymentInfoPage />,
+      },
+      {
+        path: "/visapayment",
+        element: <VisaPage />,
+      },
+      {
+        path: "/profiles",
+        element: <ProfilePage />,
+      },
+      {
+        path: "/generalprofile",
+        element: <GeneralProfilePage />,
+      },
+      {
+        path: "/Avatarprofile",
+        element: <AvatarProfilePage />,
+      },
+      {
+        path: "/Backgroundprofile",
+        element: <ProfileBgPage />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishlistPage />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+    ],
   },
 ]);
 

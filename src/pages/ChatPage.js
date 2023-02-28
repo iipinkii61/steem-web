@@ -1,11 +1,9 @@
-import Header from "../layouts/Header";
 import avatar from "../assets/blank.png";
 import ChatBox from "../components/ChatBox";
 
 export default function ChatPage() {
   return (
     <>
-      <Header />
       <div className="flex">
         <div className="flex-1 shadow-xl bg-[#16202D] min-w-fit">
           <div className="flex gap-4 p-6 text-blueText">

@@ -1,10 +1,12 @@
 import avatar from "../assets/blank.png";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../redux/auth-slice";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 export default function HeaderUserPart() {
-  const user = useSelector((state) => state.auth.authUser);
+  const user = useAuth();
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
 
@@ -33,7 +35,9 @@ export default function HeaderUserPart() {
         {dropdown ? (
           <ul className="bg-[#21252e] text-[#b8b6b4] shadow absolute right-20 top-11 px-4 py-2 rounded">
             <li>
-              <button>View Profile</button>
+              <Link to="/profiles">
+                <button>View Profile</button>
+              </Link>
             </li>
 
             <li className="pt-2">
@@ -48,12 +52,16 @@ export default function HeaderUserPart() {
         <img src={avatar} className="w-9" />
       </div>
       <div className="flex justify-end gap-1 round-sm mt-1 text-xs uppercase">
-        <button className="px-4 py-0.5 w-1/3 bg-blue-300 text-white">
-          cart
-        </button>
-        <button className="px-4 py-0.5 w-1/3 bg-[#749D38] text-[#d2efa9]">
-          wishlist
-        </button>
+        <Link to="/cart">
+          <button className="px-4 py-0.5 w-full bg-blue-300 text-white">
+            cart
+          </button>
+        </Link>
+        <Link to="/wishlist">
+          <button className="px-4 py-0.5 w-full bg-[#749D38] text-[#d2efa9]">
+            wishlist
+          </button>
+        </Link>
       </div>
     </>
   );

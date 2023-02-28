@@ -6,7 +6,6 @@ import logo from "../assets/header_logo.png";
 export default function HomePage() {
   return (
     <>
-      <Header />
       <PageMainLayout>
         <p className="py-8 text-3xl">YOUR SHOPPING CART</p>
         <div className="w-full">
