@@ -19,9 +19,17 @@ import AvatarProfilePage from "../pages/AvatarProfilePage";
 import ProfileBgPage from "../pages/ProfileBgPage";
 import PageLayout from "../layouts/PageLayout.js";
 import ProtectedRoute from "../features/auth/ProtectedRoute";
+import RedirectIfAuthenticate from "../features/auth/RedirectIfAuthenticate";
 
 const router = createBrowserRouter([
-  { path: "/login", element: <LoginPage /> },
+  {
+    path: "/login",
+    element: (
+      <RedirectIfAuthenticate>
+        <LoginPage />
+      </RedirectIfAuthenticate>
+    ),
+  },
   { path: "/register", element: <RegisterPage /> },
   { path: "/createAccount", element: <CreateAccountPage /> },
   {
