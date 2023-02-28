@@ -71,10 +71,6 @@ const router = createBrowserRouter([
     path: "/cart",
     element: <CartPage />,
   },
-  {
-    path: "/checkout",
-    element: <HomePage />,
-  },
 ]);
 
 export default function Router() {
