@@ -20,7 +20,7 @@ export default function Header() {
             {user ? (
               <>
                 <li>
-                  <a>Username</a>
+                  <a>{user.userName}</a>
                   <ul className="p-2 bg-[#171A21] z-10 text-sm">
                     <li>
                       <Link to="/profiles">profile</Link>
@@ -46,7 +46,13 @@ export default function Header() {
           <HeaderUserPart />
         ) : (
           <>
-            <button>Login</button>&nbsp; | &nbsp;<button>Register</button>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+            &nbsp; | &nbsp;
+            <Link to="/register">
+              <button>Register</button>
+            </Link>
           </>
         )}
 
