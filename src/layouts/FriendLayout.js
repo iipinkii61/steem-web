@@ -4,12 +4,14 @@ import profileImage from "../assets/blank.png";
 import { Link } from "react-router-dom";
 import backgroundFriend from "../assets/bgfriendpage.png";
 import useAuth from "../hooks/useAuth";
+import Header from "./Header";
 
 export default function FriendLayout() {
   const user = useAuth();
 
   return (
     <>
+    <Header/>
       <div
         style={{ backgroundImage: `url(${backgroundFriend})` }}
         className="h-screen"
