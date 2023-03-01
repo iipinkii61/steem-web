@@ -3,33 +3,32 @@ import { Link } from "react-router-dom";
 
 export default function VisapayForm() {
   return (
-    <div>
-      <div className="mx-4 my-8 space-y-2">
-        <div className="space-y-4">
+    <div className="">
+      <div className="mx-4 my-6 space-y-2">
+        <div className="space-y-3">
           <h5 className="text-xs"> Please select a payment method</h5>
-          <select class="select select-ghost w-60 max-w-xs bg-black rounded-none">
+          <select class=" h-8 w-60 bg-black rounded">
             <option disabled selected>
               Visa
             </option>
             <option>Visa</option>
-            <option>Mobile Banking</option>
           </select>
         </div>
 
         <div className="  ">
-          <div className="flex col space-x-16 ">
+          <div className="flex col space-x-10 ">
             <div className="space-y-2">
               <h5 className="text-xs sp"> Card number</h5>
               <input
                 type="text"
-                className="input-sm w-60 max-w-xs h-10 text-white bg-black "
+                className="input-sm w-60 max-w-xs h-8 text-white bg-black rounded"
               />
             </div>
 
             <div className="   flex col">
               <div className="space-y-2 space-x-6">
-                <h5 className="text-xs mx-6"> Expiration date</h5>
-                <select class="select-xs select-ghost w-[48px] h-10 max-w-xs bg-black rounded-none">
+                <h5 className="text-xs mx-6 w-full"> Expiration date</h5>
+                <select class=" w-[48px] h-8 max-w-xs bg-black rounded">
                   <option disabled selected className="">
                     --
                   </option>
@@ -49,7 +48,7 @@ export default function VisapayForm() {
               </div>
 
               <div className=" my-6 -mx-8">
-                <select class="select-xs select-ghost w-20 h-10  max-w-xs bg-black rounded-none">
+                <select class=" w-20 h-8  max-w-xs bg-black rounded">
                   <option disabled selected className="">
                     ---
                   </option>
@@ -77,10 +76,10 @@ export default function VisapayForm() {
               </div>
 
               <div className=" space-x-10 space-y-2">
-                <h5 className="text-xs mx-8 "> Security code</h5>
+                <h5 className="text-xs mx-8 w-full "> Security code</h5>
                 <input
                   type="text"
-                  className="input-sm w-12 max-w-xs h-10 text-white bg-black "
+                  className="input-sm w-12  h-8 text-white bg-black rounded"
                 />{" "}
                 ?
               </div>
@@ -89,16 +88,16 @@ export default function VisapayForm() {
         </div>
       </div>
 
-      <div className="mx-4 space-y-4">
+      <div className="mx-4 space-y-2">
         <h1 className="text-2xl ">BILLING INFORMATION</h1>
 
-        <div className="flex col space-x-24">
+        <div className="flex col space-x-20">
           <div className="flex col space-x-1">
             <div className="space-y-2">
               <h5 className="text-xs sp"> First name</h5>
               <input
                 type="text"
-                className="input-sm w-28 max-w-xs h-10 text-white bg-black "
+                className="input-sm w-28 h-8 text-white bg-black rounded "
               />
             </div>
 
@@ -106,7 +105,7 @@ export default function VisapayForm() {
               <h5 className="text-xs sp"> Last name</h5>
               <input
                 type="text"
-                className="input-sm w-28 max-w-xs h-10 text-white bg-black "
+                className="input-sm w-28 h-8 text-white bg-black  rounded"
               />
             </div>
           </div>
@@ -116,25 +115,25 @@ export default function VisapayForm() {
               <h5 className="text-xs sp"> City</h5>
               <input
                 type="text"
-                className="input-sm w-60 max-w-xs h-10 text-white bg-black "
+                className="input-sm w-60 h-8 text-white bg-black rounded"
               />
             </div>
           </div>
         </div>
 
-        <div className="flex col space-x-20">
+        <div className="flex col space-x-16">
           <div className="space-y-2">
             <h5 className="text-xs sp"> Billing address</h5>
             <input
               type="text"
-              className="input-sm w-60 max-w-xs h-10 text-white bg-black "
+              className="input-sm w-60 h-8 text-white bg-black rounded "
             />
           </div>
           <div className="space-y-2">
             <h5 className="text-xs sp"> Zip or postal code</h5>
             <input
               type="text"
-              className="input-sm w-60 max-w-xs h-10 text-white bg-black "
+              className="input-sm w-60 h-8 text-white bg-black rounded"
             />
           </div>
         </div>
@@ -143,14 +142,14 @@ export default function VisapayForm() {
           <h5 className="text-xs sp"> Billing address, line2</h5>
           <input
             type="text"
-            className="input-sm w-60 max-w-xs h-10 text-white bg-black "
+            className="input-sm w-60 h-8 text-white bg-black rounded"
           />
         </div>
 
-        <div className="flex col space-x-20">
+        <div className="flex col space-x-16">
           <div className="space-y-2">
             <h5 className="text-xs"> County</h5>
-            <select class="select select-ghost w-60 max-w-xs bg-black rounded-none">
+            <select class=" w-60 h-8 bg-black rounded">
               <option disabled selected>
                 Thailand
               </option>
@@ -162,7 +161,7 @@ export default function VisapayForm() {
             <h5 className="text-xs sp"> Phone number</h5>
             <input
               type="text"
-              className="input-sm w-60 h-10 max-w-xs text-white bg-black "
+              className="input-sm w-60 h-8 text-white bg-black rounded "
             />
           </div>
         </div>
