@@ -22,7 +22,7 @@ export default function ChatBox() {
       </div>
 
       <div className="flex flex-col justify-between h-screen text-[#b8b6b4] bg-[#2B2D32] p-6 px-10 ">
-        <div className="max-h-screen overflow-y-scroll">
+        <div className="h-full overflow-y-auto">
           <div className="flex gap-4 mt-4">
             <img src={avatar} className="h-10 rounded-sm" />
             <div className="">
@@ -40,6 +40,36 @@ export default function ChatBox() {
               <span className="text-xs">13.00</span>
               <p className="break-words max-w-lg">
                 hellohellohellohellohellohellohellohello
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-4 mt-4">
+            <img src={avatar} className="h-10 rounded-sm" />
+            <div className="">
+              <span className="text-blueText pr-3">Nameeeeeeeeee</span>
+              <span className="text-xs">13.00</span>
+              <p className="break-words max-w-lg">
+                hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-4 mt-4">
+            <img src={avatar} className="h-10 rounded-sm" />
+            <div className="">
+              <span className="text-blueText pr-3">Nameeeeeeeeee</span>
+              <span className="text-xs">13.00</span>
+              <p className="break-words max-w-lg">
+                hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-4 mt-4">
+            <img src={avatar} className="h-10 rounded-sm" />
+            <div className="">
+              <span className="text-blueText pr-3">Nameeeeeeeeee</span>
+              <span className="text-xs">13.00</span>
+              <p className="break-words max-w-lg">
+                hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
               </p>
             </div>
           </div>

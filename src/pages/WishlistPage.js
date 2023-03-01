@@ -2,9 +2,11 @@ import PageMainLayout from "../layouts/PageMainLayout";
 import logo from "../assets/header_logo.png";
 import avatar from "../assets/blank.png";
 import Footer from "../layouts/Footer";
+import Header from "../layouts/Header";
 export default function WishlistPage() {
   return (
     <>
+    <Header/>
       <div className="bg-[#202326] max-h-fit">
         <PageMainLayout>
           <div className="flex items-center gap-6 p-6 px-0">
