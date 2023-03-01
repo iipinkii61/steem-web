@@ -18,12 +18,15 @@ export const setCart = createAsyncThunk(
   "cart/setCart",
   async (steamAppId, thunkApi) => {
     try {
-      const gameExist = thunkApi
-        .getState()
-        .find((el) => el.steam_appid === steamAppId);
-      if (gameExist) {
-        return {};
-      }
+      //no field steam_appid in Cart model
+
+      // const gameExist = thunkApi
+      //   .getState()
+      //   .cart.find((el) => el.steam_appid === steamAppId);
+      // if (gameExist) {
+      //   return {};
+      // }
+
       const res = await cartApi.setCartApi(steamAppId);
       return res.data;
     } catch (err) {
@@ -61,6 +64,9 @@ export const cartSlice = createSlice({
       }
       state.cart.push(action.payload);
     },
+    removeItem: (state, action) => {
+      state.cart = state.cart.filter((el) => el.steam_appid !== action.payload);
+    },
     clearItem: (state, action) => {
       state.cart = initialState.cart;
     },
@@ -75,5 +81,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { setItem, addItem, clearItem } = cartSlice.actions;
+export const { setItem, addItem, clearItem, removeItem } = cartSlice.actions;
 export default cartSlice.reducer;

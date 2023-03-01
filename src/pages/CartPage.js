@@ -2,8 +2,22 @@ import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
 import PageMainLayout from "../layouts/PageMainLayout";
 import logo from "../assets/header_logo.png";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCart } from "../redux/cart-slice";
 
 export default function HomePage() {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+
+  // dispatch();
+
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, []);
+
+  console.log(cart);
+
   return (
     <>
       <Header />

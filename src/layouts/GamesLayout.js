@@ -1,13 +1,26 @@
 import useShowGame from "../hooks/useShowGame";
 import { useRef, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCart } from "../redux/cart-slice";
 
 export default function GamesLayout() {
   const showGame = useShowGame();
-
+  const { steamAppId } = useParams();
+  const navigate = useNavigate();
   const videoRef = useRef(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     videoRef.current.load();
   }, [showGame]);
+
+  const handleAddAndPlay = () => {
+    if (showGame?.is_free) {
+      return navigate("/login", { state: { steamAppId } });
+    }
+    dispatch(setCart(steamAppId));
+    navigate("/cart", { state: { steamAppId } });
+  };
 
   return (
     <>
@@ -159,6 +172,7 @@ export default function GamesLayout() {
                 : null)}
           </div>
           <button
+            onClick={handleAddAndPlay}
             className="absolute p-2 px-5 text-[#ceeca5] right-1 bottom-1 text-xs rounded-sm bg-[radial-gradient(at_left_top,_#78b32b,_#60941b,_#588a1b)]
           hover:bg-[radial-gradient(at_left_top,_#78b32b,_#8bd32a,_#588a1b)] hover:text-white"
           >
