@@ -1,14 +1,11 @@
 import PageMainLayout from "../layouts/PageMainLayout";
 import avatar from "../assets/blank.png";
 import Footer from "../layouts/Footer";
-<<<<<<< HEAD
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchWishlist } from "../redux/wishlist-slice";
 import useAuth from "../hooks/useAuth";
-=======
 import Header from "../layouts/Header";
->>>>>>> 4ded23739938bef1e93fba2af92f959a8ca12a23
 export default function WishlistPage() {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.wishlist);
@@ -19,7 +16,7 @@ export default function WishlistPage() {
   }, []);
   return (
     <>
-    <Header/>
+      <Header />
       <div className="bg-[#202326] max-h-fit">
         <PageMainLayout>
           <div className="flex items-center gap-6 p-6 px-0">
