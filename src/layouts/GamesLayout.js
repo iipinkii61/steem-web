@@ -1,16 +1,28 @@
 import useShowGame from "../hooks/useShowGame";
 import { useRef, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCart } from "../redux/cart-slice";
 import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 
 export default function GamesLayout() {
   const showGame = useShowGame();
-  console.log(showGame);
-
+  const { steamAppId } = useParams();
+  const navigate = useNavigate();
   const videoRef = useRef(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     videoRef.current.load();
   }, [showGame]);
+
+  const handleAddAndPlay = () => {
+    if (showGame?.is_free) {
+      return navigate("/login", { state: { steamAppId } });
+    }
+    dispatch(setCart(steamAppId));
+    navigate("/cart", { state: { steamAppId } });
+  };
 
   return (
     <>
@@ -100,6 +112,7 @@ export default function GamesLayout() {
               : "Free to Play"}
           </div>
           <button
+            onClick={handleAddAndPlay}
             className="absolute p-2 px-5 text-[#ceeca5] right-1 bottom-1 text-xs rounded-sm bg-[radial-gradient(at_left_top,_#78b32b,_#60941b,_#588a1b)]
           hover:bg-[radial-gradient(at_left_top,_#78b32b,_#8bd32a,_#588a1b)] hover:text-white"
           >
@@ -172,9 +185,7 @@ export default function GamesLayout() {
                 src="https://store.akamai.steamstatic.com/public/shared/images/userreviews/icon_thumbsUp_v6.png"
               />
             </div>
-            <span className="absolute h-fit w-fit left-12">
-              Recommended
-            </span>
+            <span className="absolute h-fit w-fit left-12">Recommended</span>
             <span className="absolute h-fit w-fit top-6 left-12 text-[9px] text-gray-500">
               POSTED: 27 FEBRUARY
             </span>
@@ -205,7 +216,7 @@ export default function GamesLayout() {
         </div>
       </div>
       {/* end row reviews */}
-      <br/>
+      <br />
       {/* row reviews */}
       <div className="flex h-auto pt-3 w-auto bg-[#16202d]">
         <div className="flex w-1/2 p-3">
