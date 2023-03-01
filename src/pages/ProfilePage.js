@@ -1,19 +1,26 @@
 import Footer from "../layouts/Footer";
-import Header from "../layouts/Header";
 import PageMainLayout from "../layouts/PageMainLayout";
 import avatar from "../assets/blank.png";
 import logo from "../assets/header_logo.png";
+import { Link } from "react-router-dom";
 
 export default function ProfilePage() {
   return (
     <>
-      <Header />
       <PageMainLayout>
         <div className="bg-[#171A21] max-h-fit p-10">
           <div className="flex gap-8 text-2xl">
             <img src={avatar} className="h-40 rounded shadow" />
-            <p>username</p>
+            <div>
+              <p>username</p>
+              <Link className="navbar-brand" to="/editprofile">
+                <button class="btn rounded bg-greenButton border-none normal-case box-border h-3 w-26">
+                  Edit Profile
+                </button>
+              </Link>
+            </div>
           </div>
+
           <div className="bg-gray-600/30 p-2 px-5 mt-4 rounded text-lg font-light text-[#b8b6b4] ">
             Library
           </div>
