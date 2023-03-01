@@ -3,6 +3,7 @@ import { useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCart } from "../redux/cart-slice";
+import { addWishlist } from "../redux/wishlist-slice";
 import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 
@@ -88,7 +89,10 @@ export default function GamesLayout() {
         <span className="w-fit h-fit p-2">
           This product is in your discovery queue because it is popular.
         </span>
-        <button className="w-[160px] h-[30px] ml-5 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200">
+        <button
+          onClick={() => dispatch(addWishlist(steamAppId))}
+          className="w-[160px] h-[30px] ml-5 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200"
+        >
           Add to your wishlist
         </button>
       </div>
