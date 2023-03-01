@@ -2,7 +2,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useNavigate } from "react-router-dom";
 import useGameInfo from "../hooks/useGameInfo";
-import IconWindows from "../assets/icons/IconWindows"
+import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 
 export default function RecommendedCarousel({ title }) {
@@ -11,7 +11,9 @@ export default function RecommendedCarousel({ title }) {
   const navigate = useNavigate();
 
   const handleClick = (el) => {
-    navigate("/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"))
+    navigate(
+      "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
+    );
   };
 
   return (
@@ -28,7 +30,7 @@ export default function RecommendedCarousel({ title }) {
         showIndicators={false}
       >
         {/* component start*/}
-        {gameInfo.map((el) => (
+        {gameInfo?.map((el) => (
           <div
             className=" h-full w-full flex justify-between"
             key={el?.steam_appid}
@@ -56,50 +58,78 @@ export default function RecommendedCarousel({ title }) {
                     value={el?.screenshots[1].id}
                     key={el?.screenshots[1].id}
                   >
-                    <img className="w-full h-full object-cover" src={el?.screenshots[1].path_thumbnail} />
+                    <img
+                      className="w-full h-full object-cover"
+                      src={el?.screenshots[1].path_thumbnail}
+                    />
                   </div>
                   <div
                     className="w-[170px] h-[80px]"
                     value={el?.screenshots[2].id}
                     key={el?.screenshots[2].id}
                   >
-                    <img className="w-full h-full object-cover" src={el?.screenshots[2].path_thumbnail} />
+                    <img
+                      className="w-full h-full object-cover"
+                      src={el?.screenshots[2].path_thumbnail}
+                    />
                   </div>
                   <div
                     className="w-[170px] h-[80px]"
                     value={el?.screenshots[3].id}
                     key={el?.screenshots[3].id}
                   >
-                    <img className="w-full h-full object-cover" src={el?.screenshots[3].path_thumbnail} />
+                    <img
+                      className="w-full h-full object-cover"
+                      src={el?.screenshots[3].path_thumbnail}
+                    />
                   </div>
                   <div
                     className="w-[170px] h-[80px]"
                     value={el?.screenshots[4].id}
                     key={el?.screenshots[4].id}
                   >
-                    <img className="w-full h-full object-cover" src={el?.screenshots[4].path_thumbnail} />
+                    <img
+                      className="w-full h-full object-cover"
+                      src={el?.screenshots[4].path_thumbnail}
+                    />
                   </div>
                 </div>
               </div>
               <div className="relative h-1/4 text-left pl-5 pr-5 pt-10 text-base flex justify-between">
-              {el?.is_free? "Free to play" : el?.price_overview?.final_formatted}
-              <div className="absolute flex gap-1 top-2">
-              <div className={`${el.genres[0] ? "" : "hidden"} px-2 rounded-sm text-sm text-gray-300 bg-[#394149] w-15 h-5`}>{el?.genres?.[0]?.description}</div>
-              <div className={`${el.genres[1] ? "" : "hidden"} px-2 rounded-sm text-sm text-gray-300 bg-[#394149] w-15 h-5`}>{el?.genres?.[1]?.description}</div>
-              <div className={`${el.genres[2] ? "" : "hidden"} px-2 rounded-sm text-sm text-gray-300 bg-[#394149] w-15 h-5`}>{el?.genres?.[2]?.description}</div>
-              </div>
+                {el?.is_free
+                  ? "Free to play"
+                  : el?.price_overview?.final_formatted}
+                <div className="absolute flex gap-1 top-2">
+                  <div
+                    className={`${
+                      el.genres[0] ? "" : "hidden"
+                    } px-2 rounded-sm text-sm text-gray-300 bg-[#394149] w-15 h-5`}
+                  >
+                    {el?.genres?.[0]?.description}
+                  </div>
+                  <div
+                    className={`${
+                      el.genres[1] ? "" : "hidden"
+                    } px-2 rounded-sm text-sm text-gray-300 bg-[#394149] w-15 h-5`}
+                  >
+                    {el?.genres?.[1]?.description}
+                  </div>
+                  <div
+                    className={`${
+                      el.genres[2] ? "" : "hidden"
+                    } px-2 rounded-sm text-sm text-gray-300 bg-[#394149] w-15 h-5`}
+                  >
+                    {el?.genres?.[2]?.description}
+                  </div>
+                </div>
                 <div className="absolute bottom-10 right-12 text-sm text-gray-300 w-fit h-fit">
                   {/* component start */}
-                  {el?.platforms.windows && (
-                    <IconWindows/>
-                  )}
+                  {el?.platforms.windows && <IconWindows />}
                   {/* component end */}
                 </div>
                 <div className="absolute bottom-10 right-5 text-gray-400 w-fit h-fit">
                   {/* component start */}
-                  {el?.platforms.mac && (
-                    <IconMac/>
-                  )}
+                  {el?.platforms.mac && <IconMac />}
                   {/* component end */}
                 </div>
               </div>
