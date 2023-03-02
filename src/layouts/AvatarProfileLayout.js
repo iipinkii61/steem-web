@@ -2,8 +2,11 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import profileImage from "../assets/blank.png";
+import { useSelector } from "react-redux";
 
 export default function AvatarProfileLayout() {
+  const authUser = useSelector((state) => state.auth.authUser);
+  console.log(authUser);
   return (
     <>
       <Header />
@@ -11,8 +14,10 @@ export default function AvatarProfileLayout() {
       <div className="px-48 justify-center">
         <div className="bg-slate-700 h-32 ">
           <div className="flex col px-6 py-8 ">
-            <img src={profileImage} alt="profileImage" className=" h-16  " />
-            <p className="pt-4 pl-6 text-xl"> UserName</p>
+            <img src={profileImage} alt="profileImage" className=" h-16  ">
+              {authUser.image}
+            </img>
+            <p className="pt-4 pl-6 text-xl"> {authUser.name}</p>
           </div>
         </div>
 

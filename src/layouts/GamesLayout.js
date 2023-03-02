@@ -88,9 +88,6 @@ export default function GamesLayout() {
         <span className="w-fit h-fit p-2">
           This product is in your discovery queue because it is popular.
         </span>
-        <button className="w-[160px] h-[30px] ml-5 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200">
-          Add to your wishlist
-        </button>
       </div>
       {/*end container Add to your wishlist */}
       <br />

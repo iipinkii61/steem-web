@@ -2,8 +2,11 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import profileImage from "../assets/blank.png";
+import { useSelector } from "react-redux";
 
 export default function GeneralProfileLayout() {
+  const authUser = useSelector((state) => state.auth.authUser);
+  console.log(authUser);
   return (
     <>
       <Header />
@@ -11,8 +14,10 @@ export default function GeneralProfileLayout() {
       <div className="px-40 justify-center">
         <div className="bg-slate-700 h-24 ">
           <div className="flex col px-6 py-4 ">
-            <img src={profileImage} alt="profileImage" className=" h-16  " />
-            <p className="pt-4 pl-6 text-xl"> UserName</p>
+            <img src={profileImage} alt="profileImage" className=" h-16  ">
+              {authUser.image}
+            </img>
+            <p className="pt-4 pl-6 text-xl"> {authUser.name}</p>
           </div>
         </div>
 
@@ -48,10 +53,12 @@ export default function GeneralProfileLayout() {
               <div className="py-6 px-4 space-y-6">
                 <div>
                   <p className="text-sm text-gray-400">PROFILE NAME</p>
-                  <input
-                    className=" bg-black rounded w-full h-10 px-2 "
-                    placeholder="User name"
-                  />
+                  <form>
+                    <input
+                      className=" bg-black rounded w-full h-10 px-2 "
+                      placeholder="User name"
+                    />
+                  </form>
                 </div>
               </div>
               <h1 className="text-2xl border-b-2 border-gray-500/50">
@@ -72,9 +79,11 @@ export default function GeneralProfileLayout() {
                   <button className="btn-sm  bg-gray-500  rounded w-48 normal-case ">
                     Cancel
                   </button>
-                  <button className="btn-sm  bg-sky-500 border-slate-900 rounded w-48 normal-case ">
-                    Save
-                  </button>
+                  <form>
+                    <button className="btn-sm  bg-sky-500 border-slate-900 rounded w-48 normal-case ">
+                      Save
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

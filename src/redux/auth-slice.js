@@ -20,6 +20,7 @@ export const login = createAsyncThunk(
     return jwtDecode(res.data.accessToken);
   },
 );
+
 export const fetchAuthUser = createAsyncThunk("fetchAuthUser", async () => {
   try {
     const res = await authApi.getMeApi();
@@ -37,6 +38,9 @@ export const authSlice = createSlice({
     logout: (state, action) => {
       state.authUser = null;
       removeAccessToken();
+    },
+    setUser: (state, action) => {
+      state.authUser = action.payload;
     },
   },
   extraReducers(builder) {
