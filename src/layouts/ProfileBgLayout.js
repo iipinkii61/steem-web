@@ -18,7 +18,7 @@ export default function ProfileBgLayout() {
         </div>
 
         <div className="flex col py-12  w-full px-10 ">
-          <ul class="menu bg-base-0  w-56">
+          <ul className="menu bg-base-0  w-56">
             <li>
               <a>General</a>
             </li>
@@ -47,7 +47,7 @@ export default function ProfileBgLayout() {
               className="h-60 w-full"
             />
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <div className="py-6 px-4 space-y-4 bg-black">
                 <div>
                   <div className="flex col space-x-6">
@@ -63,7 +63,11 @@ export default function ProfileBgLayout() {
                   <div> </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <button className="btn-sm  bg-gray-500  rounded w-48 normal-case ">
+              {" "}
+              Upload your background{" "}
+            </button>
           </div>
         </div>
         <div className=" space-x-2 flex justify-end  ">
