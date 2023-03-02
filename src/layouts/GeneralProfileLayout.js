@@ -5,8 +5,17 @@ import profileImage from "../assets/blank.png";
 import { useSelector } from "react-redux";
 
 export default function GeneralProfileLayout() {
-  const authUser = useSelector((state) => state.auth.authUser);
-  console.log(authUser);
+  // const authUser = useSelector((state) => state.auth.authUser);
+  // console.log(authUser);
+  // const handleEdit = async (event) => {
+  //   event.preventDefault();
+  //   try{
+
+  //   } catch(err){
+  //     console.log(err);
+
+  //   }
+  // }
   return (
     <>
       <Header />
@@ -15,9 +24,9 @@ export default function GeneralProfileLayout() {
         <div className="bg-slate-700 h-24 ">
           <div className="flex col px-6 py-4 ">
             <img src={profileImage} alt="profileImage" className=" h-16  ">
-              {authUser.image}
+              {/* {authUser.image} */}
             </img>
-            <p className="pt-4 pl-6 text-xl"> {authUser.name}</p>
+            <p className="pt-4 pl-6 text-xl"> </p>
           </div>
         </div>
 

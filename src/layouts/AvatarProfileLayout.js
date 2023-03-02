@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import profileImage from "../assets/blank.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserProfile } from "../redux/user-slice";
+import { useParams } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 export default function AvatarProfileLayout() {
-  const authUser = useSelector((state) => state.auth.authUser);
-  console.log(authUser);
+  const { userId } = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUserProfile(userId));
+  }, []);
+
+  const user = useUser();
+  console.log(user);
   return (
     <>
       <Header />
@@ -15,9 +24,9 @@ export default function AvatarProfileLayout() {
         <div className="bg-slate-700 h-32 ">
           <div className="flex col px-6 py-8 ">
             <img src={profileImage} alt="profileImage" className=" h-16  ">
-              {authUser.image}
+              {/* {user.image} */}
             </img>
-            <p className="pt-4 pl-6 text-xl"> {authUser.name}</p>
+            <p className="pt-4 pl-6 text-xl"> </p>
           </div>
         </div>
 

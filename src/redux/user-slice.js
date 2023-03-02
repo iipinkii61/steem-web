@@ -13,9 +13,9 @@ const initialState = {
 
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchProfile",
-  async () => {
+  async (userId) => {
     try {
-      const res = await profileApi.getProfileApi();
+      const res = await profileApi.getProfileApi(userId);
       return res.data;
     } catch (err) {
       console.error(err);

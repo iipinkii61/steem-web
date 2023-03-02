@@ -92,11 +92,11 @@ const router = createBrowserRouter([
         element: <GeneralProfilePage />,
       },
       {
-        path: "/Avatarprofile",
+        path: "/avatarprofile/:userId",
         element: <AvatarProfilePage />,
       },
       {
-        path: "/Backgroundprofile",
+        path: "/backgroundprofile",
         element: <ProfileBgPage />,
       },
       {

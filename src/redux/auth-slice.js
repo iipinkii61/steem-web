@@ -39,9 +39,6 @@ export const authSlice = createSlice({
       state.authUser = null;
       removeAccessToken();
     },
-    setUser: (state, action) => {
-      state.authUser = action.payload;
-    },
   },
   extraReducers(builder) {
     builder
