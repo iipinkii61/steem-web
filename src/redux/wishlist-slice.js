@@ -30,9 +30,28 @@ export const addWishlist = createAsyncThunk(
   },
 );
 
+export const deleteWishlist = createAsyncThunk(
+  "wishlist/deleteWishlist",
+  async (wishlistId) => {
+    try {
+      const res = await wishlistApi.removeWishlist(wishlistId);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
+);
+
 export const wishlistSlice = createSlice({
   name: "wishlist",
   initialState,
+  reducers: {
+    removeWishlist: (state, action) => {
+      state.wishlist = state.wishlist.filter(
+        (el) => el.steam_appid !== action.payload,
+      );
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchWishlist.fulfilled, (state, action) => {
       state.wishlist = action.payload;
@@ -43,4 +62,5 @@ export const wishlistSlice = createSlice({
   },
 });
 
+export const { removeWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;

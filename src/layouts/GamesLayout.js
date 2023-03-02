@@ -1,9 +1,9 @@
 import useShowGame from "../hooks/useShowGame";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCart } from "../redux/cart-slice";
-import { addWishlist } from "../redux/wishlist-slice";
+import { addWishlist, fetchWishlist } from "../redux/wishlist-slice";
 import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 
@@ -16,6 +16,31 @@ export default function GamesLayout() {
   useEffect(() => {
     videoRef.current.load();
   }, [showGame]);
+
+  ////////// handlewishlist //////////
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  // const [wishlistButton, setWishlistButton] = useState(false);
+  useEffect(() => {
+    dispatch(fetchWishlist());
+  }, []);
+  console.log(wishlist);
+
+  const checkIfWishlistExist = (gameId, wishlists) => {
+    for (let i = 0; i < wishlists.length; i++) {
+      if (wishlists[i].Game.steamAppid === +gameId) {
+        return true;
+      }
+    }
+    return false;
+  };
+  const wishlistExist = checkIfWishlistExist(steamAppId, wishlist);
+
+  const handleWishlistButton = () => {
+    // setWishlistButton(true);
+    dispatch(addWishlist(steamAppId));
+  };
+
+  ////////// end handlewishlist //////////
 
   const handleAddAndPlay = () => {
     if (showGame?.is_free) {
@@ -89,12 +114,19 @@ export default function GamesLayout() {
         <span className="w-fit h-fit p-2">
           This product is in your discovery queue because it is popular.
         </span>
-        <button
-          onClick={() => dispatch(addWishlist(steamAppId))}
-          className="w-[160px] h-[30px] ml-5 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200"
-        >
-          Add to your wishlist
-        </button>
+
+        {wishlistExist ? (
+          <button className="w-[160px] h-[30px] ml-5 text-xs rounded-sm bg-[#274155]  text-blueText ">
+            Already in your wishlist !
+          </button>
+        ) : (
+          <button
+            onClick={() => handleWishlistButton()}
+            className="w-[160px] h-[30px] ml-5 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200"
+          >
+            Add to your wishlist
+          </button>
+        )}
       </div>
       {/*end container Add to your wishlist */}
       <br />
