@@ -12,6 +12,7 @@ import VisaPage from "../pages/VisaPage";
 import FriendPage from "../pages/Friendpage";
 import AddFriend from "../pages/AddFriend";
 import FriendLayout from "../layouts/FriendLayout";
+import CategoryPage from "../pages/CategoryPage";
 import GamesPage from "../pages/GamesPage";
 import PendingFriends from "../pages/PendingFriends";
 import GeneralProfilePage from "../pages/GeneralProfilePage";
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/app/:steamAppId/:gameName",
         element: <GamesPage />,
+      },
+      {
+        path: "/category",
+        element: <CategoryPage/>,
       },
     ],
   },
