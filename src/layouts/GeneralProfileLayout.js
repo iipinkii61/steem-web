@@ -20,7 +20,7 @@ export default function GeneralProfileLayout() {
     <>
       <Header />
       {/* <div className=" bg-black bg-opacity-20 backdrop-blur-sm  border-2 border-solid border-red h-screen w-screen"> */}
-      <div className="px-80 justify-center">
+      <div className="px-80 justify-center mb-36">
         <div className="bg-slate-700 h-28 ">
           <div className="flex col px-6 py-4 ">
             <img src={profileImage} alt="profileImage" className=" h-16  ">

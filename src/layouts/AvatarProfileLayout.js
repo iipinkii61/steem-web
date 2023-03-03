@@ -24,17 +24,19 @@ export default function AvatarProfileLayout() {
       <Header />
 
       {/* <div className=" bg-black bg-opacity-20 backdrop-blur-sm  border-2 border-solid border-red h-screen w-screen"> */}
-      <div className="px-80 justify-center h-[100] ">
-        <div className="bg-slate-700 h-28 ">
-          <div className="flex col px-6 py-8 ">
+      <div className="px-96 justify-center mb-36 ">
+        <div className="bg-slate-700 h-24 ">
+          <div className="flex col px-6 py-4 ">
             <img src={profileImage} alt="profileImage" className=" h-16  ">
               {/* {user.image} */}
             </img>
             <p className="pt-4 pl-6 text-xl"> username</p>
           </div>
         </div>
-
-        <div className="flex col py-16 w-full  ">
+        <div className=" flex justify-end py-4">
+          <p className="underline">Back to your profile</p>
+        </div>
+        <div className="flex col py-12 w-full  ">
           <ul class="menu bg-base-0  w-56">
             <li>
               <a>General</a>
@@ -101,18 +103,18 @@ export default function AvatarProfileLayout() {
                 </div>
               </div> */}
 
-            <div className=" space-x-2  w-full flex justify-end ">
+            <div className=" space-x-2  py-16 w-full flex justify-end ">
               {/* {file && ( */}
               <>
                 <button
-                  className="btn-sm  bg-gray-500  rounded w-30 normal-case "
+                  className="btn-sm  bg-gray-500  rounded w-48 normal-case "
                   onClick={() => {}}
                 >
                   Cancel
                 </button>
 
                 <button
-                  className="btn-sm  bg-sky-500 border-slate-900 rounded w-30 normal-case "
+                  className="btn-sm  bg-sky-500 border-slate-900 rounded w-48 normal-case "
                   onClick={() => {}}
                 >
                   Save
