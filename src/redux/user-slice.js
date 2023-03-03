@@ -24,14 +24,18 @@ export const fetchUserProfile = createAsyncThunk(
   },
 );
 
-export const fetchAllUser = createAsyncThunk("user/fetchAllUser", async () => {
-  try {
-    const res = await profileApi.getAllUser();
-    return res.data;
-  } catch (err) {
-    console.error(err);
-  }
-});
+export const fetchUserById = createAsyncThunk(
+  "user/fetchUserById",
+  async (userId) => {
+    try {
+      const res = await profileApi.getUserById(userId);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
+);
+
 export const editUserProfile = createAsyncThunk(
   "user/editUserProfile",
   async ({ userId, formData }) => {
@@ -52,9 +56,13 @@ export const userSlice = createSlice({
     builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
     });
-    builder.addCase(fetchAllUser.fulfilled, (state, action) => {
+    // builder.addCase(fetchAllUser.fulfilled, (state, action) => {
+    //   state.profile = action.payload;
+    // });
+    builder.addCase(fetchUserById.fulfilled, (state, action) => {
       state.profile = action.payload;
     });
+
     builder
       .addCase(editUserProfile.pending, (state, action) => {
         state.loading = true;

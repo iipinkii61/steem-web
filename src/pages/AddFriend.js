@@ -1,49 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
+import axios from "../config/axios";
 import { useEffect, useState } from "react";
 import profileImage from "../assets/blank.png";
 import useAuth from "../hooks/useAuth";
-import { sendRequest } from "../redux/friend-slice";
-import { fetchAllUser } from "../redux/user-slice";
 
 export default function AddFriend() {
-  const dispatch = useDispatch();
   const user = useAuth();
-  const userLists = useSelector((state) => state.user.profile.user);
-  const friend = useSelector((state) => state.friend.friend);
-  useEffect(() => {
-    dispatch(fetchAllUser());
-  }, []);
 
-  ////////// end search handle //////////
-  console.log(friend);
   const [friendList, setFriendList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  const handleChangeSearchTerm = (e) => {
-    setSearchTerm(e.target.value.trim());
-  };
+  console.log(friendList);
 
   useEffect(() => {
-    const id = setTimeout(() => {
-      updateShowFriends(searchTerm);
-    }, 500);
-    return () => {
-      clearTimeout(id);
+    const fetchSearchUser = async () => {
+      const res = await axios.get(`/user/search/name?searchName=${searchTerm}`);
+      setFriendList(res.data.user);
     };
+    const idTimeout = setTimeout(() => {
+      fetchSearchUser();
+    }, 500);
+    return () => clearTimeout(idTimeout);
   }, [searchTerm]);
 
-  const updateShowFriends = (searchTerm) => {
-    setFriendList(
-      userLists.filter(
-        (el) =>
-          el.userName.toLowerCase().includes(searchTerm.toLowerCase()) &&
-          el.id !== +user.id,
-      ),
-    );
+  const handleChangeInput = (e) => {
+    setSearchTerm(e.target.value);
   };
-  ////////// end search handle //////////
-
-  // console.log(friendList);
 
   return (
     <div className="w-full h-full overflow-y-auto">
@@ -70,35 +50,37 @@ export default function AddFriend() {
           <input
             type="text"
             className="bg-transparent w-full"
+            onChange={handleChangeInput}
             value={searchTerm}
-            onChange={handleChangeSearchTerm}
             placeholder="Enter your friend's profile name"
           />
         </div>
       </div>
-      <div className="p-10 h-screen overflow-y-auto">
-        {friendList.map((el) => (
-          <div
-            key={el.id}
-            className="flex items-center justify-between mx-2 mb-4 w-full bg-black/20 rounded p-6"
-          >
-            <div className="flex items-center gap-6 ">
-              <img
-                src={profileImage}
-                alt="profileImage"
-                className="h-16 rounded-sm"
-              />
-              <p>{el.userName}</p>
-            </div>
-            <button
-              onClick={() => dispatch(sendRequest(el.id))}
-              className="px-4 py-1 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200"
+      {/* <div className="p-10 h-screen overflow-y-auto"> */}
+      {searchTerm !== "" ? (
+        <div className="p-10 h-screen overflow-y-auto">
+          {friendList.map((el) => (
+            <div
+              key={el.id}
+              className="flex items-center justify-between mx-2 mb-4 w-full bg-black/20 rounded p-6"
             >
-              Add a friend
-            </button>
-          </div>
-        ))}
-      </div>
+              <div className="flex items-center gap-6 ">
+                <img
+                  src={profileImage}
+                  alt="profileImage"
+                  className="h-16 rounded-sm"
+                />
+                <p>{el.userName}</p>
+              </div>
+              <button className="px-4 py-1 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200">
+                Add a friend
+              </button>
+            </div>
+          ))}{" "}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
