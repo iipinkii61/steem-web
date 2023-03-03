@@ -50,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/category",
-        element: <CategoryPage/>,
+        element: <CategoryPage />,
       },
     ],
   },
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         element: <GeneralProfilePage />,
       },
       {
-        path: "/avatarprofile/:userId",
+        path: "/avatarprofile",
         element: <AvatarProfilePage />,
       },
       {
