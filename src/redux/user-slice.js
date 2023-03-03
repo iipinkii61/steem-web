@@ -14,9 +14,9 @@ const initialState = {
 
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchProfile",
-  async () => {
+  async (userId) => {
     try {
-      const res = await profileApi.getProfileApi();
+      const res = await profileApi.getProfileApi(userId);
       return res.data;
     } catch (err) {
       console.error(err);
@@ -68,7 +68,8 @@ export const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(editUserProfile.fulfilled, (state, action) => {
-        state.profile = action.payload;
+        // state.profile = action.payload;
+        state.profile = { ...state.profile, ...action.payload };
         state.loading = initialState.loading;
       });
   },

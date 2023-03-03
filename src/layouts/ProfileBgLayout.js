@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import profileImage from "../assets/blank.png";
 import profilecoveImage from "../assets/profilebg.png";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchUserProfile } from "../redux/user-slice";
+import useUser from "../hooks/useUser";
 
 export default function ProfileBgLayout() {
+  // const { userId } = useParams();
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchUserProfile(userId));
+  // }, []);
+
+  const user = useUser();
+  console.log(user);
   return (
     <>
       <Header />
