@@ -23,7 +23,7 @@ export default function GamesLayout() {
   useEffect(() => {
     dispatch(fetchWishlist());
   }, []);
-  console.log(wishlist);
+  console.log('test2',wishlist);
 
   const checkIfWishlistExist = (gameId, wishlists) => {
     for (let i = 0; i < wishlists.length; i++) {
