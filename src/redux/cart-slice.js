@@ -22,7 +22,8 @@ export const setCart = createAsyncThunk(
 
       // const gameExist = thunkApi
       //   .getState()
-      //   .cart.find((el) => el.steam_appid === steamAppId);
+      // // .cart.find((el) => el.steam_appid === steamAppId);
+      //   .cart.find((el) => el.Game.steamAppid === steamAppId);
       // if (gameExist) {
       //   return {};
       // }

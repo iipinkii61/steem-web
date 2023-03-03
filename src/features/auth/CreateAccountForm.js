@@ -15,7 +15,7 @@ export default function CreateAccountForm() {
   });
   const [error, setError] = useState({});
   // inputRegister.email= location.state.email
-  console.log(inputRegister);
+  // console.log(inputRegister);
   const handleChangeInputRegister = (e) => {
     setInputRegister({ ...inputRegister, [e.target.name]: e.target.value });
   };
@@ -25,7 +25,7 @@ export default function CreateAccountForm() {
       e.preventDefault();
       const addEmail = { ...inputRegister, email: location.state.email };
       const result = validateRegister(addEmail);
-      console.log(result);
+      // console.log(result);
       if (result) {
         setError(result);
       } else {

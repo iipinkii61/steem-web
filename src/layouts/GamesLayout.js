@@ -7,6 +7,7 @@ import { addWishlist, fetchWishlist } from "../redux/wishlist-slice";
 import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 import useAuth from "../hooks/useAuth";
+import useWishlist from "../hooks/useWishList";
 
 export default function GamesLayout() {
   const showGame = useShowGame();
@@ -15,38 +16,29 @@ export default function GamesLayout() {
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const dispatch = useDispatch();
+
   useEffect(() => {
     videoRef.current.load();
   }, [showGame]);
 
-  ////////// handlewishlist //////////
-  const wishlist = useSelector((state) => state.wishlist.wishlist);
-  // const [wishlistButton, setWishlistButton] = useState(false);
+  // handle wish list //
+  const wishlist = useWishlist();
   useEffect(() => {
     if (user) {
       dispatch(fetchWishlist());
     }
   }, []);
-  console.log(wishlist);
 
-  const checkIfWishlistExist = (gameId, wishlists) => {
-    if (user) {
-      for (let i = 0; i < wishlists.length; i++) {
-        if (wishlists[i].Game.steamAppid === +gameId) {
-          return true;
-        }
-      }
-    }
-    return false;
-  };
-  const wishlistExist = checkIfWishlistExist(steamAppId, wishlist);
+  const wishlistExist = wishlist?.find(
+    (el) => el.Game.steamAppid === +steamAppId,
+  );
+  // console.log(wishlistExist);
 
   const handleWishlistButton = () => {
-    // setWishlistButton(true);
     dispatch(addWishlist(steamAppId));
   };
 
-  ////////// end handlewishlist //////////
+  // end handle wish list //
 
   const handleAddAndPlay = () => {
     if (showGame?.is_free) {
