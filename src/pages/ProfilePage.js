@@ -4,18 +4,32 @@ import avatar from "../assets/blank.png";
 import logo from "../assets/header_logo.png";
 import { Link } from "react-router-dom";
 import Header from "../layouts/Header";
+import { useEffect } from "react";
+import useUser from "../hooks/useUser";
+import { useDispatch } from "react-redux";
+import { fetchUserProfile } from "../redux/user-slice";
+import useAuth from "../hooks/useAuth";
 
 export default function ProfilePage() {
+  const { id } = useAuth();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUserProfile(id));
+  }, []);
+
+  const user = useUser();
+  console.log(user);
+
   return (
     <>
-    <Header/>
+      <Header />
       <PageMainLayout>
         <div className="bg-[#171A21] max-h-fit p-10">
           <div className="flex gap-8 text-2xl">
             <img src={avatar} className="h-40 rounded shadow" />
             <div>
               <p>username</p>
-              <Link className="navbar-brand" to="/editprofile">
+              <Link className="navbar-brand" to="/generalprofile">
                 <button class="btn rounded bg-greenButton border-none normal-case box-border h-3 w-26">
                   Edit Profile
                 </button>

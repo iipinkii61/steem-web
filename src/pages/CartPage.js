@@ -5,22 +5,23 @@ import logo from "../assets/header_logo.png";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart } from "../redux/cart-slice";
-
+import useCart from "../hooks/useCart";
 export default function HomePage() {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
-
+  // const cart = useSelector((state) => state.cart.cart);
   // dispatch();
 
   useEffect(() => {
     dispatch(fetchCart());
   }, []);
 
-  console.log(cart);
+  const cart = useCart();
+  // console.log(cart);
+  // console.log(cart?.[1]?.Game);
 
   return (
     <>
-    <Header/>
+      <Header />
       <PageMainLayout>
         <p className="py-8 text-3xl">YOUR SHOPPING CART</p>
         <div className="w-full">
