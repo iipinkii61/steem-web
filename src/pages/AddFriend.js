@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import profileImage from "../assets/blank.png";
-import { fetchAllUser } from "../redux/user-slice";
 import useAuth from "../hooks/useAuth";
 import { sendRequest } from "../redux/friend-slice";
+import { fetchAllUser } from "../redux/user-slice";
 
 export default function AddFriend() {
   const dispatch = useDispatch();
