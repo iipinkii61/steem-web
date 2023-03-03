@@ -9,15 +9,15 @@ export default function ProfileBgLayout() {
     <>
       <Header />
       {/* <div className=" bg-black bg-opacity-20 backdrop-blur-sm  border-2 border-solid border-red h-screen w-screen"> */}
-      <div className="px-48 justify-center">
-        <div className="bg-slate-700 h-32 ">
-          <div className="flex col px-6 py-8 ">
+      <div className="px-60 justify-center">
+        <div className="bg-slate-700 h-24 ">
+          <div className="flex col px-6 py-4 ">
             <img src={profileImage} alt="profileImage" className=" h-16  " />
             <p className="pt-4 pl-6 text-xl"> UserName</p>
           </div>
         </div>
 
-        <div className="flex col py-12  w-full px-10 ">
+        <div className="flex col py-12  w-full   ">
           <ul className="menu bg-base-0  w-56">
             <li>
               <a>General</a>
@@ -31,9 +31,9 @@ export default function ProfileBgLayout() {
               </a>
             </li>
           </ul>
-          <div className="pl-2 space-y-4 w-full">
+          <div className="pl-2 space-y-4 space-x-4 w-full">
             <div className=" flex col ">
-              <h1 className="w-full">PROFILE BACKGROUND</h1>
+              <h1 className="w-full ">PROFILE BACKGROUND</h1>
 
               <div className=" flex justify-end w-full">
                 <p>Back to Your Profile</p>

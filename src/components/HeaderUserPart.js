@@ -4,11 +4,17 @@ import { logout } from "../redux/auth-slice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function HeaderUserPart() {
   const user = useAuth();
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   return (
     <>
@@ -41,7 +47,7 @@ export default function HeaderUserPart() {
             </li>
 
             <li className="pt-2">
-              <button onClick={() => dispatch(logout())}>Logout</button>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         ) : (

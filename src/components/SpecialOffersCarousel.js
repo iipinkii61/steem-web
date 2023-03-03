@@ -6,7 +6,7 @@ import useGameInfo from "../hooks/useGameInfo";
 export default function SpecialOffersCarousel(props) {
   const { title } = props;
   const gameInfo = useGameInfo();
-  console.log(gameInfo);
+  // console.log(gameInfo);
   const navigate = useNavigate();
 
   const handleClick = (el) => {

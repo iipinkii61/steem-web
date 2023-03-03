@@ -20,13 +20,13 @@ export default function GeneralProfileLayout() {
     <>
       <Header />
       {/* <div className=" bg-black bg-opacity-20 backdrop-blur-sm  border-2 border-solid border-red h-screen w-screen"> */}
-      <div className="px-40 justify-center">
-        <div className="bg-slate-700 h-24 ">
+      <div className="px-80 justify-center">
+        <div className="bg-slate-700 h-28 ">
           <div className="flex col px-6 py-4 ">
             <img src={profileImage} alt="profileImage" className=" h-16  ">
               {/* {authUser.image} */}
             </img>
-            <p className="pt-4 pl-6 text-xl"> </p>
+            <p className="pt-4 pl-6 text-xl"> username</p>
           </div>
         </div>
 
@@ -84,12 +84,12 @@ export default function GeneralProfileLayout() {
                     Hide Community Awards on my profile
                   </span>
                 </label>
-                <div className=" space-x-2 pl-96 ">
-                  <button className="btn-sm  bg-gray-500  rounded w-48 normal-case ">
+                <div className=" space-x-2 pl-96  flex col justify-end">
+                  <button className="btn-sm  bg-gray-500  rounded w-30 normal-case ">
                     Cancel
                   </button>
                   <form>
-                    <button className="btn-sm  bg-sky-500 border-slate-900 rounded w-48 normal-case ">
+                    <button className="btn-sm  bg-sky-500 border-slate-900 rounded w-30 normal-case ">
                       Save
                     </button>
                   </form>
