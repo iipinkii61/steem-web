@@ -11,7 +11,7 @@ export default function FriendLayout() {
 
   return (
     <>
-    <Header/>
+      <Header />
       <div
         style={{ backgroundImage: `url(${backgroundFriend})` }}
         className="h-screen"
@@ -27,7 +27,7 @@ export default function FriendLayout() {
           </div>
 
           <div className="mt-4 mx-40 flex ">
-            <ul class="menu bg-base-0 w-56">
+            <ul className="menu bg-base-0 w-56">
               <li>
                 <Link to="/friends">
                   <svg

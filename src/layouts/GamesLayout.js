@@ -6,9 +6,11 @@ import { setCart } from "../redux/cart-slice";
 import { addWishlist, fetchWishlist } from "../redux/wishlist-slice";
 import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
+import useAuth from "../hooks/useAuth";
 
 export default function GamesLayout() {
   const showGame = useShowGame();
+  const user = useAuth();
   const { steamAppId } = useParams();
   const navigate = useNavigate();
   const videoRef = useRef(null);
@@ -21,14 +23,18 @@ export default function GamesLayout() {
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   // const [wishlistButton, setWishlistButton] = useState(false);
   useEffect(() => {
-    dispatch(fetchWishlist());
+    if (user) {
+      dispatch(fetchWishlist());
+    }
   }, []);
   console.log(wishlist);
 
   const checkIfWishlistExist = (gameId, wishlists) => {
-    for (let i = 0; i < wishlists.length; i++) {
-      if (wishlists[i].Game.steamAppid === +gameId) {
-        return true;
+    if (user) {
+      for (let i = 0; i < wishlists.length; i++) {
+        if (wishlists[i].Game.steamAppid === +gameId) {
+          return true;
+        }
       }
     }
     return false;

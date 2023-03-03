@@ -23,12 +23,24 @@ export const fetchUserProfile = createAsyncThunk(
   },
 );
 
+export const fetchAllUser = createAsyncThunk("user/fetchAllUser", async () => {
+  try {
+    const res = await profileApi.getAllUser();
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
+      state.profile = action.payload;
+    });
+    builder.addCase(fetchAllUser.fulfilled, (state, action) => {
       state.profile = action.payload;
     });
   },
