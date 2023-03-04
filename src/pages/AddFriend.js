@@ -8,8 +8,8 @@ export default function AddFriend() {
 
   const [friendList, setFriendList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(friendList);
 
+  ///// handle search /////
   useEffect(() => {
     const fetchSearchUser = async () => {
       const res = await axios.get(`/user/search/name?searchName=${searchTerm}`);
@@ -24,6 +24,7 @@ export default function AddFriend() {
   const handleChangeInput = (e) => {
     setSearchTerm(e.target.value);
   };
+  ///// end handle search /////
 
   return (
     <div className="w-full h-full overflow-y-auto">
@@ -57,6 +58,7 @@ export default function AddFriend() {
         </div>
       </div>
       {/* <div className="p-10 h-screen overflow-y-auto"> */}
+      {/* search */}
       {searchTerm !== "" ? (
         <div className="p-10 h-screen overflow-y-auto">
           {friendList.map((el) => (
@@ -81,6 +83,7 @@ export default function AddFriend() {
       ) : (
         ""
       )}
+      {/* end search */}
     </div>
   );
 }
