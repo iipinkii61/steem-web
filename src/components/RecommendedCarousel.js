@@ -7,7 +7,6 @@ import IconMac from "../assets/icons/IconMac";
 
 export default function RecommendedCarousel({ title }) {
   const gameInfo = useGameInfo();
-  // console.log(gameInfo);
   const navigate = useNavigate();
 
   const handleClick = (el) => {

@@ -51,7 +51,12 @@ export const editUserProfile = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    clearUser: (state, action) => {
+      state.profile = initialState.profile;
+      state.loading = initialState.loading;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
@@ -75,4 +80,5 @@ export const userSlice = createSlice({
   },
 });
 
+export const { clearUser } = userSlice.actions;
 export default userSlice.reducer;

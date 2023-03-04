@@ -1,19 +1,9 @@
-import React, { useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import profileImage from "../assets/blank.png";
 import useUser from "../hooks/useUser";
-import { useDispatch } from "react-redux";
-import { fetchUserProfile } from "../redux/user-slice";
-import { useParams } from "react-router-dom";
 
 export default function GeneralProfileLayout() {
-  // const { userId } = useParams();
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchUserProfile(userId));
-  // }, []);
-
   const user = useUser();
   console.log(user);
   return (
@@ -29,7 +19,7 @@ export default function GeneralProfileLayout() {
         </div>
 
         <div className="flex col py-12">
-          <ul class="menu bg-base-0  w-56">
+          <ul className="menu bg-base-0  w-56">
             <li>
               <a className="active  active:bg-black opacity-60 ">General</a>
             </li>
