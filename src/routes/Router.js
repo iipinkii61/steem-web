@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <GamesPage />,
       },
       {
-        path: "/category",
+        path: "/category/:genres",
         element: <CategoryPage/>,
       },
     ],
