@@ -1,4 +1,10 @@
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { removeAll } from "../redux/cart-slice";
+
 export default function CartAction() {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="bg-[#18202C]">
@@ -17,10 +23,14 @@ export default function CartAction() {
         </div>
       </div>
       <div className="flex justify-between items-center my-3">
-        <button className="text-blueText bg-blueText/20  rounded-sm p-1.5 px-5 hover:bg-[#5F9EE4] hover:text-white">
-          Continue Shopping
+        <Link to="/">
+          <button className="text-blueText bg-blueText/20  rounded-sm p-1.5 px-5 hover:bg-[#5F9EE4] hover:text-white">
+            Continue Shopping
+          </button>
+        </Link>
+        <button className="text-xs" onClick={() => dispatch(removeAll())}>
+          Remove all items
         </button>
-        <button className="text-xs">Remove all items</button>
       </div>
     </>
   );

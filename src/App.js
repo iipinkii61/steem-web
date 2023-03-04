@@ -27,7 +27,7 @@ export default function App() {
     };
   }, [gameInfo]);
 
-  console.log(gameInfo);
+  // console.log(gameInfo);
 
   useEffect(() => {
     if (authUser) {

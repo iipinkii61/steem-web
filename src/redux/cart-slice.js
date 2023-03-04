@@ -57,29 +57,19 @@ export const deleteItem = createAsyncThunk(
   },
 );
 
+export const removeAll = createAsyncThunk("cart/removeAll", async () => {
+  try {
+    const res = await cartApi.removeAllApi();
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
-  reducers: {
-    setItem: (state, action) => {
-      state.cart.push(action.payload);
-    },
-    addItem: (state, action) => {
-      const item = state.cart.find(
-        (el) => el.steam_appid === action.payload.steam_appid,
-      );
-      if (item) {
-        return state;
-      }
-      state.cart.push(action.payload);
-    },
-    removeItem: (state, action) => {
-      state.cart = state.cart.filter((el) => el.steam_appid !== action.payload);
-    },
-    clearItem: (state, action) => {
-      state.cart = initialState.cart;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchCart.fulfilled, (state, action) => {
       state.cart = action.payload;
@@ -99,8 +89,11 @@ export const cartSlice = createSlice({
     builder.addCase(deleteItem.fulfilled, (state, action) => {
       state.cart = state.cart.filter((el) => el.id !== action.payload);
     });
+    builder.addCase(removeAll.fulfilled, (state, action) => {
+      state.cart = initialState.cart;
+    });
   },
 });
 
-export const { setItem, addItem, clearItem, removeItem } = cartSlice.actions;
+// export const {} = cartSlice.actions;
 export default cartSlice.reducer;

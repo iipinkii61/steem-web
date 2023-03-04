@@ -16,9 +16,8 @@ export default function HomePage() {
 
   const navigate = useNavigate();
   console.log(cart);
-  console.log(cart?.[1]?.Game);
+
   const onClick = (el) => {
-    console.log(el);
     navigate(
       "/app/" +
         el?.Game?.steamAppid +
