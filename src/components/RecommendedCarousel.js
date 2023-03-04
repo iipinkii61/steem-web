@@ -29,7 +29,7 @@ export default function RecommendedCarousel({ title }) {
         showIndicators={false}
       >
         {/* component start*/}
-        {gameInfo?.map((el) => (
+        {gameInfo?.slice(0,5).map((el) => (
           <div
             className=" h-full w-full flex justify-between"
             key={el?.steam_appid}
