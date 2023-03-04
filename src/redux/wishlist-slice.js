@@ -51,6 +51,9 @@ export const wishlistSlice = createSlice({
         (el) => el.steam_appid !== action.payload,
       );
     },
+    clearWishlist: (state, action) => {
+      state.wishlist = initialState.wishlist;
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchWishlist.fulfilled, (state, action) => {
@@ -62,5 +65,5 @@ export const wishlistSlice = createSlice({
   },
 });
 
-export const { removeWishlist } = wishlistSlice.actions;
+export const { removeWishlist, clearWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;
