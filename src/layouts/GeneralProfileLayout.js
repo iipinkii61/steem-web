@@ -2,6 +2,10 @@ import Footer from "./Footer";
 import Header from "./Header";
 import profileImage from "../assets/blank.png";
 import useUser from "../hooks/useUser";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchUserProfile } from "../redux/user-slice";
+import { useEffect } from "react";
 
 export default function GeneralProfileLayout() {
   const { userId } = useParams();
