@@ -4,7 +4,7 @@ import Header from "./Header";
 import profileImage from "../assets/blank.png";
 import profilecoveImage from "../assets/profilebg.png";
 import { useDispatch, useSelector } from "react-redux";
-import userSlice, { fetchUserProfile } from "../redux/user-slice";
+import { fetchUserProfile } from "../redux/user-slice";
 import { useParams } from "react-router-dom";
 import useUser from "../hooks/useUser";
 
@@ -18,6 +18,7 @@ export default function ProfileBgLayout() {
   const [file, setFile] = useState(null);
 
   const inputEl = useRef();
+
   const user = useUser();
   console.log(user);
   return (
@@ -28,7 +29,7 @@ export default function ProfileBgLayout() {
         <div className="bg-slate-700 h-24 ">
           <div className="flex col px-6 py-4 ">
             <img src={profileImage} alt="profileImage" className=" h-16  " />
-            <p className="pt-4 pl-6 text-xl"> UserName</p>
+            <p className="pt-4 pl-6 text-xl"></p>
           </div>
         </div>
         <div className=" flex justify-end py-4">
@@ -56,7 +57,7 @@ export default function ProfileBgLayout() {
             <p>Choose a background to show on your profile page.</p>
             <div className="px-16">
               <img
-                src={profilecoveImage}
+                src={file ? URL.createObjectURL(file) : profilecoveImage}
                 alt="profilecover"
                 className="h-60 w-full"
               />
@@ -100,7 +101,13 @@ export default function ProfileBgLayout() {
           </div>
         </div>
         <div className=" space-x-2 flex justify-end  ">
-          <button className="btn-sm  bg-gray-500  rounded w-48 normal-case ">
+          <button
+            className="btn-sm  bg-gray-500  rounded w-48 normal-case "
+            onClick={() => {
+              setFile(null);
+              inputEl.current.value = null;
+            }}
+          >
             Cancel
           </button>
           <button className="btn-sm  bg-sky-500 border-slate-900 rounded w-48 normal-case ">

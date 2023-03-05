@@ -28,11 +28,17 @@ export const setCart = createAsyncThunk(
       //   return {};
       // }
 
+      //is_free:false
+      // const isFree = thunkApi
+      //   .getState()
+      //   .cart.find((el) => el.Game.isFree === true);
+      // if (isFree) {
+      // }
+      //
       const res = await cartApi.setCartApi(steamAppId);
       return res.data;
     } catch (err) {
       console.error(err);
-      throw err;
     }
   },
 );

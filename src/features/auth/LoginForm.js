@@ -8,7 +8,12 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const handleClick = (e) => {
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   console.log(e)
+  //   dispatch(login({ emailOrUserName, password }));
+  // };
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ emailOrUserName, password }));
   };
@@ -19,7 +24,7 @@ export default function LoginForm() {
   return (
     <div className=" flex  ">
       <div className="   w-96 flex justify-center ">
-        <form className="  h-full space-y-4 p-8 ">
+        <form className="  h-full space-y-4 p-8 " onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <div className="mb-6 grid gap-2 ">
               <label className="text-sky-400 text-sm">
@@ -56,7 +61,8 @@ export default function LoginForm() {
             <div className="place-self-center my-4">
               <button
                 className="btn  bg-sky-500 border-slate-900 rounded-none w-60 normal-case"
-                onClick={handleClick}
+                type="submit"
+                onClick={handleSubmit}
               >
                 Sign In
               </button>

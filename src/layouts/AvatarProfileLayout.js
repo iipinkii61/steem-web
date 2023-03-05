@@ -50,7 +50,11 @@ export default function AvatarProfileLayout() {
           </ul>
           <div className="pl-2 space-y-4  w-full">
             <div className=" flex col">
-              <img src={profileImage} alt="profileImage" className=" h-40  " />
+              <img
+                src={file ? URL.createObjectURL(file) : profileImage}
+                alt="profileImage"
+                className=" h-40  "
+              />
               <div className=" flex justify-end w-full">
                 <input
                   type="file"
@@ -73,42 +77,15 @@ export default function AvatarProfileLayout() {
               </div>
             </div>
 
-            {/* <div className="space-y-2">
-              <div className="py-6 px-4 space-y-4 bg-black">
-                <div>
-                  <p className="text-2xl text-gray-400">Your Avatars</p>
-                  <div className="flex col space-x-6">
-                    <img
-                      src={profileImage}
-                      alt="profileImage"
-                      className=" h-40  "
-                    />
-                    <img
-                      src={profileImage}
-                      alt="profileImage"
-                      className=" h-40 "
-                    />
-                    <img
-                      src={profileImage}
-                      alt="profileImage"
-                      className=" h-40  "
-                    />
-                    <img
-                      src={profileImage}
-                      alt="profileImage"
-                      className=" h-40  "
-                    />
-                  </div>
-                  <div> </div>
-                </div>
-              </div> */}
-
             <div className=" space-x-2  py-16 w-full flex justify-end ">
               {/* {file && ( */}
               <>
                 <button
                   className="btn-sm  bg-gray-500  rounded w-48 normal-case "
-                  onClick={() => {}}
+                  onClick={() => {
+                    setFile(null);
+                    inputEl.current.value = null;
+                  }}
                 >
                   Cancel
                 </button>

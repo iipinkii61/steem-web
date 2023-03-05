@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 
 export default function () {
-  const user = useSelector((state) => state.user.profile);
-  return user;
+  return useSelector((state) => state.user.profile);
 }
