@@ -60,7 +60,6 @@ export const deleteItem = createAsyncThunk(
 export const removeAll = createAsyncThunk("cart/removeAll", async () => {
   try {
     const res = await cartApi.removeAllApi();
-    console.log(res.data);
     return res.data;
   } catch (err) {
     console.error(err);
