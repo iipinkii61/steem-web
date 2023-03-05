@@ -30,7 +30,7 @@ export default function CategoryPage() {
   const [showImage, setShowImage] = useState("");
   const [mySwiper, setMySwiper] = useState(0);
 
-  const filterGame = gameInfo.filter(el=>el.genres.find(item=>item.description === genres))
+  const filterGame = gameInfo?.filter(el=>el.genres.find(item=>item.description === genres))
 
   useEffect(() => {
     if (gameInfo.length > 0) {
@@ -87,10 +87,10 @@ export default function CategoryPage() {
               effect={"slide"}
               navigation={false}
               pagination={false}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
+              // autoplay={{
+              //   delay: 2500,
+              //   disableOnInteraction: false,
+              // }}
               modules={[Autoplay,Navigation, Pagination]}
               className="mySwiper"
             >
