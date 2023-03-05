@@ -12,23 +12,23 @@ export default function CategoryCarousel(props) {
       "/category/" + genres
     );
   };
-  // console.log("genres",gameInfo?.[0]?.genres?.[0]?.description);
   return (
     <>
       <div className='pt-5 pb-5'>{title}</div>
-      <Carousel showThumbs={false} autoPlay={false} dynamicHeight={true} infiniteLoop={true} showStatus={false} stopOnHover={true} showIndicators={false}>
+      <Carousel showThumbs={false} autoPlay={true} dynamicHeight={true} infiniteLoop={true} showStatus={false} stopOnHover={true} showIndicators={false}>
       <div className='flex gap-2'>
-        <BoxCategoryCarousel onClick={()=>handleClick("Action")} title="Action" color="red" image="https://store.steampowered.com/categories/homepageimage/category/action?cc=us&l=english" />
-        <BoxCategoryCarousel onClick={()=>handleClick("Adventure")} title="Adventure" color="blue" image="https://store.steampowered.com/categories/homepageimage/category/adventure?cc=us&l=english" />
-        <BoxCategoryCarousel onClick={()=>handleClick("RPG")} title="RPG" color="yellow" image="https://store.steampowered.com/categories/homepageimage/category/rpg?cc=us&l=english" />
-        <BoxCategoryCarousel onClick={()=>handleClick("Casual")} title="Casual" color="cyan" image="https://store.steampowered.com/categories/homepageimage/category/casual?cc=us&l=english" />
+        <BoxCategoryCarousel onClick={()=>handleClick("Action")} title="Action" color="from-red-800" image="https://store.steampowered.com/categories/homepageimage/category/action?cc=us&l=english" />
+        <BoxCategoryCarousel onClick={()=>handleClick("Adventure")} title="Adventure" color="from-blue-800" image="https://store.steampowered.com/categories/homepageimage/category/adventure?cc=us&l=english" />
+        <BoxCategoryCarousel onClick={()=>handleClick("RPG")} title="RPG" color="from-yellow-800" image="https://store.steampowered.com/categories/homepageimage/category/rpg?cc=us&l=english" />
+        <BoxCategoryCarousel onClick={()=>handleClick("Casual")} title="Casual" color="from-cyan-800" image="https://store.steampowered.com/categories/homepageimage/category/casual?cc=us&l=english" />
       </div>
 
       <div className=' h-56 w-full flex gap-2'>
-        <div className='h-full w-1/4 bg-[#0a141d]' onClick={()=>handleClick("Simulation")}>Simulation</div>
-        <div className='h-full w-1/4 bg-[#0a141d]' onClick={()=>handleClick("Sports")}>Sports</div>
-        <div className='h-full w-1/4 bg-[#0a141d]' onClick={()=>handleClick("Multiplayer")}>Multiplayer</div>
-        <div className='h-full w-1/4 bg-[#0a141d]' onClick={()=>handleClick("Singleplayer")}>Singleplayer</div>
+        <BoxCategoryCarousel onClick={()=>handleClick("Simulation")} title="Simulation" color="from-green-800" image="https://store.steampowered.com/categories/homepageimage/category/simulation?cc=us&l=english" />
+        <BoxCategoryCarousel onClick={()=>handleClick("Sports")} title="Sports" color="from-purple-800" image="https://store.steampowered.com/categories/homepageimage/category/sports?cc=us&l=english" />
+        <BoxCategoryCarousel onClick={()=>handleClick("Strategy")} title="Strategy" color="from-pink-800" image="https://store.steampowered.com/categories/homepageimage/category/strategy?cc=us&l=english" />
+        <BoxCategoryCarousel onClick={()=>handleClick("Horror")} title="Horror" color="from-gray-800" image="https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=english" />
+
       </div>
       </Carousel>
     </>
