@@ -20,6 +20,7 @@ export const login = createAsyncThunk(
     return jwtDecode(res.data.accessToken);
   },
 );
+
 export const fetchAuthUser = createAsyncThunk("fetchAuthUser", async () => {
   try {
     const res = await authApi.getMeApi();
