@@ -52,7 +52,8 @@ export const wishlistSlice = createSlice({
       );
     },
     clearWishlist: (state, action) => {
-      state.wishlist = initialState.wishlist;
+      // state.wishlist = initialState.wishlist;
+      return initialState;
     },
   },
   extraReducers(builder) {

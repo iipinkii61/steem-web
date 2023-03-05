@@ -21,9 +21,9 @@ export const setCart = createAsyncThunk(
       //check is game already in cart?
       const gameExist = thunkApi
         .getState()
-        .cart.cart.find((el) => el.Game.steamAppid === steamAppId);
+        .cart.cart.find((el) => el.Game.steamAppid === +steamAppId);
       if (gameExist) {
-        return {};
+        return 0;
       }
 
       // check is game free?
@@ -31,7 +31,7 @@ export const setCart = createAsyncThunk(
         .getState()
         .cart.cart.find((el) => el.Game.isFree === true);
       if (isFree) {
-        return {};
+        return 0;
       }
 
       const res = await cartApi.setCartApi(steamAppId);
@@ -60,6 +60,7 @@ export const deleteItem = createAsyncThunk(
 export const removeAll = createAsyncThunk("cart/removeAll", async () => {
   try {
     const res = await cartApi.removeAllApi();
+    console.log(res.data);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -69,10 +70,10 @@ export const removeAll = createAsyncThunk("cart/removeAll", async () => {
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
-  // reducers: {},
   reducers: {
     clearCart: (state, action) => {
-      state.cart = initialState.cart;
+      // state.cart = initialState.cart;
+      return initialState;
     },
   },
   extraReducers(builder) {
@@ -80,8 +81,15 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
     });
     builder.addCase(setCart.fulfilled, (state, action) => {
-      action.payload && state.cart.push(action.payload);
-      return state;
+      if (action.payload) {
+        state.cart.push(action.payload);
+      } else {
+        console.log("already in cart");
+        return state;
+      }
+
+      // action.payload && state.cart.push(action.payload);
+      // return state;
 
       // if (action.payload) {
       //   return {
@@ -93,9 +101,14 @@ export const cartSlice = createSlice({
     });
     builder.addCase(deleteItem.fulfilled, (state, action) => {
       state.cart = state.cart.filter((el) => el.id !== action.payload);
+      // return state.cart.filter((el) => el.id !== action.payload);
     });
     builder.addCase(removeAll.fulfilled, (state, action) => {
-      state.cart = initialState.cart;
+      if (action.payload) {
+        state.cart = initialState.cart;
+      } else {
+        return state;
+      }
     });
   },
 });
