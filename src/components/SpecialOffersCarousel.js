@@ -1,4 +1,3 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -12,6 +11,7 @@ import ArrowR from "../assets/icons/ArrowR";
 export default function SpecialOffersCarousel(props) {
   const { title } = props;
   const gameInfo = useGameInfo();
+  console.log(gameInfo);
   const navigate = useNavigate();
   const [discountGame, setDiscountGame] = useState();
   const [mySwiper, setMySwiper] = useState(0);
@@ -72,35 +72,42 @@ export default function SpecialOffersCarousel(props) {
         className="mySwiper"
       >
         {discountGame?.map((el) => (
-            <SwiperSlide key={el.steam_appid}>
-              <div
-                onClick={() => handleClick(el)}
-                className="w-[306px] h-[350px] mx-4 flex justify-evenly"
-              >
-                <div className="w-[306px] h-[350px] overflow-hidden">
-                  <img
-                    className="w-full h-full object-cover"
-                    value={el?.screenshots[0]}
-                    key={el?.screenshots[0]}
-                    src={el?.screenshots[0].path_full}
-                  />
-                </div>
-                <div className=" absolute w-[306px] h-[113px] bottom-0 bg-[radial-gradient(at_left_top,_#19587b,_#1c6a90,_#267fa7)]">
-                  <div className="text-left pl-2 pt-2 text-base font-medium">
-                    {el?.name}
-                  </div>
-                  <div className="text-left text-xs pl-2 font-thin relative">
+          <SwiperSlide key={el.steam_appid}>
+            <div
+              onClick={() => handleClick(el)}
+              className="w-[306px] h-[350px] mx-4 flex justify-evenly"
+            >
+              <div className="w-[306px] h-[350px] overflow-hidden">
+                <img
+                  className="w-full h-full object-cover"
+                  value={el?.screenshots[0]}
+                  key={el?.screenshots[0]}
+                  src={el?.screenshots[0].path_full}
+                />
+              </div>
+              <div className=" absolute w-[306px] h-[113px] bottom-0 bg-[radial-gradient(at_left_top,_#19587b,_#1c6a90,_#267fa7)]">
+                <div className="text-left pl-2 pt-2 text-base font-medium">
+                  {el?.name}
+                  <div className="text-left text-xs pl-2 font-thin">
                     {el?.release_date?.date}
-                    <div className="absolute h-[34px] w-[76px] top-10 left-[144px] px-2 font-extrabold text-2xl text-[#98d21a] bg-[#4c6b22]">
-                      -{el?.price_overview?.discount_percent}%
-                    </div>
-                    <div className="absolute h-[34px] w-[76px] top-10 left-[220px] pr-2 pt-2 font-extralight text-base text-right text-[#98d21a] bg-[#344654]">
-                      {el?.price_overview?.final_formatted}
+                  </div>
+                  <div className="relative">
+                    <div className="absolute flex w-36 h-10 right-3 top-4">
+                      <div className="w-1/2 px-2 font-extrabold text-2xl text-[#98d21a] bg-[#4c6b22]">
+                        -{el?.price_overview?.discount_percent}%
+                      </div>
+                      <span className="absolute w-fit h-fit -top-1 right-5 text-[10px] text-gray-400 price--line-through">
+                        {el?.price_overview?.initial_formatted}
+                      </span>
+                      <div className="w-1/2 pr-2 pt-3 font-medium text-base text-right text-[#98d21a] bg-[#344654]">
+                        {el?.price_overview?.final_formatted}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </SwiperSlide>
+            </div>
+          </SwiperSlide>
         ))}
       </Swiper>
     </>

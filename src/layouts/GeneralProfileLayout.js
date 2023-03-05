@@ -8,11 +8,6 @@ import { fetchUserProfile } from "../redux/user-slice";
 import { useEffect } from "react";
 
 export default function GeneralProfileLayout() {
-  const { userId } = useParams();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUserProfile(userId));
-  }, []);
 
   const user = useUser();
   console.log(user);
