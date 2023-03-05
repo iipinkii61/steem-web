@@ -41,8 +41,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     clearUser: (state, action) => {
-      state.profile = initialState.profile;
-      state.loading = initialState.loading;
+      // state.profile = initialState.profile;
+      // state.loading = initialState.loading;
+      return initialState;
     },
   },
   extraReducers(builder) {
