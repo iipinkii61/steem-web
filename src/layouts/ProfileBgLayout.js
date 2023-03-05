@@ -9,11 +9,6 @@ import { useParams } from "react-router-dom";
 import useUser from "../hooks/useUser";
 
 export default function ProfileBgLayout() {
-  const { userId } = useParams();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUserProfile(userId));
-  }, []);
 
   const [file, setFile] = useState(null);
 
