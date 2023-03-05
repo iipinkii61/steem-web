@@ -7,7 +7,6 @@ import IconMac from "../assets/icons/IconMac";
 
 export default function RecommendedCarousel({ title }) {
   const gameInfo = useGameInfo();
-  // console.log(gameInfo);
   const navigate = useNavigate();
 
   const handleClick = (el) => {
@@ -30,7 +29,7 @@ export default function RecommendedCarousel({ title }) {
         showIndicators={false}
       >
         {/* component start*/}
-        {gameInfo?.map((el) => (
+        {gameInfo?.slice(0,5).map((el) => (
           <div
             className=" h-full w-full flex justify-between"
             key={el?.steam_appid}

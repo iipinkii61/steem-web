@@ -1,7 +1,7 @@
 import useShowGame from "../hooks/useShowGame";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCart } from "../redux/cart-slice";
 import { addWishlist, fetchWishlist } from "../redux/wishlist-slice";
 import IconWindows from "../assets/icons/IconWindows";
@@ -15,8 +15,8 @@ export default function GamesLayout() {
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const dispatch = useDispatch();
-
   const user = useAuth();
+
   useEffect(() => {
     videoRef.current.load();
   }, [showGame]);

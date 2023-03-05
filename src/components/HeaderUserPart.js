@@ -5,13 +5,21 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useCart from "../hooks/useCart";
+import { clearCart } from "../redux/cart-slice";
+import { clearWishlist } from "../redux/wishlist-slice";
+import { clearUser } from "../redux/user-slice";
 
 export default function HeaderUserPart() {
-  const user = useAuth();
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
   const navigate = useNavigate();
+  const user = useAuth();
+  const cart = useCart();
   const handleLogout = () => {
+    dispatch(clearUser());
+    dispatch(clearCart());
+    dispatch(clearWishlist());
     dispatch(logout());
     navigate("/");
   };
@@ -60,7 +68,7 @@ export default function HeaderUserPart() {
       <div className="flex justify-end gap-1 round-sm mt-1 text-xs uppercase">
         <Link to="/cart">
           <button className="px-4 py-0.5 w-full bg-blue-300 text-white">
-            cart
+            cart {`(${cart?.length})`}
           </button>
         </Link>
         <Link to="/wishlist">
