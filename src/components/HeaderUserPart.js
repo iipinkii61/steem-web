@@ -3,18 +3,18 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/auth-slice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import { clearCart } from "../redux/cart-slice";
 import { clearWishlist } from "../redux/wishlist-slice";
 import { clearUser } from "../redux/user-slice";
+import useUser from "../hooks/useUser";
 
 export default function HeaderUserPart() {
   const dispatch = useDispatch();
   const [dropdown, setDropdown] = useState(false);
   const navigate = useNavigate();
-  const user = useAuth();
+  const user = useUser();
   const cart = useCart();
   const handleLogout = () => {
     dispatch(clearUser());
@@ -28,7 +28,7 @@ export default function HeaderUserPart() {
     <>
       <div className="flex gap-4 justify-end static">
         <button className="flex text-xs" onClick={() => setDropdown(!dropdown)}>
-          {user.userName}
+          {user.name}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -63,7 +63,7 @@ export default function HeaderUserPart() {
         )}
 
         {/* end dropdown */}
-        <img src={avatar} className="w-9" />
+        <img src={user?.image || avatar} className="w-9" />
       </div>
       <div className="flex justify-end gap-1 round-sm mt-1 text-xs uppercase">
         <Link to="/cart">

@@ -8,11 +8,14 @@ import { useEffect } from "react";
 import useAuth from "./hooks/useAuth";
 import { fetchGameInfo } from "./redux/game-slice";
 import useGameInfo from "./hooks/useGameInfo";
+import Loading from "./components/Loading";
+import useLoading from "./hooks/useLoading";
 
 export default function App() {
   const dispatch = useDispatch();
   const authUser = useAuth();
   const gameInfo = useGameInfo();
+  const load = useLoading();
 
   // fetch cart and userProfile
   useEffect(() => {
@@ -38,6 +41,7 @@ export default function App() {
 
   return (
     <>
+      {load && <Loading />}
       <Router />
       <ToastContainer autoClose="2000" theme="light" position="bottom-center" />
     </>

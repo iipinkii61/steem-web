@@ -1,19 +1,23 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import profileImage from "../assets/blank.png";
-import { useDispatch, useSelector } from "react-redux";
-import userSlice, { fetchUserProfile } from "../redux/user-slice";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { editUserProfile } from "../redux/user-slice";
 import useUser from "../hooks/useUser";
 
 export default function AvatarProfileLayout() {
-
-  const [file, setFile] = useState(null);
-
+  // const [file, setImage] = useState(null);
+  const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
   const inputEl = useRef();
   const user = useUser();
-  console.log(user);
+
+  const handleSave = () => {
+    dispatch(editUserProfile({ image }));
+  };
+
+  // console.log(user);
   return (
     <>
       <Header />
@@ -22,17 +26,21 @@ export default function AvatarProfileLayout() {
       <div className="px-96 justify-center mb-36 ">
         <div className="bg-slate-700 h-24 ">
           <div className="flex col px-6 py-4 ">
-            <img src={profileImage} alt="profileImage" className=" h-16  ">
-              {/* {user.image} */}
-            </img>
-            <p className="pt-4 pl-6 text-xl"> username</p>
+            <img
+              src={
+                image ? URL.createObjectURL(image) : user?.image || profileImage
+              }
+              alt="profileImage"
+              className=" h-16  "
+            />
+            <p className="pt-4 pl-6 text-xl"> {user?.name}</p>
           </div>
         </div>
         <div className=" flex justify-end py-4">
           <p className="underline">Back to your profile</p>
         </div>
         <div className="flex col py-12 w-full  ">
-          <ul class="menu bg-base-0  w-56">
+          <ul className="menu bg-base-0  w-56">
             <li>
               <a>General</a>
             </li>
@@ -46,7 +54,7 @@ export default function AvatarProfileLayout() {
           <div className="pl-2 space-y-4  w-full">
             <div className=" flex col">
               <img
-                src={file ? URL.createObjectURL(file) : profileImage}
+                src={image ? URL.createObjectURL(image) : profileImage}
                 alt="profileImage"
                 className=" h-40  "
               />
@@ -57,7 +65,7 @@ export default function AvatarProfileLayout() {
                   ref={inputEl}
                   onChange={(e) => {
                     if (e.target.files[0]) {
-                      setFile(e.target.files[0]);
+                      setImage(e.target.files[0]);
                     }
                   }}
                 />
@@ -78,7 +86,7 @@ export default function AvatarProfileLayout() {
                 <button
                   className="btn-sm  bg-gray-500  rounded w-48 normal-case "
                   onClick={() => {
-                    setFile(null);
+                    setImage(null);
                     inputEl.current.value = null;
                   }}
                 >
@@ -87,7 +95,7 @@ export default function AvatarProfileLayout() {
 
                 <button
                   className="btn-sm  bg-sky-500 border-slate-900 rounded w-48 normal-case "
-                  onClick={() => {}}
+                  onClick={handleSave}
                 >
                   Save
                 </button>
