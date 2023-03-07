@@ -1,11 +1,14 @@
 import avatar from "../assets/blank.png";
 import ChatBox from "../components/ChatBox";
 import Header from "../layouts/Header";
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:8000");
 
 export default function ChatPage() {
   return (
     <>
-    <Header/>
+      <Header />
       <div className="flex">
         <div className="flex-1 shadow-xl bg-[#16202D] min-w-fit">
           <div className="flex gap-4 p-6 text-blueText">
@@ -30,7 +33,7 @@ export default function ChatPage() {
           </div>
           {/* end friend lists */}
         </div>
-        <ChatBox />
+        <ChatBox socket={socket} />
       </div>
     </>
   );

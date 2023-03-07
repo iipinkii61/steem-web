@@ -1,6 +1,27 @@
 import avatar from "../assets/blank.png";
+import { useState, useEffect } from "react";
+export default function ChatBox({ socket }) {
+  const [currentMessage, setCurrentMessage] = useState("");
+  const sendMessage = async (e) => {
+    if (currentMessage !== "") {
+      e.preventDefault();
+      const messageData = {
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+      await socket.emit("send_message", messageData);
+    }
+  };
 
-export default function ChatBox() {
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      console.log(data);
+    });
+  }, [socket]);
+
   return (
     <div className="w-full h-full flex-[3_1_0%] pt-3 shadow min-w-min">
       <div className="flex justify-between bg-gray-600 text-[#b8b6b4] w-1/6 rounded-sm px-3 py-1">
@@ -101,8 +122,14 @@ export default function ChatBox() {
               type="text"
               placeholder="Type here..."
               className="border border-r-transparent border-slate-500 bg-transparent w-full rounded-xl p-2 px-5"
+              onChange={(event) => {
+                setCurrentMessage(event.target.value);
+              }}
             />
-            <button className="rounded-br-xl rounded-tr-xl bg-slate-500 p-2 px-3 -mx-12">
+            <button
+              className="rounded-br-xl rounded-tr-xl bg-slate-500 p-2 px-3 -mx-12"
+              onClick={sendMessage}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
