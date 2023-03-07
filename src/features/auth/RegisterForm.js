@@ -59,7 +59,7 @@ export default function RegisterForm() {
           <div className="mb-6 grid gap-2">
             <label className="text-neutral-400 text-sm">
               {" "}
-              Confirm Your Address
+              Confirm Your Email Address
             </label>
             <input
               className="bg-zinc-700 w-80"
