@@ -12,7 +12,7 @@ export default function RecommendedCarousel({ title }) {
   const handleClick = (el) => {
     navigate(
       "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
-    );
+    ); window.scrollTo({top:0});
   };
 
   return (
@@ -31,7 +31,7 @@ export default function RecommendedCarousel({ title }) {
         {/* component start*/}
         {gameInfo?.slice(0,12).map((el) => (
           <div
-            className=" h-full w-full flex justify-between"
+            className=" h-full w-full flex justify-between cursor-pointer select-none"
             key={el?.steam_appid}
             onClick={() => handleClick(el)}
           >

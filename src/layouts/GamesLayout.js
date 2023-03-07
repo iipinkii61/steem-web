@@ -46,7 +46,7 @@ export default function GamesLayout() {
     }
     dispatch(setCart(steamAppId));
     navigate("/cart", { state: { steamAppId } });
-  };
+  }; window.scrollTo({top:0});
 
   return (
     <>

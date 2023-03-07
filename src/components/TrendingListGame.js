@@ -1,50 +1,182 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import useGameInfo from "../hooks/useGameInfo";
+import IconWindows from "../assets/icons/IconWindows";
+import IconMac from "../assets/icons/IconMac";
+import GenresTag from "../components/GenresTag";
 
 export default function TrendingListGame() {
+  const gameInfo = useGameInfo();
+  console.log(gameInfo);
+  const navigate = useNavigate();
+  const [trendingGame, setTrendingGame] = useState();
+  const [discountGame, setDiscountGame] = useState();
+  const [tabGame, setTabGame] = useState(1)
+  const handleClick = (el) => {
+    navigate(
+      "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
+    );
+    window.scrollTo({ top: 0 });
+  };
+
+  useEffect(() => {
+    if (gameInfo.length > 0){
+    const temp = structuredClone(gameInfo)
+    const aa = temp.sort((a,b) => ( b?.recommendations?.total  - a?.recommendations?.total )??0 )
+    setTrendingGame(aa);}
+  }, [gameInfo]);
+  console.log("trending",trendingGame);
+  console.log("discount",discountGame);
+
+  useEffect(() => {
+    if (gameInfo.length > 0)
+      setDiscountGame(
+        gameInfo
+          .filter((el) => "price_overview" in el)
+          .filter((el) => el.price_overview.discount_percent > 0),
+      );
+  }, [gameInfo]);
+
   return (
     <>
       <div className="tabs pt-5 pb-2">
-        <a className="tab tab-bordered">NEW & TRENDING</a>
-        <a className="tab tab-bordered">POPULAR</a>
-        <a className="tab tab-bordered">SPECIALS</a>
+        <div onClick={()=>setTabGame(1)} className="tab tab-bordered">NEW & TRENDING</div>
+        <div onClick={()=>setTabGame(2)} className="tab tab-bordered">SPECIALS</div>
       </div>
 
-      <div className="overflow-x-auto w-full rounded-none">
+      <div className="overflow-x-auto w-full rounded-sm cursor-pointer select-none">
         <table className="table w-full">
           <tbody>
             {/* <!-- row 1 --> */}
-            <tr className="bg-[#22394b] h-[100px] flex justify-between">
-              <img
-                className="w-[280px] h-[100px] object-cover"
-                src="https://cdn.akamai.steamstatic.com/steam/apps/668580/capsule_184x69.jpg?t=1676938877"
-              />
-              <td className="bg-[#22394b] flex-none">
-                <div className="w-fit">Atomic Heart</div>
-                <div className=' text-gray-400 w-fit h-fit'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m3 5.479l7.377-1.016v7.127H3V5.48zm0 13.042l7.377 1.017v-7.04H3v6.023zm8.188 1.125L21 21v-8.502h-9.812v7.148zm0-15.292v7.236H21V3l-9.812 1.354z"/></svg>
-                </div>
-                <div className="badge badge-info rounded-sm mr-2 text-slate-300 bg-slate-500">Horror</div>
-                <div className="badge badge-info rounded-sm mr-2 text-slate-300 bg-slate-500">Mystery</div>
-                <div className="badge badge-info rounded-sm mr-2 text-slate-300 bg-slate-500">Puzzle</div>
-              </td>
-              <td className="bg-[#22394b]">
-                <span className="text-lg">Price</span>
-              </td>
-              <tr className="bg-[#22394b] flex-1 flex">
-                  <div className="w-full h-full object-cover">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/668580/ss_1dc8661cde295efc2d1ff8612e079f5c74803748.600x338.jpg?t=1676995676"/>
+            {tabGame===1? 
+            
+            trendingGame?.slice(1, 11).map((el) => (
+              <tr
+                className="h-[80px] flex justify-between my-1"
+                key={el?.steam_appid}
+                onClick={() => handleClick(el)}
+              >
+                <td className="bg-[#22394b] w-[250px] h-[80px] relative">
+                  <img
+                    className="w-full h-full absolute left-0 top-0 object-top rounded-sm"
+                    src={el?.header_image}
+                  />
+                </td>
+
+                <td className="bg-[#22394b] w-[350px] relative">
+                  <span className="absolute top-1 left-3 text-sm">
+                    {el?.name}
+                  </span>
+                  <span className="absolute top-7 left-3 text-gray-300 w-fit h-fit">
+                    {el?.platforms.windows && <IconWindows />}
+                  </span>
+                  <span className="absolute top-7 left-9 text-gray-300 w-fit h-fit">
+                    {el?.platforms.mac && <IconMac />}
+                  </span>
+                  <div className="w-full absolute bottom-1 left-3 flex gap-2 ">
+                    {el?.categories?.slice(0, 2).map((tag) => (
+                      <GenresTag key={tag.id} tag={tag.description} />
+                    ))}
                   </div>
-                  <div className="w-full h-full object-cover">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/668580/ss_9dedae959672ac7d7f2db16638a5b65f80bfe125.600x338.jpg?t=1676995676"/>
+                </td>
+
+                <td className="bg-[#22394b] w-[150px] h-[80px] text-center py-6 relative">
+                  <span className="absolute text-lg left-4">
+                    {!el?.is_free
+                      ? el?.price_overview?.final_formatted
+                      : "Free to Play"}
+                  </span>
+                </td>
+                <td className="bg-[#22394b] flex w-1/2 h-[80px] relative overflow-hidden rounded-sm">
+                  <div className="flex">
+                    <div className="h-[80px] absolute -left-2 top-0">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={el?.screenshots[2].path_full}
+                      />
+                    </div>
+                    <div className="h-[80px] absolute left-[131px] top-0 border-x-2 border-[#22394b]">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={el?.screenshots[3].path_full}
+                      />
+                    </div>
+                    <div className="h-[80px] absolute -right-2 top-0">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={el?.screenshots[4].path_full}
+                      />
+                    </div>
                   </div>
-                  <div className="w-full h-full object-cover">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/668580/ss_2fce9ef441a18361b9ab8f1b1ac70160c8226577.600x338.jpg?t=1676995676"/>
-                  </div>
-                  <div className="w-full h-full object-cover">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/668580/ss_91b040e19e14baa32684a588c20246a305ae336e.600x338.jpg?t=1676995676"/>
-                  </div>
+                </td>
               </tr>
-            </tr>
+            )) : <></>
+          }
+
+{tabGame===2? 
+            
+            discountGame?.slice(1, 11).map((el) => (
+              <tr
+                className="h-[80px] flex justify-between my-1"
+                key={el?.steam_appid}
+                onClick={() => handleClick(el)}
+              >
+                <td className="bg-[#22394b] w-[250px] h-[80px] relative">
+                  <img
+                    className="w-full h-full absolute left-0 top-0 object-top rounded-sm"
+                    src={el?.header_image}
+                  />
+                </td>
+
+                <td className="bg-[#22394b] w-[350px] relative">
+                  <span className="absolute top-1 left-3 text-sm">
+                    {el?.name}
+                  </span>
+                  <span className="absolute top-7 left-3 text-gray-300 w-fit h-fit">
+                    {el?.platforms.windows && <IconWindows />}
+                  </span>
+                  <span className="absolute top-7 left-9 text-gray-300 w-fit h-fit">
+                    {el?.platforms.mac && <IconMac />}
+                  </span>
+                  <div className="w-full absolute bottom-1 left-3 flex gap-2 ">
+                    {el?.categories?.slice(0, 2).map((tag) => (
+                      <GenresTag key={tag.id} tag={tag.description} />
+                    ))}
+                  </div>
+                </td>
+
+                <td className="bg-[#22394b] w-[150px] h-[80px] text-center py-6 relative">
+                  <span className="absolute text-lg left-4">
+                    {!el?.is_free
+                      ? el?.price_overview?.final_formatted
+                      : "Free to Play"}
+                  </span>
+                </td>
+                <td className="bg-[#22394b] flex w-1/2 h-[80px] relative overflow-hidden rounded-sm">
+                  <div className="flex">
+                    <div className="h-[80px] absolute -left-2 top-0">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={el?.screenshots[2].path_full}
+                      />
+                    </div>
+                    <div className="h-[80px] absolute left-[131px] top-0 border-x-2 border-[#22394b]">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={el?.screenshots[3].path_full}
+                      />
+                    </div>
+                    <div className="h-[80px] absolute -right-2 top-0">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={el?.screenshots[4].path_full}
+                      />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            )) : <></>
+          }
           </tbody>
         </table>
       </div>

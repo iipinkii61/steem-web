@@ -11,7 +11,6 @@ import ArrowR from "../assets/icons/ArrowR";
 export default function SpecialOffersCarousel(props) {
   const { title } = props;
   const gameInfo = useGameInfo();
-  console.log(gameInfo);
   const navigate = useNavigate();
   const [discountGame, setDiscountGame] = useState();
   const [mySwiper, setMySwiper] = useState(0);
@@ -28,12 +27,12 @@ export default function SpecialOffersCarousel(props) {
   const handleClick = (el) => {
     navigate(
       "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
-    );
+    ); window.scrollTo({top:0});
   };
   return (
     <>
       <div className="pt-5 pb-5">{title}</div>
-      <div className="max-w-5xl relative">
+      <div className="max-w-5xl relative cursor-pointer select-none">
         <div
           onClick={() => {
             mySwiper.slideNext();
@@ -65,7 +64,7 @@ export default function SpecialOffersCarousel(props) {
         navigation={false}
         pagination={false}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         modules={[Autoplay, navigate, Pagination]}
@@ -75,14 +74,14 @@ export default function SpecialOffersCarousel(props) {
           <SwiperSlide key={el.steam_appid}>
             <div
               onClick={() => handleClick(el)}
-              className="w-[306px] h-[350px] mx-4 flex justify-evenly"
+              className="w-[306px] h-[350px] mx-4 flex justify-evenly cursor-pointer select-none"
             >
-              <div className="w-[306px] h-[350px] overflow-hidden">
+              <div className="w-[306px] h-[240px] overflow-hidden">
                 <img
-                  className="w-full h-full object-cover"
-                  value={el?.screenshots[0]}
-                  key={el?.screenshots[0]}
-                  src={el?.screenshots[0].path_full}
+                  className="w-full h-full object-right"
+                  value={el?.header_image}
+                  key={el?.header_image}
+                  src={el?.header_image}
                 />
               </div>
               <div className=" absolute w-[306px] h-[113px] bottom-0 bg-[radial-gradient(at_left_top,_#19587b,_#1c6a90,_#267fa7)]">
