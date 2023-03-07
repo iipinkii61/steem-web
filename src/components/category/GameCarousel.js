@@ -25,8 +25,8 @@ export default function GameCarousel({ el, handleClick, setShowImage }) {
                 {el?.platforms.mac && <IconMac />}
               </span>
               <span className="absolute right-2 top-2 text-gray-200 w-fit h-fit">
-                {!el?.is_free
-                  ? el?.price_overview?.final_formatted
+                {!el?.isFree
+                  ? el?.priceOverview?.final_formatted
                   : "Free to Play"}
               </span>
             </div>
@@ -47,7 +47,7 @@ export default function GameCarousel({ el, handleClick, setShowImage }) {
               </div>
               <br />
               <div className="w-full flex gap-2 flex-wrap">
-                {el.categories.map((tag) => (
+                {el?.categories?.map((tag) => (
                   <GenresTag key={tag.id} tag={tag.description} />
                 ))}
               </div>

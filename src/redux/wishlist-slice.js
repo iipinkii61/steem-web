@@ -48,7 +48,7 @@ export const wishlistSlice = createSlice({
   reducers: {
     removeWishlist: (state, action) => {
       state.wishlist = state.wishlist.filter(
-        (el) => el.steam_appid !== action.payload,
+        (el) => el.steamAppid !== action.payload,
       );
     },
     clearWishlist: (state, action) => {

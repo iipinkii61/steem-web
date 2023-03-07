@@ -6,62 +6,65 @@ import { useNavigate } from "react-router-dom";
 import useGameInfo from "../../hooks/useGameInfo";
 import { useParams } from "react-router-dom";
 
-
 export default function TwoBox() {
-
   const gameInfo = useGameInfo();
-  // console.log(gameInfo);
   const navigate = useNavigate();
-  const {genres} = useParams()
+  const { genres } = useParams();
   const handleClick = (el) => {
     navigate(
-      "/app/" + el?.steam_appid + "/" + el?.name?.replace(/[\W_]+/g, "_"),
-    );
+      "/app/" + el?.steamAppid + "/" + el?.name?.replace(/[\W_]+/g, "_"),
+    ); window.scrollTo({top:0});
   };
 
-  const filterGame = gameInfo.filter(el=>el.genres.find(item=>item.description === genres))
-  console.log(filterGame);
+  const filterGame = gameInfo.filter((el) =>
+    el?.genres?.find((item) => item.description === genres),
+  );
 
+  function getRandomElements(arr,length) {
+    const randomArr = [];
+    
+    while (randomArr.length < length) {
+      const randomNumber = Math.floor(Math.random() * (length));
+      
+      if (!randomArr.includes(randomNumber)) {
+        randomArr.push(randomNumber);
+      }
+    }
+    return randomArr.map(el=>arr[el])
+  }
+
+  const randomFilterGame = getRandomElements(filterGame, 20);
   return (
-    <>
-      <div className="flex justify-between">
-        <div className="w-[480px] h-[260px] relative" onClick={()=>handleClick(filterGame?.[0])}>
-          <img
-            className="w-full h-full object-fill"
-            src={filterGame?.[0]?.header_image} alt=""
-          />
-          <div className="absolute bottom-0 w-full h-10 bg-black">
-            <span className="absolute left-1 top-2 text-gray-300 w-fit h-fit">
-            {filterGame?.[0].platforms?.windows && <IconWindows />}
-            </span>
-            <span className="absolute left-7 top-2 text-gray-300 w-fit h-fit">
-            {filterGame?.[0].platforms?.mac && <IconMac />}
-            </span>
-            <span className="absolute right-2 top-2 text-gray-200 w-fit h-fit">
-            {!filterGame?.[0].is_free
-                  ? filterGame?.[0].price_overview?.final_formatted
+    <div className="w-full h-[260px] flex justify-between cursor-pointer select-none">
+      {randomFilterGame?.slice(0, 2).map((el,idx) => {
+        return (
+          <div
+          
+            className="w-[480px] h-[260px] relative"
+            key={idx}
+            onClick={() => handleClick(el)}
+          >
+            <img
+              className="w-full h-[220px] object-fill"
+              src={el?.headerImage}
+              alt=""
+            />
+            <div className="absolute bottom-0 w-full h-10 bg-black">
+              <span className="absolute left-1 top-2 text-gray-300 w-fit h-fit">
+                {el?.platforms?.windows && <IconWindows />}
+              </span>
+              <span className="absolute left-7 top-2 text-gray-300 w-fit h-fit">
+                {el?.platforms?.mac && <IconMac />}
+              </span>
+              <span className="absolute right-2 top-2 text-gray-200 w-fit h-fit">
+                {!el?.isFree
+                  ? el?.priceOverview?.final_formatted
                   : "Free to Play"}
-            </span>
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="w-[480px] h-[260px] relative" handleClick={handleClick}>
-          <img
-            className="w-full h-full object-fill"
-            src="https://cdn.cloudflare.steamstatic.com/steam/apps/594650/header_alt_assets_1.jpg?t=1677683269" alt=""
-          />
-          <div className="absolute bottom-0 w-full h-10 bg-black">
-            <span className="absolute left-1 top-2 text-gray-300 w-fit h-fit">
-              <IconWindows />
-            </span>
-            <span className="absolute left-7 top-2 text-gray-300 w-fit h-fit">
-              <IconMac />
-            </span>
-            <span className="absolute right-2 top-2 text-gray-200 w-fit h-fit">
-              ฿1,590.00
-            </span>
-          </div>
-        </div>
-      </div>
-    </>
+        );
+      })}
+    </div>
   );
 }
