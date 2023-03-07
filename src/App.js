@@ -21,7 +21,7 @@ export default function App() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (!gameInfo?.length) {
-        console.log("fetching");
+        // console.log("fetching");
         dispatch(fetchGameInfo());
       }
     }, 300);
@@ -30,7 +30,6 @@ export default function App() {
     };
   }, [gameInfo]);
 
-  // console.log(gameInfo);
 
   useEffect(() => {
     if (authUser) {

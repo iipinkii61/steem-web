@@ -47,7 +47,7 @@ export default function GameCarousel({ el, handleClick, setShowImage }) {
               </div>
               <br />
               <div className="w-full flex gap-2 flex-wrap">
-                {el.categories.map((tag) => (
+                {el?.categories?.map((tag) => (
                   <GenresTag key={tag.id} tag={tag.description} />
                 ))}
               </div>
