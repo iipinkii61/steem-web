@@ -19,14 +19,13 @@ export default function SpecialOffersCarousel(props) {
     if (gameInfo.length > 0)
       setDiscountGame(
         gameInfo
-          .filter((el) => "price_overview" in el)
-          .filter((el) => el.price_overview.discount_percent > 0),
+          .filter((el) => "priceOverview" in el)
+          .filter((el) => el?.priceOverview?.discount_percent ?? 0 > 0),
       );
   }, [gameInfo]);
-
   const handleClick = (el) => {
     navigate(
-      "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
+      "/app/" + el?.steamAppid + "/" + el?.name.replace(/[\W_]+/g, "_"),
     ); window.scrollTo({top:0});
   };
   return (
@@ -37,7 +36,7 @@ export default function SpecialOffersCarousel(props) {
           onClick={() => {
             mySwiper.slideNext();
           }}
-          className="absolute z-10 w-14 h-52 -right-16 top-24 rounded-md backdrop-blur-md backdrop-brightness-75"
+          className="absolute z-10 w-14 h-52 -right-16 top-14 rounded-md backdrop-blur-md backdrop-brightness-75"
         >
           <div className="absolute top-20 right-2">
             <ArrowR />
@@ -47,7 +46,7 @@ export default function SpecialOffersCarousel(props) {
           onClick={() => {
             mySwiper.slidePrev();
           }}
-          className="absolute z-10 w-14 h-52 -left-16 top-24 rounded-md backdrop-blur-md backdrop-brightness-75"
+          className="absolute z-10 w-14 h-52 -left-16 top-14 rounded-md backdrop-blur-md backdrop-brightness-75"
         >
           <div className="absolute top-20 left-2">
             <ArrowL />
@@ -71,17 +70,17 @@ export default function SpecialOffersCarousel(props) {
         className="mySwiper"
       >
         {discountGame?.map((el) => (
-          <SwiperSlide key={el.steam_appid}>
+          <SwiperSlide key={el.steamAppid}>
             <div
               onClick={() => handleClick(el)}
-              className="w-[306px] h-[350px] mx-4 flex justify-evenly cursor-pointer select-none"
+              className="w-[306px] h-[310px] mx-4 flex justify-evenly cursor-pointer select-none"
             >
-              <div className="w-[306px] h-[240px] overflow-hidden">
+              <div className="w-[306px] h-[200px] overflow-hidden">
                 <img
                   className="w-full h-full object-right"
-                  value={el?.header_image}
-                  key={el?.header_image}
-                  src={el?.header_image}
+                  value={el?.headerImage}
+                  key={el?.headerImage}
+                  src={el?.headerImage}
                 />
               </div>
               <div className=" absolute w-[306px] h-[113px] bottom-0 bg-[radial-gradient(at_left_top,_#19587b,_#1c6a90,_#267fa7)]">
@@ -93,13 +92,13 @@ export default function SpecialOffersCarousel(props) {
                   <div className="relative">
                     <div className="absolute flex w-36 h-10 right-3 top-4">
                       <div className="w-1/2 px-2 font-extrabold text-2xl text-[#98d21a] bg-[#4c6b22]">
-                        -{el?.price_overview?.discount_percent}%
+                        -{el?.priceOverview?.discount_percent}%
                       </div>
                       <span className="absolute w-fit h-fit -top-1 right-5 text-[10px] text-gray-400 price--line-through">
-                        {el?.price_overview?.initial_formatted}
+                        {el?.priceOverview?.initial_formatted}
                       </span>
                       <div className="w-1/2 pr-2 pt-3 font-medium text-base text-right text-[#98d21a] bg-[#344654]">
-                        {el?.price_overview?.final_formatted}
+                        {el?.priceOverview?.final_formatted}
                       </div>
                     </div>
                   </div>

@@ -25,8 +25,8 @@ export default function GameCarousel({ el, handleClick, setShowImage }) {
                 {el?.platforms.mac && <IconMac />}
               </span>
               <span className="absolute right-2 top-2 text-gray-200 w-fit h-fit">
-                {!el?.is_free
-                  ? el?.price_overview?.final_formatted
+                {!el?.isFree
+                  ? el?.priceOverview?.final_formatted
                   : "Free to Play"}
               </span>
             </div>

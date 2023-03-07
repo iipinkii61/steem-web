@@ -16,13 +16,13 @@ export default function CategoryPage() {
   const {genres} = useParams()
   const handleClick = (el) => {
     navigate(
-      "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
+      "/app/" + el?.steamAppid + "/" + el?.name.replace(/[\W_]+/g, "_"),
     ); window.scrollTo({top:0});
   };
 
   const [showImage, setShowImage] = useState("");
 
-  const filterGame = gameInfo?.filter(el=>el.genres.find(item=>item.description === genres))
+  const filterGame = gameInfo?.filter(el=>el.genres?.find(item=>item?.description === genres))
 
   return (
     <>

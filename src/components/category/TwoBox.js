@@ -12,12 +12,12 @@ export default function TwoBox() {
   const { genres } = useParams();
   const handleClick = (el) => {
     navigate(
-      "/app/" + el?.steam_appid + "/" + el?.name?.replace(/[\W_]+/g, "_"),
+      "/app/" + el?.steamAppid + "/" + el?.name?.replace(/[\W_]+/g, "_"),
     ); window.scrollTo({top:0});
   };
 
   const filterGame = gameInfo.filter((el) =>
-    el.genres.find((item) => item.description === genres),
+    el?.genres?.find((item) => item.description === genres),
   );
 
   function getRandomElements(arr,length) {
@@ -46,7 +46,7 @@ export default function TwoBox() {
           >
             <img
               className="w-full h-[220px] object-fill"
-              src={el?.header_image}
+              src={el?.headerImage}
               alt=""
             />
             <div className="absolute bottom-0 w-full h-10 bg-black">
@@ -57,8 +57,8 @@ export default function TwoBox() {
                 {el?.platforms?.mac && <IconMac />}
               </span>
               <span className="absolute right-2 top-2 text-gray-200 w-fit h-fit">
-                {!el?.is_free
-                  ? el?.price_overview?.final_formatted
+                {!el?.isFree
+                  ? el?.priceOverview?.final_formatted
                   : "Free to Play"}
               </span>
             </div>
@@ -67,30 +67,4 @@ export default function TwoBox() {
       })}
     </div>
   );
-}
-
-{
-  /* <div
-  className="w-[480px] h-[260px] relative"
-  onClick={() => handleClick(el?.[1])}
->
-  <img
-    className="w-full h-[220px] object-fill"
-    src={el?.[1]?.header_image}
-    alt=""
-  />
-  <div className="absolute bottom-0 w-full h-10 bg-black">
-    <span className="absolute left-1 top-2 text-gray-300 w-fit h-fit">
-      {el?.[1].platforms?.windows && <IconWindows />}
-    </span>
-    <span className="absolute left-7 top-2 text-gray-300 w-fit h-fit">
-      {el?.[1].platforms?.mac && <IconMac />}
-    </span>
-    <span className="absolute right-2 top-2 text-gray-200 w-fit h-fit">
-      {!el?.[1].is_free
-                ? el?.[1].price_overview?.final_formatted
-                : "Free to Play"}
-    </span>
-  </div>
-</div>; */
 }

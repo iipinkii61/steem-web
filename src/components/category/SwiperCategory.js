@@ -19,7 +19,7 @@ export default function SwiperCategory(props) {
   const { genres } = useParams();
   const handleClick = (el) => {
     navigate(
-      "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
+      "/app/" + el?.steamAppid + "/" + el?.name.replace(/[\W_]+/g, "_"),
     ); window.scrollTo({top:0});
   };
 
@@ -27,7 +27,7 @@ export default function SwiperCategory(props) {
   const [mySwiper, setMySwiper] = useState(0);
 
   const filterGame = gameInfo?.filter((el) =>
-    el.genres.find((item) => item.description === genres),
+    el?.genres?.find((item) => item.description === genres),
   );
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function SwiperCategory(props) {
     }
   }, [filterGame]);
   return (
-    <div className="max-w-5xl relative">
+    <div className="max-w-5xl relative cursor-pointer select-none">
       <div
         onClick={() => {
           mySwiper.slideNext();
@@ -78,7 +78,7 @@ export default function SwiperCategory(props) {
         className="mySwiper"
       >
         {filterGame?.map((el) => (
-          <SwiperSlide key={el?.steam_appid}>
+          <SwiperSlide key={el?.steamAppid}>
             <GameCarousel
               el={el}
               handleClick={handleClick}
