@@ -2,7 +2,7 @@ import footer1 from "../assets/logo_steam_footer.png";
 import footer2 from "../assets/logo.png";
 export default function Footer() {
   return (
-    <footer className="footer p-10 bg-[#171a21] text-white">
+    <footer className="footer p-10 bg-[#171a21] text-white  ">
       <img src={footer2} className="h-7" />
       <div className="text-[#C6D4DF]">
         <div className="text-xs">

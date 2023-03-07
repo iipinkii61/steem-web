@@ -8,11 +8,11 @@ import IconMac from "../assets/icons/IconMac";
 export default function RecommendedCarousel({ title }) {
   const gameInfo = useGameInfo();
   const navigate = useNavigate();
+  console.log(gameInfo);
 
   const handleClick = (el) => {
-    navigate(
-      "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
-    );
+    console.log(el.steamAppid);
+    navigate("/app/" + el?.steamAppid + "/" + el?.name.replace(/[\W_]+/g, "_"));
   };
 
   return (
@@ -29,7 +29,7 @@ export default function RecommendedCarousel({ title }) {
         showIndicators={false}
       >
         {/* component start*/}
-        {gameInfo?.map((el) => (
+        {gameInfo?.slice(0, 12).map((el) => (
           <div
             className=" h-full w-full flex justify-between"
             key={el?.steam_appid}

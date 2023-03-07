@@ -4,6 +4,7 @@ import * as gameApi from "../apis/game-api";
 const initialState = {
   gameInfo: [],
   showGame: {},
+  loading: false,
 };
 
 export const fetchGameInfo = createAsyncThunk(
@@ -39,9 +40,14 @@ const gameSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(fetchGameInfo.fulfilled, (state, action) => {
-      state.gameInfo = action.payload;
-    });
+    builder
+      .addCase(fetchGameInfo.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(fetchGameInfo.fulfilled, (state, action) => {
+        state.gameInfo = action.payload;
+        state.loading = false;
+      });
     builder.addCase(fetchGame.fulfilled, (state, action) => {
       state.showGame = action.payload;
     });

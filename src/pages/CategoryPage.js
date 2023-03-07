@@ -3,10 +3,9 @@ import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { EffectFade, Navigation, Pagination } from "swiper";
+import { Autoplay,Navigation, Pagination } from "swiper";
 import { useNavigate } from "react-router-dom";
 import useGameInfo from "../hooks/useGameInfo";
 import TwoBox from "../components/category/TwoBox";
@@ -15,11 +14,13 @@ import FourBox from "../components/category/FourBox";
 import GameCarousel from "../components/category/GameCarousel";
 import ArrowL from "../assets/icons/ArrowL";
 import ArrowR from "../assets/icons/ArrowR";
+import { useParams } from "react-router-dom";
 
 export default function CategoryPage() {
   const gameInfo = useGameInfo();
-  console.log(gameInfo);
+  // console.log(gameInfo);
   const navigate = useNavigate();
+  const {genres} = useParams()
   const handleClick = (el) => {
     navigate(
       "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
@@ -29,10 +30,12 @@ export default function CategoryPage() {
   const [showImage, setShowImage] = useState("");
   const [mySwiper, setMySwiper] = useState(0);
 
+  const filterGame = gameInfo?.filter(el=>el.genres.find(item=>item.description === genres))
+
   useEffect(() => {
     if (gameInfo.length > 0) {
       const idx = mySwiper.realIndex || 0;
-      setShowImage(gameInfo[idx].screenshots[0]?.path_full);
+      setShowImage(filterGame[idx].screenshots[0]?.path_full);
     }
   }, [gameInfo]);
 
@@ -50,13 +53,13 @@ export default function CategoryPage() {
         </div>
         <div className="flex-1" />
         <div className="flex-[2_1_0%] z-50">
-          <div className="text-5xl font-bold p-2 my-10">SURVIVAL</div>
+          <div className="text-5xl font-bold p-2 my-10">{filterGame?.[0]?.genres?.[0].description}</div>
           <div className="max-w-5xl relative">
             <div
               onClick={() => {
                 mySwiper.slideNext();
               }}
-              className="absolute z-10 w-14 h-52 right-0 top-16 rounded-lg backdrop-blur-md backdrop-brightness-75"
+              className="absolute z-10 w-14 h-52 -right-2 top-16 rounded-md backdrop-blur-md backdrop-brightness-75"
             >
               <div className="absolute top-20 right-2">
                 <ArrowR />
@@ -66,7 +69,7 @@ export default function CategoryPage() {
               onClick={() => {
                 mySwiper.slidePrev();
               }}
-              className="absolute z-10 w-14 h-52 left-0 top-16 rounded-lg backdrop-blur-md backdrop-brightness-75"
+              className="absolute z-10 w-14 h-52 -left-2 top-16 rounded-md backdrop-blur-md backdrop-brightness-75"
             >
               <div className="absolute top-20 left-2">
                 <ArrowL />
@@ -76,17 +79,22 @@ export default function CategoryPage() {
               onSwiper={(swiper) => setMySwiper(swiper)}
               onSlideChange={() => {
                 setShowImage(
-                  gameInfo[mySwiper?.realIndex].screenshots[0]?.path_full,
+                  filterGame[mySwiper?.realIndex].screenshots[0]?.path_full,
                 );
               }}
               spaceBetween={30}
+              grabCursor={true}
               effect={"slide"}
-              navigation={true}
+              navigation={false}
               pagination={false}
-              modules={[EffectFade, Navigation, Pagination]}
+              // autoplay={{
+              //   delay: 2500,
+              //   disableOnInteraction: false,
+              // }}
+              modules={[Autoplay,Navigation, Pagination]}
               className="mySwiper"
             >
-              {gameInfo?.map((el) => (
+              {filterGame?.map((el) => (
                 <SwiperSlide key={el?.steam_appid}>
                   <GameCarousel
                     el={el}

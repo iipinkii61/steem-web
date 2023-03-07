@@ -38,9 +38,19 @@ export const fetchUserProfile = createAsyncThunk(
 
 export const editUserProfile = createAsyncThunk(
   "user/editUserProfile",
-  async ({ userId, formData }) => {
+  async ({ name, image, coverImage }) => {
     try {
-      const res = await profileApi.editProfileApi(userId, formData);
+      const formData = new FormData();
+      if (name) {
+        formData.append("name", name);
+      }
+      if (image) {
+        formData.append("image", image);
+      }
+      if (coverImage) {
+        formData.append("coverImage", coverImage);
+      }
+      const res = await profileApi.editProfileApi(formData);
       return res.data;
     } catch (err) {
       console.error(err);
@@ -53,8 +63,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     clearUser: (state, action) => {
-      state.profile = initialState.profile;
-      state.loading = initialState.loading;
+      // state.profile = initialState.profile;
+      // state.loading = initialState.loading;
+      return initialState;
     },
   },
   extraReducers(builder) {
