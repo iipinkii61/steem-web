@@ -2,12 +2,29 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import profileImage from "../assets/blank.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import backgroundFriend from "../assets/bgfriendpage.png";
 import useAuth from "../hooks/useAuth";
+import useFriend from "../hooks/useFriend";
 import Header from "./Header";
+import { getAllFriends } from "../redux/friend-slice";
 
 export default function FriendLayout() {
   const user = useAuth();
+  const friends = useFriend();
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const idTimeout = setTimeout(() => {
+  //     dispatch(getAllFriends());
+  //   }, 500);
+  //   return () => clearTimeout(idTimeout);
+  // }, [friends]);
+
+  useEffect(() => {
+    dispatch(getAllFriends());
+  }, []);
 
   return (
     <>

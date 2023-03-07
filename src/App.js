@@ -13,6 +13,7 @@ export default function App() {
   const dispatch = useDispatch();
   const authUser = useAuth();
   const gameInfo = useGameInfo();
+  // const friends = useFriend();
 
   // fetch cart and userProfile
   useEffect(() => {
