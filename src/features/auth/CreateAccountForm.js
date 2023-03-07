@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function CreateAccountForm() {
   const location = useLocation();
-  // console.log(location);
+  console.log(location);
 
   const [inputRegister, setInputRegister] = useState({
     userName: "",
@@ -23,9 +23,9 @@ export default function CreateAccountForm() {
   const handleSubmitFormRegister = async (e) => {
     try {
       e.preventDefault();
-      const addEmail = { ...inputRegister, email: location.state.email };
+      const addEmail = { ...inputRegister, email: location.state.state.email };
       const result = validateRegister(addEmail);
-      // console.log(result);
+      console.log(result);
       if (result) {
         setError(result);
       } else {
@@ -92,7 +92,10 @@ export default function CreateAccountForm() {
               />
             </div>
 
-            <button className="btn bg-sky-500 border-slate-900 rounded-none w-60  my-8 normal-case">
+            <button
+              className="btn bg-sky-500 border-slate-900 rounded-none w-60  my-8 normal-case"
+              type="submit"
+            >
               Done
             </button>
           </div>
