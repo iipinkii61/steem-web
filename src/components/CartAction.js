@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { removeAll } from "../redux/cart-slice";
 
 export default function CartAction() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -17,7 +18,10 @@ export default function CartAction() {
           continue to checkout.
         </div>
         <div className="flex justify-end pr-4 pb-4">
-          <button className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-5">
+          <button
+            onClick={() => navigate("/visapayment")}
+            className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-5"
+          >
             Purchase for myself
           </button>
         </div>
