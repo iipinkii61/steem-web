@@ -29,7 +29,7 @@ export default function ProfilePage() {
               <img
                 src={user?.image || profileImage}
                 alt="profileImage"
-                className=" h-16  "
+                className=" h-40 "
               />
               <div>
                 <p className="pt-4 pl-6 text-xl"> {user?.name}</p>
