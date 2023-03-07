@@ -33,7 +33,7 @@ export default function RegisterForm() {
           const err = new Error();
           throw err;
         }
-        navigate("/createaccount", { state: isEmail });
+        // navigate("/createaccount", { state: isEmail });
         toast.success("Please verify your email");
       }
     } catch (err) {
@@ -84,7 +84,7 @@ export default function RegisterForm() {
               </span>
             </label>
           </div>
-          <Link to="/createaccount">
+          <Link to="/createaccount" state={{ state: isEmail }}>
             <button className="btn bg-sky-500 border-slate-900 rounded-none w-60 my-8 normal-case">
               Continue
             </button>
