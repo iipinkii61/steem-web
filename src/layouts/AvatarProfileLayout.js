@@ -5,6 +5,7 @@ import profileImage from "../assets/blank.png";
 import { useDispatch } from "react-redux";
 import { editUserProfile } from "../redux/user-slice";
 import useUser from "../hooks/useUser";
+import { Link, useParams } from "react-router-dom";
 
 export default function AvatarProfileLayout() {
   // const [file, setImage] = useState(null);
@@ -37,20 +38,28 @@ export default function AvatarProfileLayout() {
           </div>
         </div>
         <div className=" flex justify-end py-4">
-          <p className="underline">Back to your profile</p>
+          <Link to="/profiles" className="underline">
+            Back to your profile
+          </Link>
         </div>
         <div className="flex col py-12 w-full  ">
           <ul className="menu bg-base-0  w-56">
             <li>
-              <a>General</a>
+              <Link to="/generalprofile">General</Link>
             </li>
             <li>
-              <a className="active  active:bg-black opacity-60">Avatar</a>
+              <Link
+                to="/avatarprofile"
+                className="active  active:bg-black opacity-60 "
+              >
+                Avatar
+              </Link>
             </li>
             <li>
-              <a>Profile Background</a>
+              <Link to="/backgroundprofile">Profile Background</Link>
             </li>
           </ul>
+
           <div className="pl-2 space-y-4  w-full">
             <div className=" flex col">
               <img
