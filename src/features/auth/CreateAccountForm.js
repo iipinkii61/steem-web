@@ -92,7 +92,7 @@ export default function CreateAccountForm() {
               />
             </div>
 
-            <button class="btn bg-sky-500 border-slate-900 rounded-none w-60  my-8 normal-case">
+            <button className="btn bg-sky-500 border-slate-900 rounded-none w-60  my-8 normal-case">
               Done
             </button>
           </div>
