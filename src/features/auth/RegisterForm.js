@@ -84,7 +84,7 @@ export default function RegisterForm() {
               </span>
             </label>
           </div>
-          <Link to="/createaccount">
+          <Link to="/createaccount" state={{state: isEmail}}>
             <button
               className="w-60 h-10 mt-6
                 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#287bff] via-[#07bcff] to-indigo-500 rounded-sm hover:bg-[radial-gradient(at_right_top,_#287bff,_#2cc6ff,_#287bff)]"
