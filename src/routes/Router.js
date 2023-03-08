@@ -4,7 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CartPage from "../pages/CartPage";
 import ChatPage from "../pages/ChatPage";
-import PaymentInfoPage from "../pages/PaymentInfoPage";
+import ThankYou from "../components/ThankYou"
 import CreateAccountPage from "../pages/CreateAccountPage";
 import ProfilePage from "../pages/ProfilePage";
 import WishlistPage from "../pages/WishlistPage";
@@ -85,8 +85,8 @@ const router = createBrowserRouter([
         element: <ProfilePage />,
       },
       {
-        path: "/paymentinfo",
-        element: <PaymentInfoPage />,
+        path: "/paymentsucess",
+        element: <ThankYou />,
       },
       {
         path: "/visapayment",

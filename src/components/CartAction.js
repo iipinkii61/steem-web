@@ -58,7 +58,7 @@ export default function CartAction({ sumPrice }) {
           dispatch(setCharge(result));
           dispatch(createTransaction({ gameArrId, token }));
           dispatch(clearCart());
-          navigate("/");
+          navigate("/paymentsucess");
         } catch (err) {
           console.error(err);
         }

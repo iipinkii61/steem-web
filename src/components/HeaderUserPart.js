@@ -21,7 +21,7 @@ export default function HeaderUserPart() {
   const handleLogout = () => {
     dispatch(clearUser());
     dispatch(clearCart());
-    dispatch(clearWishlist());
+    // dispatch(clearWishlist());
     dispatch(logout());
     navigate("/");
   };
