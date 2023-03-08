@@ -1,16 +1,85 @@
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import useSumPrice from "../hooks/useSumPrice";
-import { removeAll } from "../redux/cart-slice";
+import { clearCart, removeAll } from "../redux/cart-slice";
+import useCart from "../hooks/useCart";
+import Script from "react-load-script";
+import useCharge from "../hooks/useCharge";
+import { createTransaction, setCharge } from "../redux/transaction-slice";
+import * as chargeApi from "../apis/charge-api";
+import useUser from "../hooks/useUser";
 
-export default function CartAction() {
+export default function CartAction({ sumPrice }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const sumPrice = useSumPrice();
+  const user = useUser();
+  const cart = useCart();
+
+  //====================================================//
+  let OmiseCard;
+  const charge = useCharge();
+  const handleLoadScript = () => {
+    OmiseCard = window.OmiseCard;
+    OmiseCard.configure({
+      publicKey: process.env.REACT_APP_OMISE_PUBLIC_KEY,
+      frameLabel: "Steem",
+      submitLabel: "PAY NOW",
+      currency: "thb",
+    });
+  };
+  const creditCardConfigure = () => {
+    OmiseCard.configure({
+      defaultPaymentMethod: "credit_card",
+      otherPaymentMethods: [],
+    });
+    OmiseCard.configureButton("#creditCard");
+    OmiseCard.attach();
+  };
+
+  const omiseCardHandle = (email, name, amount) => {
+    amount *= 100;
+    OmiseCard.open({
+      frameDescription: "Invoice #3847",
+      amount,
+      onCreateTokenSuccess: async (token) => {
+        try {
+          const res = await chargeApi.createChargeApi({
+            email,
+            name,
+            amount,
+            token,
+          });
+          if (res.data.status !== "successful") {
+            throw new Error("purchase error");
+          }
+          const result = { ...res.data, amount: res.data.amount / 100 };
+          const gameArrId = cart.map((el) => el.id);
+          console.log(gameArrId);
+          dispatch(setCharge(result));
+          dispatch(createTransaction({ gameArrId, token }));
+        } catch (err) {
+          console.error(err);
+        }
+      },
+      onFormClosed: () => {
+        // dispatch(clearCart())
+      },
+    });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    creditCardConfigure();
+    omiseCardHandle(user.email, user.userName, sumPrice);
+  };
+
+  console.log(charge);
+  //====================================================//
 
   return (
     <>
       <div className="bg-[#18202C]">
+        <Script url="https://cdn.omise.co/omise.js" onLoad={handleLoadScript} />
         <div className="flex justify-between font-bold p-4">
           <p>Estimated total</p>
           <p>฿ {sumPrice}</p>
@@ -20,20 +89,29 @@ export default function CartAction() {
           continue to checkout.
         </div>
         <div className="flex justify-end pr-4 pb-4">
-          <button
-            onClick={() => navigate("/visapayment")}
-            className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-5"
-          >
-            Purchase for myself
-          </button>
+          <Script
+            url="https://cdn.omise.co/omise.js"
+            onLoad={handleLoadScript}
+          />
+          <form>
+            <button
+              id="creditCard"
+              onClick={handleClick}
+              className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-5"
+            >
+              Purchase
+            </button>
+          </form>
         </div>
       </div>
       <div className="flex justify-between items-center my-3">
-        <Link to="/">
-          <button className="text-blueText bg-blueText/20  rounded-sm p-1.5 px-5 hover:bg-[#5F9EE4] hover:text-white">
-            Continue Shopping
-          </button>
+        <Link
+          to="/"
+          className="text-blueText bg-blueText/20  rounded-sm p-1.5 px-5 hover:bg-[#5F9EE4] hover:text-white"
+        >
+          Continue Shopping
         </Link>
+
         <button className="text-xs" onClick={() => dispatch(removeAll())}>
           Remove all items
         </button>

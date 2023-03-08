@@ -10,7 +10,7 @@ import CartItem from "../components/CartItem";
 import CartAction from "../components/CartAction";
 import { useNavigate } from "react-router-dom";
 
-export default function HomePage() {
+export default function CartPage() {
   const dispatch = useDispatch();
   const cart = useCart();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function HomePage() {
     const price = el?.Game?.priceOverview?.final / 100;
     return acc + price;
   }, 0);
-  dispatch(setSumPrice(sumPrice));
+  // dispatch(setSumPrice(sumPrice));
 
   const onClick = (el) => {
     navigate(
@@ -45,7 +45,7 @@ export default function HomePage() {
         {cart?.map((el) => (
           <CartItem el={el} onClick={onClick} key={el?.id} />
         ))}
-        <CartAction />
+        <CartAction sumPrice={sumPrice} />
       </PageMainLayout>
       <Footer />
     </>
