@@ -5,6 +5,7 @@ import gameReducer from "./game-slice";
 import cartReducer from "./cart-slice";
 import wishlistReducer from "./wishlist-slice";
 import friendReducer from "./friend-slice";
+import transactionReducer from "./transaction-slice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     cart: cartReducer,
     wishlist: wishlistReducer,
     friend: friendReducer,
+    transaction: transactionReducer,
   },
 });

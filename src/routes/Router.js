@@ -50,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/category/:genres",
-        element: <CategoryPage/>,
+        element: <CategoryPage />,
       },
     ],
   },

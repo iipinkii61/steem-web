@@ -17,6 +17,7 @@ import useGameInfo from "../hooks/useGameInfo";
 import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 import GenresTag from "../components/GenresTag";
+import useGameTrans from "../hooks/useGameTrans";
 
 export default function ProfilePage() {
   const gameInfo = useGameInfo();
@@ -42,6 +43,9 @@ export default function ProfilePage() {
   useEffect(() => {
     fetch();
   }, []);
+  const gameTrans = useGameTrans();
+
+  console.log(gameTrans);
 
   return (
     <>
