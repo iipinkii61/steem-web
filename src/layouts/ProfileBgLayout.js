@@ -110,7 +110,7 @@ export default function ProfileBgLayout() {
             </div>
           </div>
         </div>
-        <div className=" space-x-2 flex justify-end  ">
+        <div className=" py-8 space-x-2 flex justify-end  ">
           <button
             className="btn-sm  bg-gray-500  rounded w-48 normal-case "
             onClick={() => {

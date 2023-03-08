@@ -42,7 +42,7 @@ export default function AvatarProfileLayout() {
             Back to your profile
           </Link>
         </div>
-        <div className="flex col py-12 w-full  ">
+        <div className="flex col py-10 w-full  ">
           <ul className="menu bg-base-0  w-56">
             <li>
               <Link to="/generalprofile">General</Link>

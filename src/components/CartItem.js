@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import logo from "../assets/header_logo.png";
+// import logo from "../assets/header_logo.png";
 import { deleteItem } from "../redux/cart-slice";
 export default function CartItem({ el, onClick }) {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function CartItem({ el, onClick }) {
         </p>
       </div>
       <div className="">
-        <p>{!el?.isFree && "el?.priceOverview"}</p>
+        <p>{!el?.isFree && el?.Game?.priceOverview?.final_formatted}</p>
         <button
           href="/"
           className="text-xs"

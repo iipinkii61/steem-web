@@ -3,6 +3,7 @@ import * as cartApi from "../apis/cart-api";
 
 const initialState = {
   cart: [],
+  sumPrice: 0,
 };
 
 export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
@@ -74,6 +75,9 @@ export const cartSlice = createSlice({
       // state.cart = initialState.cart;
       return initialState;
     },
+    setSumPrice: (state, action) => {
+      state.sumPrice = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchCart.fulfilled, (state, action) => {
@@ -112,5 +116,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { clearCart } = cartSlice.actions;
+export const { clearCart, setSumPrice } = cartSlice.actions;
 export default cartSlice.reducer;

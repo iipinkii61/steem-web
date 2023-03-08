@@ -1,17 +1,19 @@
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import useSumPrice from "../hooks/useSumPrice";
 import { removeAll } from "../redux/cart-slice";
 
 export default function CartAction() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const sumPrice = useSumPrice();
 
   return (
     <>
       <div className="bg-[#18202C]">
         <div className="flex justify-between font-bold p-4">
           <p>Estimated total</p>
-          <p>฿ 13,000.00</p>
+          <p>฿ {sumPrice}</p>
         </div>
         <div className="text-xs px-4 pb-4">
           Is this a purchase for yourself or is it a gift? Select one to
