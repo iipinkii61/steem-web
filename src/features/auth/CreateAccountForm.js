@@ -3,10 +3,11 @@ import { useLocation } from "react-router-dom";
 import * as authApi from "../../apis/auth-api";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateAccountForm() {
   const location = useLocation();
-  // console.log(location);
+  const navigate = useNavigate();
 
   const [inputRegister, setInputRegister] = useState({
     userName: "",
@@ -23,9 +24,8 @@ export default function CreateAccountForm() {
   const handleSubmitFormRegister = async (e) => {
     try {
       e.preventDefault();
-      const addEmail = { ...inputRegister, email: location.state.email };
+      const addEmail = { ...inputRegister, email: location.state.state.email };
       const result = validateRegister(addEmail);
-      // console.log(result);
       if (result) {
         setError(result);
       } else {
@@ -34,6 +34,7 @@ export default function CreateAccountForm() {
         await authApi.registerApi(addEmail);
         setInputRegister({ userName: "", password: "", confirmPassword: "" });
         toast.success("Register success");
+        navigate("/");
       }
     } catch (err) {
       console.log(err);
@@ -92,16 +93,19 @@ export default function CreateAccountForm() {
               />
             </div>
 
-            <button className="btn bg-sky-500 border-slate-900 rounded-none w-60  my-8 normal-case">
+            <button
+              className="btn bg-sky-500 border-slate-900 rounded-none w-60  my-8 normal-case"
+              type="submit"
+            >
               Done
             </button>
           </div>
         </form>
       </div>
       <div className=" -mx-96 my-6  ">
-        <button className="btn bg-red-900  border-slate-900 rounded w-34 my-6 normal-case  text-xs ">
+        {/* <button className="btn bg-red-900  border-slate-900 rounded w-34 my-6 normal-case  text-xs ">
           Not Avaliable
-        </button>
+        </button> */}
       </div>
     </div>
   );

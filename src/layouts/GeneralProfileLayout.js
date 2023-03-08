@@ -47,7 +47,7 @@ export default function GeneralProfileLayout() {
           </Link>
         </div>
 
-        <div className="flex col py-12">
+        <div className="flex col py-8">
           <ul className="menu bg-base-0  w-56">
             <li>
               <Link
@@ -109,12 +109,12 @@ export default function GeneralProfileLayout() {
                   </span>
                 </label>
                 <div className=" space-x-2 pl-96  flex col justify-end">
-                  <button className="btn-sm  bg-gray-500  rounded w-30 normal-case ">
+                  <button className="btn-sm  bg-gray-500  rounded w-48 normal-case ">
                     Cancel
                   </button>
                   <form onSubmit={handleSubmit}>
                     <button
-                      className="btn-sm  bg-sky-500 border-slate-900 rounded w-30 normal-case "
+                      className="btn-sm  bg-sky-500 border-slate-900 rounded w-48 normal-case "
                       type="submit"
                     >
                       Save
