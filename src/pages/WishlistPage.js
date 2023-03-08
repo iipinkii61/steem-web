@@ -29,9 +29,6 @@ export default function WishlistPage() {
   };
 
   const handleAddToCart = (steamAppId) => {
-    // if (showGame?.isFree) {
-    //   return navigate("/login", { state: { steamAppId } });
-    // }
     dispatch(setCart(steamAppId));
     navigate("/cart", { state: { steamAppId } });
   };
@@ -61,8 +58,8 @@ export default function WishlistPage() {
           ) : (
             <>
               {wishlist?.map((el) => (
-                <div key={el.id} className="bg-[#405163E6] p-4 mt-2 rounded">
-                  <div className="flex justify-around gap-3">
+                <div key={el.id} className="bg-[#405163E6] p-6 mt-2 rounded">
+                  <div className="flex justify-between gap-3">
                     <img
                       src={el.Game.headerImage}
                       className="h-20 bg-blue-400"
