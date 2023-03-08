@@ -5,12 +5,19 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchWishlist, deleteWishlist } from "../redux/wishlist-slice";
 import { setCart } from "../redux/cart-slice";
+import useWishList from "../hooks/useWishList";
+import useUser from "../hooks/useUser";
 import useAuth from "../hooks/useAuth";
+// import useCart from "../hooks/useCart";
 import Header from "../layouts/Header";
+import { useNavigate } from "react-router-dom";
 export default function WishlistPage() {
   const dispatch = useDispatch();
-  const wishlist = useSelector((state) => state.wishlist.wishlist);
-  const user = useAuth();
+  const navigate = useNavigate();
+  const wishlist = useWishList();
+  const authUser = useAuth();
+  const user = useUser();
+  // const cart = useCart();
 
   useEffect(() => {
     dispatch(fetchWishlist());
@@ -18,8 +25,16 @@ export default function WishlistPage() {
 
   const handleRemove = (wishlistId) => {
     dispatch(deleteWishlist(wishlistId));
-    // dispatch(removeWishlist());
   };
+
+  const handleAddAndPlay = (steamAppId) => {
+    // if (showGame?.isFree) {
+    //   return navigate("/login", { state: { steamAppId } });
+    // }
+    dispatch(setCart(steamAppId));
+    navigate("/cart", { state: { steamAppId } });
+  };
+  window.scrollTo({ top: 0 });
 
   return (
     <>
@@ -27,10 +42,12 @@ export default function WishlistPage() {
       <div className="bg-[#202326] max-h-fit">
         <PageMainLayout>
           <div className="flex items-center gap-6 p-6 px-0">
-            <img src={avatar} className="h-16" />
-            <p className="text-2xl">{user.userName}'s WISHLIST</p>
+            <img src={user?.image || avatar} className="h-16" />
+            <p className="text-2xl">
+              {user.name ? user.name : authUser.userName}'s WISHLIST
+            </p>
           </div>
-          {wishlist.length == 0 ? (
+          {wishlist?.length == 0 ? (
             <p>Oops! there's nothing to show here.</p>
           ) : (
             <>
@@ -50,9 +67,12 @@ export default function WishlistPage() {
                     <div className="flex items-center">
                       {/* <p>discount</p> */}
                       <div className="flex items-center bg-[#00000033] text-sm rounded-sm p-0.5">
-                        <p className="pl-2">{el.Game.priceOverview}</p>
+                        <p className="pl-2">
+                          {el.Game.priceOverview.final_formatted}
+                        </p>
                         <button
-                          onClick={() => dispatch(setCart(el.Game.steamAppid))}
+                          // onClick={() => dispatch(setCart(el.Game.steamAppid))}
+                          onClick={() => handleAddAndPlay(el.Game.steamAppid)}
                           className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-3 ml-3"
                         >
                           Add to cart

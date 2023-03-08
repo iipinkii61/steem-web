@@ -15,13 +15,6 @@ export default function FriendLayout() {
   const friends = useFriend();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const idTimeout = setTimeout(() => {
-  //     dispatch(getAllFriends());
-  //   }, 500);
-  //   return () => clearTimeout(idTimeout);
-  // }, [friends]);
-
   useEffect(() => {
     dispatch(getAllFriends());
   }, []);
