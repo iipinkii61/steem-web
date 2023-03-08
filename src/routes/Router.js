@@ -81,6 +81,10 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: "/friends/:id",
+        element: <ProfilePage />,
+      },
+      {
         path: "/paymentinfo",
         element: <PaymentInfoPage />,
       },

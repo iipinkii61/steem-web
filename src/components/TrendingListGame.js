@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useGameInfo from "../hooks/useGameInfo";
 import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
@@ -41,10 +41,12 @@ export default function TrendingListGame() {
   return (
     <>
       <div className="tabs pt-5 pb-2">
-        <div onClick={() => setTabGame(1)} className="tab tab-bordered">
+ 
+        <div onClick={() => setTabGame(1)} className={`tab tab-bordered ${tabGame === 1 ? "tab-active" : ""}`}>
           NEW & TRENDING
         </div>
-        <div onClick={() => setTabGame(2)} className="tab tab-bordered">
+        
+        <div onClick={() => setTabGame(2)} className={`tab tab-bordered ${tabGame === 2 ? "tab-active" : ""}`}>
           SPECIALS
         </div>
       </div>

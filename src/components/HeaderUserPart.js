@@ -9,6 +9,7 @@ import { clearCart } from "../redux/cart-slice";
 import { clearWishlist } from "../redux/wishlist-slice";
 import { clearUser } from "../redux/user-slice";
 import useUser from "../hooks/useUser";
+import useAuth from "../hooks/useAuth";
 
 export default function HeaderUserPart() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function HeaderUserPart() {
   const navigate = useNavigate();
   const user = useUser();
   const cart = useCart();
+  const authUser = useAuth()
   const handleLogout = () => {
     dispatch(clearUser());
     dispatch(clearCart());
@@ -28,7 +30,7 @@ export default function HeaderUserPart() {
     <>
       <div className="flex gap-4 justify-end static">
         <button className="flex text-xs" onClick={() => setDropdown(!dropdown)}>
-          {user.name}
+          {user.name ? user.name : authUser.userName}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -50,12 +52,12 @@ export default function HeaderUserPart() {
           <ul className="bg-[#21252e] text-[#b8b6b4] shadow absolute right-20 top-11 px-4 py-2 rounded">
             <li>
               <Link to="/profiles">
-                <button>View Profile</button>
+                <button className="hover:text-white">View Profile</button>
               </Link>
             </li>
 
             <li className="pt-2">
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleLogout} className="hover:text-white">Logout</button>
             </li>
           </ul>
         ) : (
@@ -67,12 +69,12 @@ export default function HeaderUserPart() {
       </div>
       <div className="flex justify-end gap-1 round-sm mt-1 text-xs uppercase">
         <Link to="/cart">
-          <button className="px-4 py-0.5 w-full bg-blue-300 text-white">
+          <button className="px-4 w-full g-2 bg-blue-300 text-white">
             cart {`(${cart?.length})`}
           </button>
         </Link>
         <Link to="/wishlist">
-          <button className="px-4 py-0.5 w-full bg-[#749D38] text-[#d2efa9]">
+          <button className="px-4 w-full bg-[#749D38] text-[#d2efa9]">
             wishlist
           </button>
         </Link>
