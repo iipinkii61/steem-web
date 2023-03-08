@@ -8,11 +8,6 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   console.log(e)
-  //   dispatch(login({ emailOrUserName, password }));
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ emailOrUserName, password }));
@@ -59,7 +54,6 @@ export default function LoginForm() {
                 className="w-60 h-10 
                 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#287bff] via-[#07bcff] to-indigo-500 rounded-sm hover:bg-[radial-gradient(at_right_top,_#287bff,_#2cc6ff,_#287bff)]"
                 type="submit"
-                onClick={handleSubmit}
               >
                 Sign In
               </button>
@@ -68,17 +62,18 @@ export default function LoginForm() {
         </form>
       </div>
       <div className="w-1/2">
-        <Link to="/register">
-          <button className="relative w-52 h-52 top-14 left-16 inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-md shadow-2xl group">
-            <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-10 bg-gradient-to-br from-[#287bff] via-[#07bcff] to-indigo-500 group-hover:opacity-100"></span>
-            <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
-            <span className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
-            <span className="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
-            <span className="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
-            <span className="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
-            <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
-            <span className="relative">Join Steam</span>
-          </button>
+        <Link
+          to="/register"
+          className="relative w-52 h-52 top-14 left-16 inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-md shadow-2xl group"
+        >
+          <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-10 bg-gradient-to-br from-[#287bff] via-[#07bcff] to-indigo-500 group-hover:opacity-100"></span>
+          <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+          <span className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+          <span className="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+          <span className="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+          <span className="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+          <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+          <span className="relative">Join Steam</span>
         </Link>
       </div>
     </div>
