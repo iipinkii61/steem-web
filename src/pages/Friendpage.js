@@ -3,16 +3,25 @@ import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useFriend from "../hooks/useFriend";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function FriendPage() {
   const user = useAuth();
   // ให้โชว์แค่เพื่อนที่รับแอดแล้ว
   const friends = useFriend();
+  // console.log(friends);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const acceptedFriend = friends?.filter((el) => el.status !== "PENDING");
-  // console.log("friend -------> ", friends);
-  // console.log("acc friend -------> ", acceptedFriend);
+  console.log(acceptedFriend);
 
+  const handleClick = (el) => {
+    // console.log(el?.Accepter?.userName);
+    navigate(
+      "/friends/" + el?.Accepter?.id
+    ); window.scrollTo({top:0});
+  };
+  // console.log(friends?.[0]?.Accepter?.userName);
   return (
     <div className="w-full">
       <div className="bg-cyan-800 py-2 px-6 rounded-sm h-12 flex items-center justify-between">
@@ -43,9 +52,9 @@ export default function FriendPage() {
         {acceptedFriend?.length > 0 ? (
           <>
             {acceptedFriend?.map((el) => (
-              <div key={el?.id} className="flex items-center gap-6 m-2">
+              <div key={el?.id} onClick={() => handleClick(el)} className="flex items-center gap-6 m-2">
                 <img
-                  src={profileImage}
+                  src={el?.Accepter?.image ? el?.Accepter?.image : profileImage}
                   alt="profileImage"
                   className="h-16 rounded-sm"
                 />

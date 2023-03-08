@@ -71,13 +71,13 @@ export default function RegisterForm() {
             />
           </div>
           <div className="form-control">
-            <label className="">
+            <label className="relative">
               <input
                 type="checkbox"
                 checked="checked"
                 className="checkbox rounded "
               />
-              <span className="label-text text-neutral-400">
+              <span className="absolute label-text text-neutral-400 left-8 top-1">
                 {" "}
                 I am 13 years of age or older and agree to the terms of the
                 Steam Subscriber Agreement and the Valve Privacy Policy.
@@ -85,7 +85,11 @@ export default function RegisterForm() {
             </label>
           </div>
           <Link to="/createaccount">
-            <button className="btn bg-sky-500 border-slate-900 rounded-none w-60 my-8 normal-case">
+            <button
+              className="w-60 h-10 mt-6
+                bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#287bff] via-[#07bcff] to-indigo-500 rounded-sm hover:bg-[radial-gradient(at_right_top,_#287bff,_#2cc6ff,_#287bff)]"
+              type="submit"
+            >
               Continue
             </button>
           </Link>

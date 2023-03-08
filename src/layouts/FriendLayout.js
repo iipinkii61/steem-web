@@ -7,20 +7,21 @@ import useAuth from "../hooks/useAuth";
 import useFriend from "../hooks/useFriend";
 import Header from "./Header";
 import { getAllFriends } from "../redux/friend-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 export default function FriendLayout() {
   const user = useAuth();
   const friends = useFriend();
   const dispatch = useDispatch();
-
+console.log(user,'user');
   // useEffect(() => {
   //   const idTimeout = setTimeout(() => {
   //     dispatch(getAllFriends());
   //   }, 500);
   //   return () => clearTimeout(idTimeout);
   // }, [friends]);
+
 
   useEffect(() => {
     dispatch(getAllFriends());
@@ -35,7 +36,7 @@ export default function FriendLayout() {
         <div>
           <div className="flex items-center gap-6 pt-12 pl-40 space-x-2">
             <img
-              src={profileImage}
+              src={user?.image ? user?.image : profileImage}
               alt="profileImage"
               className="h-20 rounded-sm"
             />
