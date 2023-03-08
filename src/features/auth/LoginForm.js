@@ -46,14 +46,14 @@ export default function LoginForm() {
                 onChange={handlePassword}
               />
             </div>
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="relative">
                 <input type="checkbox" className="checkbox rounded-sm" />
                 <span className="label-text absolute top- text-neutral-400 ml-2">
                   Remember me
                 </span>
               </label>
-            </div>
+            </div> */}
             <div className="place-self-center my-4">
               <button
                 className="w-60 h-10 

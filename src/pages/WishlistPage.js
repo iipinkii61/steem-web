@@ -58,49 +58,53 @@ export default function WishlistPage() {
           ) : (
             <>
               {wishlist?.map((el) => (
-                <div key={el.id} className="bg-[#405163E6] p-6 mt-2 rounded">
-                  <div className="flex justify-between gap-3">
+                <div key={el?.id} className="bg-[#405163E6] p-2 mt-2 rounded">
+                  <div className="relative flex gap-3">
+                    <div className=" w-60">
                     <img
-                      src={el.Game.headerImage}
-                      className="h-20 bg-blue-400"
+                      src={el?.Game?.headerImage}
+                      className="h-full bg-blue-400"
                       onClick={() => handleClick(el.Game)}
                     />
-                    <div className="flex flex-col justify-around">
-                      <p className="text-xl font-semibold text-white">
-                        {el.Game.name}
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-xl font-semibold text-white mb-5">
+                        {el?.Game?.name}
+                      </p>
+                      <p className="text-xs mb-1">
+                      publishers : {el?.Game?.publishers}
                       </p>
                       <p className="text-xs">
-                        Release date : {el.Game.releaseDate.date}
+                        Release date : {el?.Game?.releaseDate.date}
                       </p>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center absolute right-0 top-8">
                       {/* <p>discount</p> */}
-                      <div className="flex items-center bg-[#00000033] text-sm rounded-sm p-0.5">
+                      <div className="relative flex items-center bg-[#00000033] text-sm rounded-sm p-0.5">
                         <p className="pl-2">
-                          {el.Game.priceOverview.final_formatted}
+                          {el?.Game?.priceOverview?.final_formatted}
                         </p>
-                        {existCart(el.Game.steamAppid) ? (
+                        {existCart(el?.Game?.steamAppid) ? (
                           <p className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-3 ml-3">
                             In cart
                           </p>
                         ) : (
                           <button
-                            onClick={() => handleAddToCart(el.Game.steamAppid)}
-                            className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-3 ml-3"
+                            onClick={() => handleAddToCart(el.Game?.steamAppid)}
+                            className="ml-2 p-2  text-[#ceeca5] right-1 bottom-1 text-xs rounded-sm bg-[radial-gradient(at_left_top,_#78b32b,_#60941b,_#588a1b)]
+                        hover:bg-[radial-gradient(at_left_top,_#78b32b,_#8bd32a,_#588a1b)] hover:text-white"
                           >
                             Add to cart
                           </button>
                         )}
+                          <button
+                            onClick={() => handleRemove(el.id)}
+                            className="absolute -bottom-5 right-0  flex justify-end text-xs"
+                          >
+                            Remove
+                          </button>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex justify-end px-2 text-xs">
-                    <button
-                      onClick={() => handleRemove(el.id)}
-                      className="w-1/4"
-                    >
-                      Remove
-                    </button>
                   </div>
                 </div>
               ))}

@@ -51,10 +51,10 @@ export const wishlistSlice = createSlice({
     //     (el) => el.steamAppid !== action.payload,
     //   );
     // },
-    // clearWishlist: (state, action) => {
-    // state.wishlist = initialState.wishlist;
-    //   return initialState;
-    // },
+    clearWishlist: (state, action) => {
+    state.wishlist = initialState.wishlist;
+      return initialState;
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchWishlist.fulfilled, (state, action) => {
