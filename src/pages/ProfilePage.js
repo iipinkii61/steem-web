@@ -7,10 +7,13 @@ import Header from "../layouts/Header";
 import useUser from "../hooks/useUser";
 import profileImage from "../assets/blank.png";
 import profilecoveImage from "../assets/profilebg.png";
+import useGameTrans from "../hooks/useGameTrans";
 
 export default function ProfilePage() {
   const user = useUser();
-  console.log(user);
+  const gameTrans = useGameTrans();
+
+  console.log(gameTrans);
 
   return (
     <>

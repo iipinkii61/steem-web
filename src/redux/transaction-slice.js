@@ -3,14 +3,18 @@ import * as transactionApi from "../apis/transaction-api";
 
 const initialState = {
   transaction: [],
+  gameTrans: [],
   charge: {},
 };
 
 export const createTransaction = createAsyncThunk(
   "transaction/createTransaction",
-  async (input, thunkApi) => {
+  async ({ gameArrId, token }, thunkApi) => {
     try {
-      const res = await transactionApi.createTransactionApi(input);
+      const res = await transactionApi.createTransactionApi({
+        gameArrId,
+        token,
+      });
       return res.data;
     } catch (err) {
       console.error(err);
@@ -46,7 +50,7 @@ export const transactionSlice = createSlice({
       state.transaction.push(action.payload);
     });
     builder.addCase(getTransaction.fulfilled, (state, action) => {
-      state.transaction = action.payload;
+      state.gameTrans = action.payload;
     });
   },
 });

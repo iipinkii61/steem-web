@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import useSumPrice from "../hooks/useSumPrice";
 import { clearCart, removeAll } from "../redux/cart-slice";
 import useCart from "../hooks/useCart";
 import Script from "react-load-script";
@@ -16,29 +15,29 @@ export default function CartAction({ sumPrice }) {
   const cart = useCart();
 
   //====================================================//
-  let OmiseCard;
   const charge = useCharge();
   const handleLoadScript = () => {
-    OmiseCard = window.OmiseCard;
-    OmiseCard.configure({
-      publicKey: process.env.REACT_APP_OMISE_PUBLIC_KEY,
+    console.log("script");
+    window.OmiseCard.configure({
+      // publicKey: process.env.REACT_APP_OMISE_PUBLIC_KEY,
+      publicKey: "pkey_test_5v17fi85hzib9l24i5a",
       frameLabel: "Steem",
       submitLabel: "PAY NOW",
       currency: "thb",
     });
   };
   const creditCardConfigure = () => {
-    OmiseCard.configure({
+    window.OmiseCard.configure({
       defaultPaymentMethod: "credit_card",
       otherPaymentMethods: [],
     });
-    OmiseCard.configureButton("#creditCard");
-    OmiseCard.attach();
+    window.OmiseCard.configureButton("#creditCard");
+    window.OmiseCard.attach();
   };
 
   const omiseCardHandle = (email, name, amount) => {
     amount *= 100;
-    OmiseCard.open({
+    window.OmiseCard.open({
       frameDescription: "Invoice #3847",
       amount,
       onCreateTokenSuccess: async (token) => {
@@ -53,17 +52,18 @@ export default function CartAction({ sumPrice }) {
             throw new Error("purchase error");
           }
           const result = { ...res.data, amount: res.data.amount / 100 };
-          const gameArrId = cart.map((el) => el.id);
-          console.log(gameArrId);
+          console.log(cart);
+          const gameArrId = cart.map((el) => el.gameId);
+
           dispatch(setCharge(result));
           dispatch(createTransaction({ gameArrId, token }));
+          dispatch(clearCart());
+          navigate("/");
         } catch (err) {
           console.error(err);
         }
       },
-      onFormClosed: () => {
-        // dispatch(clearCart())
-      },
+      onFormClosed: () => {},
     });
   };
 
@@ -73,7 +73,7 @@ export default function CartAction({ sumPrice }) {
     omiseCardHandle(user.email, user.userName, sumPrice);
   };
 
-  console.log(charge);
+  // console.log(charge);
   //====================================================//
 
   return (
@@ -89,10 +89,6 @@ export default function CartAction({ sumPrice }) {
           continue to checkout.
         </div>
         <div className="flex justify-end pr-4 pb-4">
-          <Script
-            url="https://cdn.omise.co/omise.js"
-            onLoad={handleLoadScript}
-          />
           <form>
             <button
               id="creditCard"
