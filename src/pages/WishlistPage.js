@@ -8,7 +8,7 @@ import { setCart } from "../redux/cart-slice";
 import useWishList from "../hooks/useWishList";
 import useUser from "../hooks/useUser";
 import useAuth from "../hooks/useAuth";
-// import useCart from "../hooks/useCart";
+import useCart from "../hooks/useCart";
 import Header from "../layouts/Header";
 import { useNavigate } from "react-router-dom";
 export default function WishlistPage() {
@@ -17,7 +17,8 @@ export default function WishlistPage() {
   const wishlist = useWishList();
   const authUser = useAuth();
   const user = useUser();
-  // const cart = useCart();
+  const cart = useCart();
+  console.log(cart);
 
   useEffect(() => {
     dispatch(fetchWishlist());
@@ -27,7 +28,7 @@ export default function WishlistPage() {
     dispatch(deleteWishlist(wishlistId));
   };
 
-  const handleAddAndPlay = (steamAppId) => {
+  const handleAddToCart = (steamAppId) => {
     // if (showGame?.isFree) {
     //   return navigate("/login", { state: { steamAppId } });
     // }
@@ -35,6 +36,14 @@ export default function WishlistPage() {
     navigate("/cart", { state: { steamAppId } });
   };
   window.scrollTo({ top: 0 });
+
+  const existCart = (steamAppId) =>
+    cart.find((el) => el.Game.steamAppid === +steamAppId);
+
+  const handleClick = (el) => {
+    navigate("/app/" + el?.steamAppid + "/" + el?.name.replace(/[\W_]+/g, "_"));
+    window.scrollTo({ top: 0 });
+  };
 
   return (
     <>
@@ -57,12 +66,15 @@ export default function WishlistPage() {
                     <img
                       src={el.Game.headerImage}
                       className="h-20 bg-blue-400"
+                      onClick={() => handleClick(el.Game)}
                     />
                     <div className="flex flex-col justify-around">
                       <p className="text-xl font-semibold text-white">
                         {el.Game.name}
                       </p>
-                      <p className="text-xs">Release date : 23 oct 2023</p>
+                      <p className="text-xs">
+                        Release date : {el.Game.releaseDate.date}
+                      </p>
                     </div>
                     <div className="flex items-center">
                       {/* <p>discount</p> */}
@@ -70,13 +82,18 @@ export default function WishlistPage() {
                         <p className="pl-2">
                           {el.Game.priceOverview.final_formatted}
                         </p>
-                        <button
-                          // onClick={() => dispatch(setCart(el.Game.steamAppid))}
-                          onClick={() => handleAddAndPlay(el.Game.steamAppid)}
-                          className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-3 ml-3"
-                        >
-                          Add to cart
-                        </button>
+                        {existCart(el.Game.steamAppid) ? (
+                          <p className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-3 ml-3">
+                            In cart
+                          </p>
+                        ) : (
+                          <button
+                            onClick={() => handleAddToCart(el.Game.steamAppid)}
+                            className="bg-[#749D38] text-[#d2efa9] rounded-sm p-1 px-3 ml-3"
+                          >
+                            Add to cart
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
