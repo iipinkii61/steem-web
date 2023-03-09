@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { editUserProfile, fetchUserProfile } from "../redux/user-slice";
 import { useState } from "react";
 import { useRef } from "react";
+import useAuth from "../hooks/useAuth";
 
 export default function GeneralProfileLayout() {
   const [profileName, setProfileName] = useState("");
@@ -14,6 +15,7 @@ export default function GeneralProfileLayout() {
   const dispatch = useDispatch();
   const inputEl = useRef();
   const user = useUser();
+  const userAuth = useAuth()
 
   const handleInput = (e) => {
     setProfileName(e.target.value);
@@ -38,7 +40,7 @@ export default function GeneralProfileLayout() {
               alt="profileImage"
               className=" h-16  "
             />
-            <p className="pt-4 pl-6 text-xl">{user?.name}</p>
+            <p className="pt-4 pl-6 text-xl">{user?.name ? user?.name : userAuth?.userName}</p>
           </div>
         </div>
         <div className=" flex justify-end py-4">

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { editUserProfile } from "../redux/user-slice";
 import useUser from "../hooks/useUser";
 import { Link, useParams } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function AvatarProfileLayout() {
   // const [file, setImage] = useState(null);
@@ -13,6 +14,7 @@ export default function AvatarProfileLayout() {
   const dispatch = useDispatch();
   const inputEl = useRef();
   const user = useUser();
+  const userAuth = useAuth()
 
   const handleSave = () => {
     dispatch(editUserProfile({ image }));
@@ -34,7 +36,7 @@ export default function AvatarProfileLayout() {
               alt="profileImage"
               className=" h-16  "
             />
-            <p className="pt-4 pl-6 text-xl"> {user?.name}</p>
+            <p className="pt-4 pl-6 text-xl">{user?.name ? user?.name : userAuth?.userName}</p>
           </div>
         </div>
         <div className=" flex justify-end py-4">
@@ -63,7 +65,7 @@ export default function AvatarProfileLayout() {
           <div className="pl-2 space-y-4  w-full">
             <div className=" flex col">
               <img
-                src={image ? URL.createObjectURL(image) : profileImage}
+                src={image ? URL.createObjectURL(image) : user?.image || profileImage}
                 alt="profileImage"
                 className=" h-40  "
               />

@@ -54,7 +54,10 @@ export default function FriendPage() {
             {acceptedFriend?.map((el) => (
               <div key={el?.id} onClick={() => handleClick(el)} className="flex items-center gap-6 m-2">
                 <img
-                  src={el?.Accepter?.image ? el?.Accepter?.image : profileImage}
+                  // src={el?.Accepter?.image ? el?.Accepter?.image : profileImage}
+                  src={el?.Requester.id === user.id
+                    ? el.Accepter.image
+                    : el.Requester.image}
                   alt="profileImage"
                   className="h-16 rounded-sm"
                 />

@@ -13,6 +13,7 @@ export default function AddFriend() {
 
   const [friendList, setFriendList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  console.log(friendList);
 
   ////////// handle search //////////
   useEffect(() => {
@@ -91,7 +92,7 @@ export default function AddFriend() {
             >
               <div className="flex items-center gap-6 ">
                 <img
-                  src={profileImage}
+                  src={el.image? el.image : profileImage}
                   alt="profileImage"
                   className="h-16 rounded-sm"
                 />
