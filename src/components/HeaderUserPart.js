@@ -10,6 +10,7 @@ import { clearWishlist } from "../redux/wishlist-slice";
 import { clearUser } from "../redux/user-slice";
 import useUser from "../hooks/useUser";
 import useAuth from "../hooks/useAuth";
+import useWishlist from '../hooks/useWishList'
 
 export default function HeaderUserPart() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function HeaderUserPart() {
   const user = useUser();
   const cart = useCart();
   const authUser = useAuth()
+  const wishlist = useWishlist()
   const handleLogout = () => {
     dispatch(clearUser());
     dispatch(clearCart());
@@ -75,7 +77,7 @@ export default function HeaderUserPart() {
         </Link>
         <Link to="/wishlist">
           <button className="px-4 w-full bg-[#749D38] text-[#d2efa9]">
-            wishlist
+            wishlist {`(${wishlist?.length})`}
           </button>
         </Link>
       </div>
