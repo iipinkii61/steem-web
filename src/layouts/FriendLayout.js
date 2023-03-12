@@ -22,9 +22,9 @@ export default function FriendLayout() {
   //   return () => clearTimeout(idTimeout);
   // }, [friends]);
 
-  useEffect(() => {
-    dispatch(getAllFriends());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getAllFriends());
+  // }, []);
   return (
     <>
       <Header />

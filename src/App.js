@@ -10,6 +10,7 @@ import { fetchGameInfo } from "./redux/game-slice";
 import useGameInfo from "./hooks/useGameInfo";
 import Loading from "./components/Loading";
 import useLoading from "./hooks/useLoading";
+import { getAllFriends } from "./redux/friend-slice";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -30,11 +31,16 @@ export default function App() {
     };
   }, [gameInfo]);
 
-
   useEffect(() => {
     if (authUser) {
       dispatch(fetchUserProfile(authUser.id));
       dispatch(fetchCart());
+    }
+  }, [authUser]);
+
+  useEffect(() => {
+    if (authUser) {
+      dispatch(getAllFriends());
     }
   }, [authUser]);
 
