@@ -1,19 +1,26 @@
 import avatar from "../assets/blank.png";
 import ChatBox from "../components/ChatBox";
 import Header from "../layouts/Header";
+import useUser from "../hooks/useUser";
+import profileImage from "../assets/blank.png";
 import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:8000");
 
 export default function ChatPage() {
+  const user = useUser();
   return (
     <>
       <Header />
       <div className="flex">
         <div className="flex-1 shadow-xl bg-[#16202D] min-w-fit">
           <div className="flex gap-4 p-6 text-blueText">
-            <img src={avatar} className="w-16 shadow rounded-sm" />
-            <p>USERNAME</p>
+            <img
+              src={user?.image || profileImage}
+              alt="profileImage"
+              className=" h-16  "
+            />
+            <p className="pt-4 pl-6 text-xl"> {user?.name}</p>
           </div>
           <div className="bg-gray-600 rounded px-4 py-1 shadow">Friends</div>
           {/* friend lists */}

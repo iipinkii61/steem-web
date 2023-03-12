@@ -8,11 +8,12 @@ import IconMac from "../assets/icons/IconMac";
 export default function RecommendedCarousel({ title }) {
   const gameInfo = useGameInfo();
   const navigate = useNavigate();
+  // console.log(gameInfo);
 
   const handleClick = (el) => {
     navigate(
-      "/app/" + el?.steam_appid + "/" + el?.name.replace(/[\W_]+/g, "_"),
-    );
+      "/app/" + el?.steamAppid + "/" + el?.name.replace(/[\W_]+/g, "_"),
+    ); window.scrollTo({top:0});
   };
 
   return (
@@ -29,10 +30,10 @@ export default function RecommendedCarousel({ title }) {
         showIndicators={false}
       >
         {/* component start*/}
-        {gameInfo?.slice(0,12).map((el) => (
+        {gameInfo?.slice(10, 30).map((el) => (
           <div
-            className=" h-full w-full flex justify-between"
-            key={el?.steam_appid}
+            className=" h-full w-full flex justify-between cursor-pointer select-none"
+            key={el?.steamAppid}
             onClick={() => handleClick(el)}
           >
             {/* start fullimage */}
@@ -95,9 +96,9 @@ export default function RecommendedCarousel({ title }) {
                 </div>
               </div>
               <div className="relative h-1/4 text-left pl-5 pr-5 pt-10 text-base flex justify-between">
-                {el?.is_free
+                {el?.isFree
                   ? "Free to play"
-                  : el?.price_overview?.final_formatted}
+                  : el?.priceOverview?.final_formatted}
                 <div className="absolute flex gap-1 top-2">
                   <div
                     className={`${

@@ -24,6 +24,18 @@ export const fetchUserProfile = createAsyncThunk(
   },
 );
 
+// export const fetchUserById = createAsyncThunk(
+//   "user/fetchUserById",
+//   async (userId) => {
+//     try {
+//       const res = await profileApi.getUserById(userId);
+//       return res.data;
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   },
+// );
+
 export const editUserProfile = createAsyncThunk(
   "user/editUserProfile",
   async ({ name, image, coverImage }) => {
@@ -60,6 +72,10 @@ export const userSlice = createSlice({
     builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
     });
+    // builder.addCase(fetchUserById.fulfilled, (state, action) => {
+    //   state.profile = action.payload;
+    // });
+
     builder
       .addCase(editUserProfile.pending, (state, action) => {
         state.loading = true;

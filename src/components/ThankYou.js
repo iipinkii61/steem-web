@@ -46,7 +46,7 @@ export default function PaymentInfoLayout() {
           <h1 className="  text-white text-2xl underline ">Install games</h1>
         </div>
         <Link>
-          <button class="btn-sm rounded bg-slate-600 normal-case box-border  w-30">
+          <button className="btn-sm rounded bg-slate-600 normal-case box-border  w-30">
             Return to the store
           </button>
         </Link>

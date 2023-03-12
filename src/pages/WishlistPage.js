@@ -7,7 +7,6 @@ import { fetchWishlist, deleteWishlist } from "../redux/wishlist-slice";
 import { setCart } from "../redux/cart-slice";
 import useAuth from "../hooks/useAuth";
 import Header from "../layouts/Header";
-import { removeWishlist } from "../apis/wishlist-api";
 export default function WishlistPage() {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.wishlist);

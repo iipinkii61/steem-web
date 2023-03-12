@@ -11,11 +11,11 @@ import useWishlist from "../hooks/useWishList";
 
 export default function GamesLayout() {
   const showGame = useShowGame();
+  const user = useAuth();
   const { steamAppId } = useParams();
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const dispatch = useDispatch();
-  const user = useAuth();
 
   useEffect(() => {
     videoRef.current.load();
@@ -41,12 +41,12 @@ export default function GamesLayout() {
   // end handle wish list //
 
   const handleAddAndPlay = () => {
-    if (showGame?.is_free) {
+    if (showGame?.isFree) {
       return navigate("/login", { state: { steamAppId } });
     }
     dispatch(setCart(steamAppId));
     navigate("/cart", { state: { steamAppId } });
-  };
+  }; window.scrollTo({top:0});
 
   return (
     <>
@@ -81,7 +81,7 @@ export default function GamesLayout() {
         </div>
         <div className="w-[340px] h-[337px] ml-3">
           <div className="mb-2">
-            <img className="w-full h-full" src={showGame?.header_image} />
+            <img className="w-full h-full" src={showGame?.headerImage} />
           </div>
           <div className="text-xs font-semibold text-gray-400 p-1">
             <span>{showGame?.short_description}</span>
@@ -141,8 +141,8 @@ export default function GamesLayout() {
         </div>
         <div className="absolute -bottom-5 right-5 w-[206px] h-[40px] bg-black">
           <div className="text-gray-300 font-thin text-sm pl-3 pt-3">
-            {!showGame?.is_free
-              ? showGame?.price_overview?.final_formatted
+            {!showGame?.isFree
+              ? showGame?.priceOverview?.final_formatted
               : "Free to Play"}
           </div>
           <button
@@ -150,7 +150,7 @@ export default function GamesLayout() {
             className="absolute p-2 px-5 text-[#ceeca5] right-1 bottom-1 text-xs rounded-sm bg-[radial-gradient(at_left_top,_#78b32b,_#60941b,_#588a1b)]
           hover:bg-[radial-gradient(at_left_top,_#78b32b,_#8bd32a,_#588a1b)] hover:text-white"
           >
-            {!showGame?.is_free ? "Add to cart" : "Play game"}
+            {!showGame?.isFree ? "Add to cart" : "Play game"}
           </button>
         </div>
       </div>
@@ -161,7 +161,7 @@ export default function GamesLayout() {
       <hr className="text-blue-600" />
       <div
         className="text-gray-300"
-        dangerouslySetInnerHTML={{ __html: showGame?.detailed_description }}
+        dangerouslySetInnerHTML={{ __html: showGame?.detailedDescription }}
       />
       <br />
       {/* end ABOUT THIS GAME */}
@@ -173,14 +173,14 @@ export default function GamesLayout() {
         <div
           className="w-1/2 bg-[#16202d39] rounded-md px-3 py-3"
           dangerouslySetInnerHTML={{
-            __html: showGame?.pc_requirements?.minimum,
+            __html: showGame?.pcRequirements?.minimum,
           }}
         />
 
         <div
           className="w-1/2 bg-[#16202d39] rounded-md px-3 py-3"
           dangerouslySetInnerHTML={{
-            __html: showGame?.pc_requirements?.recommended,
+            __html: showGame?.pcRequirements?.recommended,
           }}
         />
       </div>

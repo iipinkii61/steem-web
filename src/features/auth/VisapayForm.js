@@ -7,7 +7,7 @@ export default function VisapayForm() {
       <div className="mx-4 my-6 space-y-2">
         <div className="space-y-3">
           <h5 className="text-xs"> Please select a payment method</h5>
-          <select class=" h-8 w-60 bg-black rounded">
+          <select className=" h-8 w-60 bg-black rounded">
             <option disabled selected>
               Visa
             </option>
@@ -28,7 +28,7 @@ export default function VisapayForm() {
             <div className="   flex col">
               <div className="space-y-2 space-x-6">
                 <h5 className="text-xs mx-6 w-full"> Expiration date</h5>
-                <select class=" w-[48px] h-8 max-w-xs bg-black rounded">
+                <select className=" w-[48px] h-8 max-w-xs bg-black rounded">
                   <option disabled selected className="">
                     --
                   </option>
@@ -48,7 +48,7 @@ export default function VisapayForm() {
               </div>
 
               <div className=" my-6 -mx-8">
-                <select class=" w-20 h-8  max-w-xs bg-black rounded">
+                <select className=" w-20 h-8  max-w-xs bg-black rounded">
                   <option disabled selected className="">
                     ---
                   </option>
@@ -149,7 +149,7 @@ export default function VisapayForm() {
         <div className="flex col space-x-16">
           <div className="space-y-2">
             <h5 className="text-xs"> County</h5>
-            <select class=" w-60 h-8 bg-black rounded">
+            <select className=" w-60 h-8 bg-black rounded">
               <option disabled selected>
                 Thailand
               </option>
@@ -182,7 +182,7 @@ export default function VisapayForm() {
 
         <div className="flex justify-end mt-10">
           <Link>
-            <button class="btn-sm rounded bg-greenButton border-black normal-case box-border  w-24">
+            <button className="btn-sm rounded bg-greenButton border-black normal-case box-border  w-24">
               Continue
             </button>
           </Link>

@@ -23,7 +23,7 @@ export default function HomePage() {
         el?.Game?.steamAppid +
         "/" +
         el?.Game?.name.replace(/[\W_]+/g, "_"),
-    );
+    ); window.scrollTo({top:0});
   };
 
   return (

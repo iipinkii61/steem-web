@@ -10,7 +10,7 @@ export default function CategoryCarousel(props) {
   const handleClick = (genres) => {
     navigate(
       "/category/" + genres
-    );
+    ); window.scrollTo({top:0});
   };
   return (
     <>

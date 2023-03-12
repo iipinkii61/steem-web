@@ -1,8 +1,56 @@
+import axios from "../config/axios";
+import { useEffect, useState } from "react";
 import profileImage from "../assets/blank.png";
+import useAuth from "../hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { sendRequest, deleteFriend } from "../redux/friend-slice";
+import useFriend from "../hooks/useFriend";
 
 export default function AddFriend() {
+  const user = useAuth();
+  const friends = useFriend();
+  const dispatch = useDispatch();
+
+  const [friendList, setFriendList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  ////////// handle search //////////
+  useEffect(() => {
+    const fetchSearchUser = async () => {
+      const res = await axios.get(`/user/search/name?searchName=${searchTerm}`);
+      const resFilter = res.data.user.filter((el) => el.id !== user.id);
+      // filter ไม่เอาตัวเอง
+      setFriendList(resFilter);
+    };
+    const idTimeout = setTimeout(() => {
+      fetchSearchUser();
+    }, 500);
+    return () => clearTimeout(idTimeout);
+  }, [searchTerm]);
+
+  const handleChangeInput = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  ////////// handle add friend button //////////
+  // รับแอดแล้ว เป็นเพื่อนกันแล้ว
+  const existFriend = (userId) =>
+    friends?.some(
+      (el) =>
+        (el?.accepterId === userId || el?.requesterId === userId) &&
+        el?.status === "ACCEPTER",
+    );
+
+  // อีกคนยังไม่รับแอด
+  const isPending = (userId) =>
+    friends?.some(
+      (el) =>
+        (el?.accepterId === userId || el?.requesterId === userId) &&
+        el?.status === "PENDING",
+    );
+
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
       <div className="bg-cyan-800 py-2 px-6 rounded-sm h-12 flex items-center justify-between">
         <p>Add a Friend</p>
 
@@ -26,20 +74,54 @@ export default function AddFriend() {
           <input
             type="text"
             className="bg-transparent w-full"
+            onChange={handleChangeInput}
+            value={searchTerm}
             placeholder="Enter your friend's profile name"
           />
         </div>
       </div>
-      <div className="flex flex-wrap p-10">
-        <div className="flex items-center gap-6 m-2">
-          <img
-            src={profileImage}
-            alt="profileImage"
-            className="h-16 rounded-sm"
-          />
-          <p>Friend Name</p>
+      {/* <div className="p-10 h-screen overflow-y-auto"> */}
+      {/* search */}
+      {searchTerm !== "" ? (
+        <div className="p-10 h-96 overflow-y-auto">
+          {friendList.map((el) => (
+            <div
+              key={el.id}
+              className="flex items-center justify-between mx-2 mb-4 w-full bg-black/20 rounded p-6"
+            >
+              <div className="flex items-center gap-6 ">
+                <img
+                  src={profileImage}
+                  alt="profileImage"
+                  className="h-16 rounded-sm"
+                />
+                <p>{el.userName}</p>
+              </div>
+
+              {existFriend(el.id) ? (
+                <p className="text-sm">You are friends</p>
+              ) : isPending(el.id) ? (
+                <button
+                  onClick={() => dispatch(deleteFriend(el.id))}
+                  className="px-4 py-1 rounded-sm bg-[#274155] text-[#b8b6b4]"
+                >
+                  Request was sent
+                </button>
+              ) : (
+                <button
+                  onClick={() => dispatch(sendRequest(el.id))}
+                  className="px-4 py-1 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200"
+                >
+                  Add a friend
+                </button>
+              )}
+            </div>
+          ))}
         </div>
-      </div>
+      ) : (
+        ""
+      )}
+      {/* end search */}
     </div>
   );
 }
