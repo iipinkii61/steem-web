@@ -1,7 +1,14 @@
 import avatar from "../assets/blank.png";
 import { useState, useEffect } from "react";
-export default function ChatBox({ socket, userId, openChat, onClose }) {
+export default function ChatBox({
+  socket,
+  user,
+  openChat,
+  onClose,
+  acceptedFriend,
+}) {
   const [currentMessage, setCurrentMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
   const sendMessage = async (e) => {
     if (currentMessage !== "") {
       e.preventDefault();
@@ -11,23 +18,36 @@ export default function ChatBox({ socket, userId, openChat, onClose }) {
           new Date(Date.now()).getHours() +
           ":" +
           new Date(Date.now()).getMinutes(),
+        userId: user.id,
+        name: user.userName,
+        receiveId: acceptedFriend?.Accepter,
       };
       await socket.emit("send_message", messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage("");
     }
   };
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log(data);
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
+  // console.log(user);
+  // console.log(acceptedFriend[0]?.Accepter?.id);
+  // console.log(acceptedFriend[0].Accepter?.userName);
 
   return (
     <>
       {openChat ? (
         <div className="w-full h-full flex-[3_1_0%] pt-3 shadow min-w-min">
           <div className="flex justify-between bg-gray-600 text-[#b8b6b4] w-1/6 rounded-sm px-3 py-1">
-            <p>friends</p>
+            <p>
+              {acceptedFriend?.Requester?.id === user.id
+                ? acceptedFriend.Accepter?.userName
+                : acceptedFriend.Requester?.userName}
+              {/* {acceptedFriend?.Accepter?.userName} */}
+            </p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -44,83 +64,21 @@ export default function ChatBox({ socket, userId, openChat, onClose }) {
               />
             </svg>
           </div>
-
           <div className="flex flex-col justify-between h-screen text-[#b8b6b4] bg-[#2B2D32] p-6 px-10 ">
-            <div className="h-full overflow-y-auto">
-              <div className="flex gap-4 mt-4">
-                <img src={avatar} className="h-10 rounded-sm" />
-                <div className="">
-                  <span className="text-blueText pr-3">Nameeeeeeeeee</span>
-                  <span className="text-xs">13.00</span>
-                  <p className="break-words max-w-lg">
-                    hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
-                  </p>
+            {messageList.map((el) => {
+              return (
+                <div className="flex gap-4 mt-4">
+                  <img src={avatar} className="h-10 rounded-sm" />
+                  <div>
+                    <span className="text-blueText pr-3">{el?.name}</span>
+                    <span className="text-xs">{el.time}</span>
+                    <p className="break-words max-w-lg">{el.message}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-4 mt-4">
-                <img src={avatar} className="h-10 rounded-sm" />
-                <div>
-                  <span className="text-blueText pr-3">Nameeeeeeeeee</span>
-                  <span className="text-xs">13.00</span>
-                  <p className="break-words max-w-lg">
-                    hellohellohellohellohellohellohellohello
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4 mt-4">
-                <img src={avatar} className="h-10 rounded-sm" />
-                <div className="">
-                  <span className="text-blueText pr-3">Nameeeeeeeeee</span>
-                  <span className="text-xs">13.00</span>
-                  <p className="break-words max-w-lg">
-                    hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4 mt-4">
-                <img src={avatar} className="h-10 rounded-sm" />
-                <div className="">
-                  <span className="text-blueText pr-3">Nameeeeeeeeee</span>
-                  <span className="text-xs">13.00</span>
-                  <p className="break-words max-w-lg">
-                    hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4 mt-4">
-                <img src={avatar} className="h-10 rounded-sm" />
-                <div className="">
-                  <span className="text-blueText pr-3">Nameeeeeeeeee</span>
-                  <span className="text-xs">13.00</span>
-                  <p className="break-words max-w-lg">
-                    hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4 mt-4">
-                <img src={avatar} className="h-10 rounded-sm" />
-                <div className="">
-                  <span className="text-blueText pr-3">Nameeeeeeeeee</span>
-                  <span className="text-xs">13.00</span>
-                  <p className="break-words max-w-lg">
-                    hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4 mt-4">
-                <img src={avatar} className="h-10 rounded-sm" />
-                <div className="">
-                  <span className="text-blueText pr-3">Nameeeeeeeeee</span>
-                  <span className="text-xs">13.00</span>
-                  <p className="break-words max-w-lg">
-                    hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
-                  </p>
-                </div>
-              </div>
-            </div>
-
+              );
+            })}
             <div>
-              <form className="flex mt-4">
+              <form className="flex mt-4" onSubmit={sendMessage}>
                 <input
                   type="text"
                   placeholder="Type here..."
@@ -129,10 +87,7 @@ export default function ChatBox({ socket, userId, openChat, onClose }) {
                     setCurrentMessage(event.target.value);
                   }}
                 />
-                <button
-                  className="rounded-br-xl rounded-tr-xl bg-slate-500 p-2 px-3 -mx-12"
-                  onClick={sendMessage}
-                >
+                <button className="rounded-br-xl rounded-tr-xl bg-slate-500 p-2 px-3 -mx-12">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

@@ -12,6 +12,7 @@ export default function ChatPage() {
   const user = useUser();
   const friend = useFriend();
   const acceptedFriend = friend.filter((el) => el.status !== "PENDING");
+  // console.log(acceptedFriend?.Requester?.id);
   // console.log(friend[0].Accepter?.userName);
   // console.log(acceptedFriend);
   const [openChat, setOpenChat] = useState(false);
@@ -61,7 +62,8 @@ export default function ChatPage() {
           openChat={openChat}
           onClose={() => setOpenChat(false)}
           socket={socket}
-          userId={user?.id}
+          user={user}
+          acceptedFriend={acceptedFriend}
         />
       </div>
     </>
