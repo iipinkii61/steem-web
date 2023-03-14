@@ -8,12 +8,14 @@ import { editUserProfile, fetchUserProfile } from "../redux/user-slice";
 import { useParams } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function ProfileBgLayout() {
   const [coverImage, setCover] = useState(null);
   const dispatch = useDispatch();
   const inputEl = useRef();
   const user = useUser();
+  const userAuth = useAuth()
   const handleSave = () => {
     dispatch(editUserProfile({ coverImage }));
   };
@@ -30,7 +32,7 @@ export default function ProfileBgLayout() {
               alt="profileImage"
               className=" h-16  "
             />
-            <p className="pt-4 pl-6 text-xl"> {user?.name}</p>
+            <p className="pt-4 pl-6 text-xl"> {user?.name ? user?.name : userAuth?.userName}</p>
           </div>
         </div>
         <div className=" flex justify-end py-4">

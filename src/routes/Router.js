@@ -4,7 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CartPage from "../pages/CartPage";
 import ChatPage from "../pages/ChatPage";
-import PaymentInfoPage from "../pages/PaymentInfoPage";
+import ThankYou from "../components/ThankYou"
 import CreateAccountPage from "../pages/CreateAccountPage";
 import ProfilePage from "../pages/ProfilePage";
 import WishlistPage from "../pages/WishlistPage";
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/category/:genres",
-        element: <CategoryPage/>,
+        element: <CategoryPage />,
       },
     ],
   },
@@ -81,8 +81,12 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/paymentinfo",
-        element: <PaymentInfoPage />,
+        path: "/friends/:id",
+        element: <ProfilePage />,
+      },
+      {
+        path: "/paymentsucess",
+        element: <ThankYou />,
       },
       {
         path: "/visapayment",

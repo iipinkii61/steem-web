@@ -30,11 +30,11 @@ export default function GamesLayout() {
   }, []);
 
   const wishlistExist = wishlist?.find(
-    (el) => el.Game.steamAppid === +steamAppId,
+    (el) => el?.Game.steamAppid === +steamAppId,
   );
-  // console.log(wishlistExist);
+  console.log("wishlist", wishlist);
 
-  const handleWishlistButton = () => {
+  const handleWishlistButton = (steamAppId) => {
     dispatch(addWishlist(steamAppId));
   };
 
@@ -46,7 +46,8 @@ export default function GamesLayout() {
     }
     dispatch(setCart(steamAppId));
     navigate("/cart", { state: { steamAppId } });
-  }; window.scrollTo({top:0});
+  };
+  window.scrollTo({ top: 0 });
 
   return (
     <>
@@ -119,7 +120,7 @@ export default function GamesLayout() {
           </button>
         ) : (
           <button
-            onClick={() => handleWishlistButton()}
+            onClick={() => handleWishlistButton(steamAppId)}
             className="w-[160px] h-[30px] ml-5 rounded-sm bg-[#274155] hover:bg-cyan-600 text-blueText hover:text-gray-200"
           >
             Add to your wishlist

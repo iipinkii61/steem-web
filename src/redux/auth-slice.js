@@ -17,7 +17,8 @@ export const login = createAsyncThunk(
   async ({ emailOrUserName, password }) => {
     const res = await authApi.loginApi({ emailOrUserName, password });
     setAccessToken(res.data.accessToken);
-    return jwtDecode(res.data.accessToken);
+    const resUser = await authApi.getMeApi();
+    return resUser.data.user;
   },
 );
 

@@ -46,13 +46,13 @@ export const wishlistSlice = createSlice({
   name: "wishlist",
   initialState,
   reducers: {
-    removeWishlist: (state, action) => {
-      state.wishlist = state.wishlist.filter(
-        (el) => el.steamAppid !== action.payload,
-      );
-    },
+    // removeWishlist: (state, action) => {
+    //   state.wishlist = state.wishlist.filter(
+    //     (el) => el.steamAppid !== action.payload,
+    //   );
+    // },
     clearWishlist: (state, action) => {
-      // state.wishlist = initialState.wishlist;
+    state.wishlist = initialState.wishlist;
       return initialState;
     },
   },
@@ -62,6 +62,11 @@ export const wishlistSlice = createSlice({
     });
     builder.addCase(addWishlist.fulfilled, (state, action) => {
       state.wishlist.push(action.payload);
+    });
+    builder.addCase(deleteWishlist.fulfilled, (state, action) => {
+      state.wishlist = state.wishlist.filter(
+        (el) => el.id !== action.payload.id,
+      );
     });
   },
 });

@@ -5,5 +5,5 @@ import useAuth from "../hooks/useAuth";
 
 export default function PageLayout() {
   const authenticatedUser = useAuth();
-  return <Outlet/>
+  return <Outlet />;
 }

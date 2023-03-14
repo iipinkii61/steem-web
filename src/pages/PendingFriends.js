@@ -61,7 +61,7 @@ export default function PendingFriends() {
               >
                 <div className="flex items-center gap-6 m-2">
                   <img
-                    src={profileImage}
+                    src={el.Requester.image ? el.Requester.image : profileImage}
                     alt="profileImage"
                     className="h-16 rounded-sm"
                   />

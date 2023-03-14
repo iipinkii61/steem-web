@@ -11,6 +11,7 @@ import useGameInfo from "./hooks/useGameInfo";
 import Loading from "./components/Loading";
 import useLoading from "./hooks/useLoading";
 import { getAllFriends } from "./redux/friend-slice";
+import { getTransaction } from "./redux/transaction-slice";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -22,10 +23,9 @@ export default function App() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (!gameInfo?.length) {
-        // console.log("fetching");
         dispatch(fetchGameInfo());
       }
-    }, 300);
+    }, 150);
     return () => {
       clearTimeout(timeoutId);
     };
@@ -35,6 +35,7 @@ export default function App() {
     if (authUser) {
       dispatch(fetchUserProfile(authUser.id));
       dispatch(fetchCart());
+      dispatch(getTransaction());
     }
   }, [authUser]);
 
