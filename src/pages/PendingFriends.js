@@ -65,7 +65,7 @@ export default function PendingFriends() {
                     alt="profileImage"
                     className="h-16 rounded-sm"
                   />
-                  <p>{el.Requester.userName}</p>
+                  <p>{el.Requester.name ? el.Requester.name : el.Requester.userName}</p>
                 </div>
                 <div className="flex gap-4">
                   <button
@@ -125,11 +125,11 @@ export default function PendingFriends() {
               >
                 <div className="flex items-center gap-6 m-2">
                   <img
-                    src={profileImage}
+                    src={el.Accepter.image ? el.Accepter.image : profileImage}
                     alt="profileImage"
                     className="h-16 rounded-sm"
                   />
-                  <p>{el.Accepter.userName}</p>
+                  <p>{el.Accepter.name ? el.Accepter.name : el.Accepter.userName}</p>
                 </div>
                 <button
                   onClick={() => dispatch(deleteFriend(el.accepterId))}
