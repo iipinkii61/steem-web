@@ -96,7 +96,7 @@ export default function AddFriend() {
                   alt="profileImage"
                   className="h-16 rounded-sm"
                 />
-                <p>{el.userName}</p>
+                <p>{el.name ? el.name : el.userName}</p>
               </div>
 
               {existFriend(el.id) ? (

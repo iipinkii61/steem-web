@@ -62,8 +62,9 @@ export default function FriendPage() {
                   className="h-16 rounded-sm"
                 />
                 <p>
-                  {el?.Requester.id === user.id
-                    ? el.Accepter.userName
+                  {el?.Requester.id === user.id && el?.Accepter.name !== null ? el.Accepter.name : 
+                  el?.Requester.id === user.id && el?.Accepter.name === null ? el.Accepter.userName :
+                  el?.Requester.id !== user.id && el?.Requester.name !== null ? el.Requester.name
                     : el.Requester.userName}
                 </p>
               </div>

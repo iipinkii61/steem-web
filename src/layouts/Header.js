@@ -2,9 +2,11 @@ import logo from "../assets/header_logo.png";
 import HeaderUserPart from "../components/HeaderUserPart";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 export default function Header() {
   const user = useAuth();
+  const authUser = useUser()
 
   return (
     <div className="h-28 bg-[#171A21] flex justify-between">
@@ -20,7 +22,7 @@ export default function Header() {
             {user ? (
               <>
                 <li>
-                  <a>{user.userName}</a>
+                  <a>{authUser.name? authUser.name : user.userName}</a>
                   <ul className="p-2 bg-[#171A21] z-10 text-sm">
                     <li>
                       <Link to="/profiles">profile</Link>

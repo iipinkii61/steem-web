@@ -9,9 +9,11 @@ import Header from "./Header";
 import { getAllFriends } from "../redux/friend-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import useUser from "../hooks/useUser";
 
 export default function FriendLayout() {
   const user = useAuth();
+  const authUser = useUser()
   const friends = useFriend();
   const dispatch = useDispatch();
 
@@ -39,7 +41,7 @@ export default function FriendLayout() {
               alt="profileImage"
               className="h-20 rounded-sm"
             />
-            <p className="text-2xl">{user.userName}</p>
+            <p className="text-2xl">{authUser.name ? authUser.name : user.userName}</p>
           </div>
 
           <div className="mt-4 mx-40 flex ">
