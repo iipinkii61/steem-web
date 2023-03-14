@@ -84,10 +84,10 @@ export default function ChatBox({
               />
             </svg>
           </div>
-          <div className="flex flex-col justify-between h-screen text-[#b8b6b4] bg-[#2B2D32] p-6 px-10 ">
+          <div className="h-screen text-[#b8b6b4] bg-[#2B2D32] p-6 px-10">
             {messageList.map((el) => {
               return (
-                <div className="flex gap-4 mt-4">
+                <div className="flex gap-4 " key={el.id}>
                   <img src={el.userImg} className="h-10 rounded-sm" />
                   <div>
                     <span className="text-blueText pr-3">{el?.senderName}</span>
