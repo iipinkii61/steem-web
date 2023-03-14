@@ -47,9 +47,9 @@ export const acceptFriend = createAsyncThunk(
   async (selected) => {
     try {
       const res = await friendApi.acceptFriend(selected.requesterId);
-      console.log("from DB --->", res.data);
+      // console.log("from DB --->", res.data);
       const temp = { ...selected, status: "ACCEPTER" };
-      console.log("dummy in front -->", temp);
+      // console.log("dummy in front -->", temp);
       return { data: res.data, idx: selected.idx };
     } catch (err) {
       console.error(err);
