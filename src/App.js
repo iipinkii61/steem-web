@@ -12,12 +12,15 @@ import Loading from "./components/Loading";
 import useLoading from "./hooks/useLoading";
 import { getAllFriends } from "./redux/friend-slice";
 import { getTransaction } from "./redux/transaction-slice";
+import socket from "./config/socket";
+import useUser from "./hooks/useUser";
 
 export default function App() {
   const dispatch = useDispatch();
   const authUser = useAuth();
   const gameInfo = useGameInfo();
   const load = useLoading();
+  const user = useUser();
 
   // fetch cart and userProfile
   useEffect(() => {
@@ -44,6 +47,17 @@ export default function App() {
       dispatch(getAllFriends());
     }
   }, [authUser]);
+
+  useEffect(() => {
+    if (user.id) {
+      socket.auth = { userId: user.id };
+      socket.connect();
+    }
+    return () => {
+      socket.disconnect();
+      socket.off("receive_message");
+    };
+  }, [user]);
 
   return (
     <>

@@ -3,10 +3,7 @@ import Header from "../layouts/Header";
 import useUser from "../hooks/useUser";
 import useFriend from "../hooks/useFriend";
 import profileImage from "../assets/blank.png";
-import io from "socket.io-client";
-import { useState } from "react";
-
-const socket = io.connect("http://localhost:8000");
+import { useEffect, useState } from "react";
 
 export default function ChatPage() {
   const user = useUser();
@@ -16,6 +13,10 @@ export default function ChatPage() {
   // console.log(friend[0].Accepter?.userName);
   // console.log(acceptedFriend);
   const [openChat, setOpenChat] = useState(false);
+  const [id, setId] = useState(null);
+
+  // const filterMe =
+
   return (
     <>
       <Header />
@@ -36,7 +37,16 @@ export default function ChatPage() {
               {acceptedFriend?.map((el) => (
                 <div
                   className="px-6 py-4 text-[#b8b6b4] "
-                  onClick={() => setOpenChat(true)}
+                  onClick={() => {
+                    setOpenChat(true);
+                    setId(
+                      +el.Accepter.id === +user.id
+                        ? el.Requester.id
+                        : el.Accepter.id,
+                    );
+                    console.log(el);
+                  }}
+                  key={el.id}
                 >
                   <div className="flex gap-4 py-2">
                     <img
@@ -61,9 +71,9 @@ export default function ChatPage() {
         <ChatBox
           openChat={openChat}
           onClose={() => setOpenChat(false)}
-          socket={socket}
           user={user}
           acceptedFriend={acceptedFriend}
+          id={id}
         />
       </div>
     </>

@@ -1,14 +1,16 @@
-import avatar from "../assets/blank.png";
 import { useState, useEffect } from "react";
+import socket from "../config/socket";
 export default function ChatBox({
-  socket,
   user,
   openChat,
   onClose,
   acceptedFriend,
+  id,
 }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  // console.log(user);
+
   const sendMessage = async (e) => {
     if (currentMessage !== "") {
       e.preventDefault();
@@ -19,22 +21,40 @@ export default function ChatBox({
           ":" +
           new Date(Date.now()).getMinutes(),
         userId: user.id,
-        name: user.userName,
-        receiveId: acceptedFriend?.Accepter,
+        senderName: user.userName,
+        receiveId: id,
+        userImg: user.image,
+        // receiverName: acceptedFriend?.Accepter?.userName,
       };
-      await socket.emit("send_message", messageData);
+      // console.log(messageData);
+      socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData]);
-      setCurrentMessage("");
     }
   };
 
+  // console.log(messageList);
+
+  // useEffect(() => {
+  //   socket.on("receive_message", (data) => {
+  //     setMessageList((list) => [...list, data]);
+  //     console.log(messageList);
+  //   });
+  // }, [socket]);
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageList((list) => [...list, data]);
+      // console.log("iddd", user);
+      // console.log(data, id);
+      // console.log(messageList);
+      console.log(data.userId, id);
+      if (data.userId === id) {
+        setMessageList((list) => [...list, data]);
+        // console.log(data);
+      }
     });
-  }, [socket]);
+  }, [socket, id]);
+
   // console.log(user);
-  // console.log(acceptedFriend[0]?.Accepter?.id);
   // console.log(acceptedFriend[0].Accepter?.userName);
 
   return (
@@ -43,10 +63,10 @@ export default function ChatBox({
         <div className="w-full h-full flex-[3_1_0%] pt-3 shadow min-w-min">
           <div className="flex justify-between bg-gray-600 text-[#b8b6b4] w-1/6 rounded-sm px-3 py-1">
             <p>
-              {acceptedFriend?.Requester?.id === user.id
+              {/* {acceptedFriend?.Requester?.id === user.id
                 ? acceptedFriend.Accepter?.userName
-                : acceptedFriend.Requester?.userName}
-              {/* {acceptedFriend?.Accepter?.userName} */}
+                : acceptedFriend.Requester?.userName} */}
+              {acceptedFriend?.Accepter?.userName}
             </p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,9 +88,9 @@ export default function ChatBox({
             {messageList.map((el) => {
               return (
                 <div className="flex gap-4 mt-4">
-                  <img src={avatar} className="h-10 rounded-sm" />
+                  <img src={el.userImg} className="h-10 rounded-sm" />
                   <div>
-                    <span className="text-blueText pr-3">{el?.name}</span>
+                    <span className="text-blueText pr-3">{el?.senderName}</span>
                     <span className="text-xs">{el.time}</span>
                     <p className="break-words max-w-lg">{el.message}</p>
                   </div>
