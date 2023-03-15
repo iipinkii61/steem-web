@@ -17,7 +17,7 @@ export default function GamesPage() {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (!showGame.length) {
+      if (!showGame?.length) {
         console.log("fetching showGame");
         dispatch(fetchGame(steamAppId));
       }
@@ -25,7 +25,7 @@ export default function GamesPage() {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [showGame.length]);
+  }, [showGame?.length]);
 
   return (
     <>

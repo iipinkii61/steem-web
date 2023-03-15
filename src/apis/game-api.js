@@ -6,4 +6,4 @@ import axios from "../config/axios";
 
 export const getGameInfoApi = () => axios.get("/game");
 export const getGameByAppId = (steamAppId) => axios.get("/game/" + steamAppId);
-// export const findGameApi = (name) => axios.get("/game/", name);
+export const searchGameApi = (name) => axios.get("/game/name?search=" + name);

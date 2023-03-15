@@ -5,7 +5,20 @@ const initialState = {
   gameInfo: [],
   showGame: {},
   loading: false,
+  searchGame: [],
 };
+
+export const searchGame = createAsyncThunk(
+  "game/searchGame",
+  async (searchName) => {
+    try {
+      const res = await gameApi.searchGameApi(searchName);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
+);
 
 export const fetchGameInfo = createAsyncThunk(
   "game/fetchGameInfo",
@@ -38,6 +51,9 @@ const gameSlice = createSlice({
     clearShowGame: (state, action) => {
       state.showGame = initialState.showGame;
     },
+    clearSearchGame: (state, action) => {
+      state.searchGame = initialState.searchGame;
+    },
   },
   extraReducers(builder) {
     builder
@@ -51,8 +67,11 @@ const gameSlice = createSlice({
     builder.addCase(fetchGame.fulfilled, (state, action) => {
       state.showGame = action.payload;
     });
+    builder.addCase(searchGame.fulfilled, (state, action) => {
+      state.searchGame = action.payload;
+    });
   },
 });
 
 export default gameSlice.reducer;
-export const { clearShowGame } = gameSlice.actions;
+export const { clearShowGame, clearSearchGame } = gameSlice.actions;
