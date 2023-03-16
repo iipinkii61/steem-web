@@ -21,10 +21,10 @@ export default function GameItem({ setSearchName }) {
   }, [steamAppId]);
 
   return (
-    <div className="flex flex-col justify-between items-center bg-[#18202C] mb-1 pr-4">
-      {findGame?.map((el) => (
+    <div className="flex flex-col w-[400px] justify-between mb-1 pr-4 backdrop-blur-md backdrop-brightness-110">
+      {findGame?.slice(0,10).map((el) => (
         <div
-          className="flex items-center"
+          className="flex text-right"
           key={el?.id}
           onClick={() => onClick(el)}
         >
@@ -32,9 +32,9 @@ export default function GameItem({ setSearchName }) {
             src={el?.headerImage}
             className="h-11 bg-blue-400 m-4 cursor-pointer"
           />
-          <div>
-            <div className="cursor-pointer">{el?.name}</div>
-            <div>{el?.priceOverview?.final_formatted}</div>
+          <div className="">
+            <div className="cursor-pointer text-left">{el?.name}</div>
+            <div className="text-left">{el?.priceOverview?.final_formatted}</div>
           </div>
         </div>
       ))}

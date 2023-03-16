@@ -62,7 +62,7 @@ export default function Header() {
         </div>
       </div>
       {/* right part */}
-      <div className="p-4">
+      <div className="p-4 text-right">
         {user ? (
           <HeaderUserPart />
         ) : (

@@ -4,7 +4,7 @@ import { deleteItem } from "../redux/cart-slice";
 export default function CartItem({ el, onClick }) {
   const dispatch = useDispatch();
   return (
-    <div className="flex justify-between items-center bg-[#18202C] mb-1 pr-4">
+    <div className="flex justify-between bg-[#18202C] mb-1 pr-4">
       <div className="flex items-center">
         <img
           src={el?.Game?.headerImage}
