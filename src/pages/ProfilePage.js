@@ -18,11 +18,12 @@ import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 import GenresTag from "../components/GenresTag";
 import useGameTrans from "../hooks/useGameTrans";
+import { getTransaction } from "../redux/transaction-slice";
 
 export default function ProfilePage() {
   const gameInfo = useGameInfo();
   const user = useUser();
-  console.log("gameInfo", gameInfo);
+  // console.log("gameInfo", gameInfo);
   const friends = useFriend();
   // console.log("friends", friends);
   const { id } = useParams();
@@ -32,19 +33,18 @@ export default function ProfilePage() {
 
   const fetch = async () => {
     const fetchProfile = await getProfileApi(id);
-    // console.log("fetchProfile", fetchProfile);
     setProfile(fetchProfile?.data);
   };
-  // useEffect(() => {
-  //   if (!location.pathname === "/profiles") {
-  //     fetch();
-  //   }
-  // }, []);
   useEffect(() => {
-    fetch();
+    if (!location.pathname === "/profiles") {
+      fetch();
+    }
   }, []);
-  const gameTrans = useGameTrans();
+  // useEffect(() => {
+  //   fetch());
+  // }, []);
 
+  const gameTrans = useGameTrans();
   console.log(gameTrans);
 
   return (
@@ -86,30 +86,30 @@ export default function ProfilePage() {
               </div>
               <table className="table w-full">
                 <tbody>
-                  {gameInfo?.slice(0, 4).map((el) => (
+                  {gameTrans?.map((el) => (
                     <tr
                       className="h-[120px] flex justify-between my-[1px]"
-                      key={el?.steamAppid}
+                      key={el?.Game?.steamAppid}
                     >
                       <td className="bg-[#22394b] w-[350px] h-[120px] relative">
                         <img
                           className="w-full h-full absolute left-0 top-0 object-top rounded-sm"
-                          src={el?.headerImage}
+                          src={el?.Game?.headerImage}
                         />
                       </td>
 
                       <td className="bg-[#22394b] w-full relative">
                         <span className="absolute top-1 left-3 text-lg">
-                          {el?.name}
+                          {el?.Game?.name}
                         </span>
                         <span className="absolute top-10 left-3 text-gray-300 w-fit h-fit">
-                          {el?.platforms.windows && <IconWindows />}
+                          {el?.Game?.platforms.windows && <IconWindows />}
                         </span>
                         <span className="absolute top-10 left-9 text-gray-300 w-fit h-fit">
-                          {el?.platforms.mac && <IconMac />}
+                          {el?.Game?.platforms.mac && <IconMac />}
                         </span>
                         <div className="w-full absolute bottom-6 left-3 flex flex-wrap gap-2 ">
-                          {el?.categories?.slice(0, 5).map((tag) => (
+                          {el?.Game?.categories?.slice(0, 5).map((tag) => (
                             <GenresTag key={tag.id} tag={tag.description} />
                           ))}
                         </div>
