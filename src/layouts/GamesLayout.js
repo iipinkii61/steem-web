@@ -8,6 +8,7 @@ import IconWindows from "../assets/icons/IconWindows";
 import IconMac from "../assets/icons/IconMac";
 import useAuth from "../hooks/useAuth";
 import useWishlist from "../hooks/useWishList";
+import useGameTrans from "../hooks/useGameTrans";
 
 export default function GamesLayout() {
   const showGame = useShowGame();
@@ -16,6 +17,12 @@ export default function GamesLayout() {
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const dispatch = useDispatch();
+  const gameTrans = useGameTrans();
+
+  const isOwnedGame = gameTrans.some(
+    (el) => el.Game.steamAppid === +steamAppId,
+  );
+  console.log(isOwnedGame);
 
   useEffect(() => {
     videoRef.current.load();
@@ -42,6 +49,9 @@ export default function GamesLayout() {
 
   const handleAddAndPlay = () => {
     if (showGame?.isFree) {
+      return navigate("/login", { state: { steamAppId } });
+    }
+    if (isOwnedGame) {
       return navigate("/login", { state: { steamAppId } });
     }
     dispatch(setCart(steamAppId));
@@ -142,16 +152,18 @@ export default function GamesLayout() {
         </div>
         <div className="absolute -bottom-5 right-5 w-[206px] h-[40px] bg-black">
           <div className="text-gray-300 font-thin text-sm pl-3 pt-3">
-            {!showGame?.isFree
-              ? showGame?.priceOverview?.final_formatted
-              : "Free to Play"}
+            {!isOwnedGame
+              ? !showGame?.isFree
+                ? showGame?.priceOverview?.final_formatted
+                : "Free to Play"
+              : ""}
           </div>
           <button
             onClick={handleAddAndPlay}
             className="absolute p-2 px-5 text-[#ceeca5] right-1 bottom-1 text-xs rounded-sm bg-[radial-gradient(at_left_top,_#78b32b,_#60941b,_#588a1b)]
           hover:bg-[radial-gradient(at_left_top,_#78b32b,_#8bd32a,_#588a1b)] hover:text-white"
           >
-            {!showGame?.isFree ? "Add to cart" : "Play game"}
+            {!showGame?.isFree && !isOwnedGame ? "Add to cart" : "Play game"}
           </button>
         </div>
       </div>

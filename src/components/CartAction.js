@@ -19,8 +19,7 @@ export default function CartAction({ sumPrice }) {
   const handleLoadScript = () => {
     console.log("script");
     window.OmiseCard.configure({
-      // publicKey: process.env.REACT_APP_OMISE_PUBLIC_KEY,
-      publicKey: "pkey_test_5v17fi85hzib9l24i5a",
+      publicKey: process.env.REACT_APP_OMISE_PUBLIC_KEY,
       frameLabel: "Steem",
       submitLabel: "PAY NOW",
       currency: "thb",
